@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nicholas Borelli — AI Strategy Consultant</title>
+<meta name="description" content="AI Strategy Consultant helping small businesses in Bucks County, PA adopt AI tools that save time and drive growth.">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=IBM+Plex+Mono:wght@300;400&display=swap');
+
+/* ═══ RESET & VARIABLES ═══ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black: #0A0A09;
+  --black-soft: #111110;
+  --black-card: #161614;
+  --black-border: #222220;
+  --amber: #D4932A;
+  --amber-dim: rgba(212, 147, 42, 0.15);
+  --amber-glow: rgba(212, 147, 42, 0.06);
+  --copper: #B87333;
+  --ivory: #F5F0E8;
+  --ivory-dim: rgba(245, 240, 232, 0.7);
+  --ivory-muted: rgba(245, 240, 232, 0.4);
+  --ivory-ghost: rgba(245, 240, 232, 0.12);
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--sans);
+  background: var(--black);
+  color: var(--ivory);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ═══ DIAGONAL TEXTURE OVERLAY ═══ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    135deg,
+    transparent,
+    transparent 14px,
+    rgba(245, 240, 232, 0.008) 14px,
+    rgba(245, 240, 232, 0.008) 15px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ═══ LAYOUT ═══ */
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+section {
+  padding: 72px 0;
+  border-bottom: 1px solid var(--black-border);
+}
+
+section:last-of-type { border-bottom: none; }
+
+/* ═══ HERO ═══ */
+.hero {
+  padding: 100px 0 80px;
+  position: relative;
+}
+
+.hero-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 8vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--ivory);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.4s forwards;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--amber);
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--ivory-dim);
+  max-width: 520px;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.6s forwards;
+}
+
+.hero-line {
+  width: 48px;
+  height: 1px;
+  background: var(--amber);
+  margin-top: 36px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.8s forwards;
+}
+
+/* ═══ DIAMOND MARK ═══ */
+.diamond {
+  position: absolute;
+  top: 100px;
+  right: 24px;
+  width: 36px;
+  height: 36px;
+  opacity: 0;
+  animation: fadeIn 1.2s ease 1s forwards;
+}
+
+.diamond::before, .diamond::after {
+  content: '';
+  position: absolute;
+  border: 1px solid;
+  transform: rotate(45deg);
+}
+
+.diamond::before {
+  width: 28px;
+  height: 28px;
+  top: 4px;
+  left: 4px;
+  border-color: rgba(212, 147, 42, 0.2);
+}
+
+.diamond::after {
+  width: 14px;
+  height: 14px;
+  top: 11px;
+  left: 11px;
+  border-color: rgba(212, 147, 42, 0.12);
+}
+
+.diamond-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--amber);
+  border-radius: 50%;
+  top: 16px;
+  left: 16px;
+}
+
+/* ═══ STAT BAR ═══ */
+.stat-bar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--black-border);
+  border: 1px solid var(--black-border);
+  margin-top: 0;
+  padding: 0;
+  border-bottom: none;
+}
+
+.stat {
+  background: var(--black-soft);
+  padding: 24px;
+}
+
+.stat-number {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  color: var(--amber);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ivory-muted);
+}
+
+/* ═══ SECTION HEADERS ═══ */
+.section-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.section-body {
+  font-weight: 300;
+  color: var(--ivory-dim);
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+
+.section-body + .section-body {
+  margin-top: 16px;
+}
+
+/* ═══ WHAT I DO — SERVICE CARDS ═══ */
+.services {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.service-card {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  padding: 28px 24px;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  position: relative;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--amber);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover {
+  border-color: rgba(212, 147, 42, 0.2);
+  background: rgba(22, 22, 20, 0.8);
+}
+
+.service-card:hover::before { opacity: 1; }
+
+.service-number {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--amber);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.service-name {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: var(--ivory);
+}
+
+.service-desc {
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: var(--ivory-muted);
+  line-height: 1.6;
+}
+
+/* ═══ WHO IT'S FOR ═══ */
+.audience-list {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.audience-item {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--black-border);
+}
+
+.audience-item:last-child { border-bottom: none; }
+
+.audience-dash {
+  color: var(--amber);
+  font-family: var(--mono);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.audience-text {
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: var(--ivory-dim);
+}
+
+/* ═══ APPROACH / PROCESS ═══ */
+.process-steps {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.process-step {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 0;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--black-border);
+}
+
+.process-step:last-child { border-bottom: none; }
+
+.step-num {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--amber);
+  line-height: 1;
+  padding-top: 2px;
+}
+
+.step-title {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: var(--ivory);
+}
+
+.step-desc {
+  font-weight: 300;
+  font-size: 0.88rem;
+  color: var(--ivory-muted);
+  line-height: 1.6;
+}
+
+/* ═══ CREDIBILITY ═══ */
+.cred-block {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-left: 2px solid var(--amber);
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.cred-block p {
+  font-weight: 300;
+  font-size: 0.92rem;
+  color: var(--ivory-dim);
+  line-height: 1.7;
+}
+
+.cred-block p + p { margin-top: 12px; }
+
+/* ═══ CONTACT ═══ */
+.contact-section {
+  padding-bottom: 100px;
+}
+
+.contact-grid {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.contact-value {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--ivory);
+}
+
+.contact-value a {
+  color: var(--ivory);
+  text-decoration: none;
+  border-bottom: 1px solid var(--black-border);
+  transition: border-color 0.3s ease;
+}
+
+.contact-value a:hover {
+  border-color: var(--amber);
+}
+
+.contact-cta {
+  margin-top: 36px;
+  padding: 20px 24px;
+  background: transparent;
+  border: 1px solid var(--amber);
+  color: var(--amber);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  transition: background 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.contact-cta:hover {
+  background: var(--amber);
+  color: var(--black);
+}
+
+/* ═══ FOOTER ═══ */
+footer {
+  padding: 32px 0;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-line {
+  width: 32px;
+  height: 1px;
+  background: var(--amber);
+  margin: 0 auto 16px;
+}
+
+.footer-text {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--ivory-ghost);
+  text-transform: uppercase;
+}
+
+.footer-coords {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: rgba(245, 240, 232, 0.06);
+  margin-top: 8px;
+  letter-spacing: 1px;
+}
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══ RESPONSIVE — TABLET + DESKTOP ═══ */
+@media (min-width: 640px) {
+  .container { padding: 0 40px; }
+  
+  .stat-bar {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .services {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .hero { padding: 140px 0 100px; }
+  section { padding: 88px 0; }
+  
+  .diamond {
+    right: 40px;
+    top: 140px;
+    width: 48px;
+    height: 48px;
+  }
+  
+  .diamond::before {
+    width: 38px;
+    height: 38px;
+    top: 5px;
+    left: 5px;
+  }
+  
+  .diamond::after {
+    width: 20px;
+    height: 20px;
+    top: 14px;
+    left: 14px;
+  }
+  
+  .diamond-dot {
+    top: 22px;
+    left: 22px;
+  }
+}
+
+@media (min-width: 900px) {
+  .container { max-width: 760px; }
+  
+  .services {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .contact-grid {
+    flex-direction: row;
+    gap: 48px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="container">
+    <div class="diamond">
+      <div class="diamond-dot"></div>
+    </div>
+    <p class="hero-label">AI Strategy Consultant</p>
+    <h1>I help small businesses<br>adopt <em>AI that works</em></h1>
+    <p class="hero-sub">Not apps. Not agents. Not complicated workflows that break. I review your operations, find where AI saves you real time and money, and teach your team to use it.</p>
+    <div class="hero-line"></div>
+  </div>
+</section>
+
+<!-- ═══ STAT BAR ═══ -->
+<div class="stat-bar">
+  <div class="stat">
+    <div class="stat-number">82%</div>
+    <div class="stat-label">of small businesses think AI doesn't apply to them — it does</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">87%</div>
+    <div class="stat-label">of SMBs using AI report increased productivity</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">12%</div>
+    <div class="stat-label">of small businesses have invested in any AI training</div>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<section>
+  <div class="container reveal">
+    <p class="section-label">Background</p>
+    <h2 class="section-title">Fortune 10 experience,<br>applied locally</h2>
+    <p class="section-body">I drive AI adoption strategy at one of the world's largest financial institutions. I've seen what works at scale — and more importantly, what doesn't. The principles that drive successful AI adoption at a 250,000-person company are the same ones that work for a 5-person insurance agency.</p>
+    <p class="section-body">The difference is that nobody's translating those principles for local businesses. That's what I do.</p>
+    
+    <div class="cred-block">
+      <p>Based in Bucks County, PA. I work with businesses across Warrington, Doylestown, Chalfont, and the surrounding area.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section>
+  <div class="container reveal">
+    <p class="section-label">What I do</p>
+    <h2 class="section-title">Practical AI adoption,<br>no jargon required</h2>
+    
+    <div class="services">
+      <div class="service-card">
+        <div class="service-number">01</div>
+        <div class="service-name">AI Readiness Review</div>
+        <div class="service-desc">I sit with you for 60–90 minutes, walk through your operations, and identify 3–5 places AI can save you time or money right now. You walk away with a clear, actionable one-pager.</div>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-number">02</div>
+        <div class="service-name">Hands-On Upskilling</div>
+        <div class="service-desc">I teach you and your team to actually use AI tools — with your real work, not hypotheticals. 2–3 sessions and you're self-sufficient.</div>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-number">03</div>
+        <div class="service-name">Use Case Development</div>
+        <div class="service-desc">Custom prompts, templates, and workflows built around how your business actually operates. Drafting proposals, responding to leads, generating content, summarizing documents — tailored to you.</div>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-number">04</div>
+        <div class="service-name">Tool Selection Guidance</div>
+        <div class="service-desc">I'm not selling you software. I help you pick the right AI tools for your needs and budget — whether that's ChatGPT, Claude, or something else entirely.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHO IT'S FOR ═══ -->
+<section>
+  <div class="container reveal">
+    <p class="section-label">Who this is for</p>
+    <h2 class="section-title">Small businesses ready to<br>stop wondering about AI</h2>
+    
+    <div class="audience-list">
+      <div class="audience-item">
+        <span class="audience-dash">◆</span>
+        <span class="audience-text">Insurance agencies drafting client communications and summarizing policies manually</span>
+      </div>
+      <div class="audience-item">
+        <span class="audience-dash">◆</span>
+        <span class="audience-text">Contractors writing estimates, proposals, and responding to leads by hand</span>
+      </div>
+      <div class="audience-item">
+        <span class="audience-dash">◆</span>
+        <span class="audience-text">Property managers drowning in tenant communications and maintenance coordination</span>
+      </div>
+      <div class="audience-item">
+        <span class="audience-dash">◆</span>
+        <span class="audience-text">Professional service firms spending hours on content, reports, and admin</span>
+      </div>
+      <div class="audience-item">
+        <span class="audience-dash">◆</span>
+        <span class="audience-text">Any owner who's heard they should be using AI but doesn't know where to start</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROCESS ═══ -->
+<section>
+  <div class="container reveal">
+    <p class="section-label">How it works</p>
+    <h2 class="section-title">Simple, no-commitment<br>process</h2>
+    
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">We talk</div>
+          <div class="step-desc">A quick conversation — coffee, your office, or a phone call. I learn how your business runs and what's taking up your time.</div>
+        </div>
+      </div>
+      
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">I review</div>
+          <div class="step-desc">I put together a one-page AI readiness review: here's what you do today, here's what AI could handle, here's the tool, here's the time and money it saves. No charge for the first review.</div>
+        </div>
+      </div>
+      
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">You decide</div>
+          <div class="step-desc">If the review is useful and you want help implementing, we set up a hands-on upskilling package. If not, you still walk away with a clear roadmap.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="contact-section">
+  <div class="container reveal">
+    <p class="section-label">Get in touch</p>
+    <h2 class="section-title">Let's start with a<br>conversation</h2>
+    <p class="section-body">No pitch, no pressure. If you're curious whether AI could help your business, I'm happy to talk it through.</p>
+    
+    <div class="contact-grid">
+      <div class="contact-item">
+        <span class="contact-label">Email</span>
+        <span class="contact-value"><a href="mailto:NJB934@gmail.com">NJB934@gmail.com</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Phone</span>
+        <span class="contact-value"><a href="tel:2152628894">215-262-8894</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Location</span>
+        <span class="contact-value">Bucks County, PA</span>
+      </div>
+    </div>
+    
+    <a href="mailto:NJB934@gmail.com?subject=AI%20Readiness%20Review" class="contact-cta">Request a free AI readiness review</a>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-line"></div>
+  <div class="footer-text">Nicholas Borelli</div>
+  <div class="footer-coords">40.2464°N  75.1383°W</div>
+</footer>
+
+<!-- ═══ SCROLL REVEAL ═══ -->
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
