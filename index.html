@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nicholas Borelli — AI Strategy Consultant</title>
-<meta name="description" content="AI Strategy Consultant helping small businesses in Bucks County, PA adopt AI tools that save time and drive growth.">
+<title>Borelli Consulting — AI Strategy</title>
+<meta name="description" content="Borelli Consulting: AI Strategy for small businesses in Bucks County, PA. Practical AI adoption that saves time and drives growth.">
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=IBM+Plex+Mono:wght@300;400&display=swap');
@@ -57,6 +57,91 @@ body::before {
   z-index: 0;
 }
 
+/* ═══ NAVIGATION ═══ */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--black);
+  border-bottom: 1px solid var(--black-border);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.nav-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+}
+
+.nav-logo-mark {
+  width: 22px;
+  height: 22px;
+  background: var(--amber);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  flex-shrink: 0;
+}
+
+.nav-logo-lockup {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.nav-logo-name {
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--ivory);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.nav-logo-name span { color: var(--amber); }
+
+.nav-logo-sub {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ivory-muted);
+}
+
+.nav-links {
+  display: none;
+  gap: 28px;
+  align-items: center;
+}
+
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ivory-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover { color: var(--ivory); }
+
+.nav-cta {
+  border: 1px solid var(--amber) !important;
+  color: var(--amber) !important;
+  padding: 7px 18px;
+}
+
 /* ═══ LAYOUT ═══ */
 .container {
   max-width: 680px;
@@ -75,7 +160,7 @@ section:last-of-type { border-bottom: none; }
 
 /* ═══ HERO ═══ */
 .hero {
-  padding: 100px 0 80px;
+  padding: 72px 0 64px;
   position: relative;
 }
 
@@ -129,7 +214,7 @@ section:last-of-type { border-bottom: none; }
 /* ═══ DIAMOND MARK ═══ */
 .diamond {
   position: absolute;
-  top: 100px;
+  top: 72px;
   right: 24px;
   width: 36px;
   height: 36px;
@@ -500,39 +585,43 @@ footer {
 /* ═══ RESPONSIVE — TABLET + DESKTOP ═══ */
 @media (min-width: 640px) {
   .container { padding: 0 40px; }
-  
+
+  .nav-links { display: flex; }
+
+  .site-nav { padding: 0 40px; }
+
   .stat-bar {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .services {
     grid-template-columns: 1fr 1fr;
   }
-  
-  .hero { padding: 140px 0 100px; }
+
+  .hero { padding: 88px 0 80px; }
   section { padding: 88px 0; }
-  
+
   .diamond {
     right: 40px;
-    top: 140px;
+    top: 88px;
     width: 48px;
     height: 48px;
   }
-  
+
   .diamond::before {
     width: 38px;
     height: 38px;
     top: 5px;
     left: 5px;
   }
-  
+
   .diamond::after {
     width: 20px;
     height: 20px;
     top: 14px;
     left: 14px;
   }
-  
+
   .diamond-dot {
     top: 22px;
     left: 22px;
@@ -541,12 +630,13 @@ footer {
 
 @media (min-width: 900px) {
   .container { max-width: 760px; }
-  
+  .nav-inner { max-width: 760px; }
+
   .services {
     grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
-  
+
   .contact-grid {
     flex-direction: row;
     gap: 48px;
@@ -556,8 +646,27 @@ footer {
 </head>
 <body>
 
+<!-- ═══ NAVIGATION ═══ -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark"></div>
+      <div class="nav-logo-lockup">
+        <div class="nav-logo-name">Borelli <span>Consulting</span></div>
+        <div class="nav-logo-sub">AI Strategy</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#process">Process</a>
+      <a href="#contact" class="nav-cta">Work With Me</a>
+    </div>
+  </div>
+</nav>
+
 <!-- ═══ HERO ═══ -->
-<section class="hero">
+<section class="hero" id="home">
   <div class="container">
     <div class="diamond">
       <div class="diamond-dot"></div>
@@ -586,13 +695,13 @@ footer {
 </div>
 
 <!-- ═══ ABOUT ═══ -->
-<section>
+<section id="about">
   <div class="container reveal">
     <p class="section-label">Background</p>
     <h2 class="section-title">Fortune 10 experience,<br>applied locally</h2>
     <p class="section-body">I drive AI adoption strategy at one of the world's largest financial institutions. I've seen what works at scale — and more importantly, what doesn't. The principles that drive successful AI adoption at a 250,000-person company are the same ones that work for a 5-person insurance agency.</p>
     <p class="section-body">The difference is that nobody's translating those principles for local businesses. That's what I do.</p>
-    
+
     <div class="cred-block">
       <p>Based in Bucks County, PA. I work with businesses across Warrington, Doylestown, Chalfont, and the surrounding area.</p>
     </div>
@@ -600,30 +709,30 @@ footer {
 </section>
 
 <!-- ═══ SERVICES ═══ -->
-<section>
+<section id="services">
   <div class="container reveal">
     <p class="section-label">What I do</p>
     <h2 class="section-title">Practical AI adoption,<br>no jargon required</h2>
-    
+
     <div class="services">
       <div class="service-card">
         <div class="service-number">01</div>
         <div class="service-name">AI Readiness Review</div>
         <div class="service-desc">I sit with you for 60–90 minutes, walk through your operations, and identify 3–5 places AI can save you time or money right now. You walk away with a clear, actionable one-pager.</div>
       </div>
-      
+
       <div class="service-card">
         <div class="service-number">02</div>
         <div class="service-name">Hands-On Upskilling</div>
         <div class="service-desc">I teach you and your team to actually use AI tools — with your real work, not hypotheticals. 2–3 sessions and you're self-sufficient.</div>
       </div>
-      
+
       <div class="service-card">
         <div class="service-number">03</div>
         <div class="service-name">Use Case Development</div>
         <div class="service-desc">Custom prompts, templates, and workflows built around how your business actually operates. Drafting proposals, responding to leads, generating content, summarizing documents — tailored to you.</div>
       </div>
-      
+
       <div class="service-card">
         <div class="service-number">04</div>
         <div class="service-name">Tool Selection Guidance</div>
@@ -638,7 +747,7 @@ footer {
   <div class="container reveal">
     <p class="section-label">Who this is for</p>
     <h2 class="section-title">Small businesses ready to<br>stop wondering about AI</h2>
-    
+
     <div class="audience-list">
       <div class="audience-item">
         <span class="audience-dash">◆</span>
@@ -665,11 +774,11 @@ footer {
 </section>
 
 <!-- ═══ PROCESS ═══ -->
-<section>
+<section id="process">
   <div class="container reveal">
     <p class="section-label">How it works</p>
     <h2 class="section-title">Simple, no-commitment<br>process</h2>
-    
+
     <div class="process-steps">
       <div class="process-step">
         <div class="step-num">1</div>
@@ -678,7 +787,7 @@ footer {
           <div class="step-desc">A quick conversation — coffee, your office, or a phone call. I learn how your business runs and what's taking up your time.</div>
         </div>
       </div>
-      
+
       <div class="process-step">
         <div class="step-num">2</div>
         <div>
@@ -686,7 +795,7 @@ footer {
           <div class="step-desc">I put together a one-page AI readiness review: here's what you do today, here's what AI could handle, here's the tool, here's the time and money it saves. No charge for the first review.</div>
         </div>
       </div>
-      
+
       <div class="process-step">
         <div class="step-num">3</div>
         <div>
@@ -699,12 +808,12 @@ footer {
 </section>
 
 <!-- ═══ CONTACT ═══ -->
-<section class="contact-section">
+<section class="contact-section" id="contact">
   <div class="container reveal">
     <p class="section-label">Get in touch</p>
     <h2 class="section-title">Let's start with a<br>conversation</h2>
     <p class="section-body">No pitch, no pressure. If you're curious whether AI could help your business, I'm happy to talk it through.</p>
-    
+
     <div class="contact-grid">
       <div class="contact-item">
         <span class="contact-label">Email</span>
@@ -719,7 +828,7 @@ footer {
         <span class="contact-value">Bucks County, PA</span>
       </div>
     </div>
-    
+
     <a href="mailto:NJB934@gmail.com?subject=AI%20Readiness%20Review" class="contact-cta">Request a free AI readiness review</a>
   </div>
 </section>
@@ -727,7 +836,7 @@ footer {
 <!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="footer-line"></div>
-  <div class="footer-text">Nicholas Borelli</div>
+  <div class="footer-text">Borelli Consulting</div>
   <div class="footer-coords">40.2464°N  75.1383°W</div>
 </footer>
 
