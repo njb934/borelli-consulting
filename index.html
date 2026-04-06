@@ -289,6 +289,18 @@ section:last-of-type { border-bottom: none; }
   border-bottom: none;
 }
 
+.stat-bar-label {
+  grid-column: 1 / -1;
+  background: var(--black-soft);
+  padding: 20px 24px 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
 .stat {
   background: var(--black-soft);
   padding: 24px;
@@ -783,6 +795,7 @@ footer {
 
 <!-- ═══ STAT BAR ═══ -->
 <div class="stat-bar">
+  <div class="stat-bar-label">By the Numbers</div>
   <div class="stat">
     <div class="stat-number">82%</div>
     <div class="stat-label">of small businesses think AI doesn't apply to them — it does</div>
