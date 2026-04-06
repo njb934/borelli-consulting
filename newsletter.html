@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Edge — Weekly AI Newsletter · Borelli Consulting</title>
+<meta name="description" content="The Edge: weekly AI insights for small businesses in Bucks County, PA. Practical news, prompt techniques, and local angles — no jargon.">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=IBM+Plex+Mono:wght@300;400&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black: #0A0A09;
+  --black-soft: #111110;
+  --black-card: #161614;
+  --black-border: #222220;
+  --amber: #D4932A;
+  --amber-dim: rgba(212, 147, 42, 0.15);
+  --ivory: #F5F0E8;
+  --ivory-dim: rgba(245, 240, 232, 0.7);
+  --ivory-muted: rgba(245, 240, 232, 0.4);
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--sans);
+  background: var(--black);
+  color: var(--ivory);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(135deg, transparent, transparent 14px, rgba(245,240,232,0.008) 14px, rgba(245,240,232,0.008) 15px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* NAV */
+.site-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--black); border-bottom: 1px solid var(--black-border);
+  height: 64px; display: flex; align-items: center; padding: 0 24px;
+}
+.nav-inner {
+  max-width: 760px; margin: 0 auto; width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+.nav-logo-mark {
+  width: 22px; height: 22px; background: var(--amber);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); flex-shrink: 0;
+}
+.nav-logo-lockup { display: flex; flex-direction: column; gap: 1px; }
+.nav-logo-name { font-family: var(--serif); font-size: 17px; color: var(--ivory); line-height: 1; letter-spacing: -0.01em; }
+.nav-logo-name span { color: var(--amber); }
+.nav-logo-sub { font-family: var(--mono); font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ivory-muted); }
+.nav-links { display: none; gap: 28px; align-items: center; }
+.nav-links a { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ivory-muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--ivory); }
+.nav-cta {
+  display: inline-block; border: 1px solid var(--amber); color: var(--amber);
+  padding: 7px 18px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, color 0.2s; white-space: nowrap;
+}
+.nav-cta:hover { background: var(--amber); color: var(--black); }
+
+/* LAYOUT */
+.container { max-width: 680px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+section { padding: 72px 0; border-bottom: 1px solid var(--black-border); }
+section:last-of-type { border-bottom: none; }
+
+/* HERO */
+.hero { padding: 80px 0 64px; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.7s ease 0.1s forwards;
+}
+.hero-diamond {
+  width: 10px; height: 10px; background: var(--amber);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+.hero h1 {
+  font-family: var(--serif); font-size: clamp(2.8rem, 9vw, 4.2rem);
+  font-weight: 400; line-height: 1.05; color: var(--ivory);
+  margin-bottom: 20px; opacity: 0; animation: fadeUp 0.7s ease 0.25s forwards;
+}
+.hero-sub {
+  font-size: 17px; color: var(--ivory-dim); max-width: 520px;
+  margin-bottom: 36px; opacity: 0; animation: fadeUp 0.7s ease 0.4s forwards;
+}
+.hero-actions {
+  display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+  opacity: 0; animation: fadeUp 0.7s ease 0.55s forwards;
+}
+.btn-primary {
+  display: inline-block; background: var(--amber); color: var(--black);
+  padding: 13px 28px; font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+  font-weight: 400; transition: opacity 0.2s;
+}
+.btn-primary:hover { opacity: 0.88; }
+.btn-ghost {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ivory-muted); text-decoration: none; transition: color 0.2s;
+}
+.btn-ghost:hover { color: var(--ivory); }
+.hero-note {
+  margin-top: 16px; font-family: var(--mono); font-size: 10px;
+  color: rgba(245,240,232,0.2); letter-spacing: 0.06em;
+  opacity: 0; animation: fadeUp 0.7s ease 0.7s forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* PILLARS */
+.section-label { font-family: var(--mono); font-size: 11px; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--amber); margin-bottom: 20px; }
+.section-title { font-family: var(--serif); font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 400; line-height: 1.15; color: var(--ivory); margin-bottom: 20px; }
+.section-body { font-size: 16px; color: var(--ivory-dim); margin-bottom: 16px; }
+
+.pillars { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 32px; }
+.pillar {
+  padding: 24px; border: 1px solid var(--black-border);
+  background: var(--black-card); border-radius: 2px;
+  transition: border-color 0.2s;
+}
+.pillar:hover { border-color: var(--amber); }
+.pillar-number { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; color: var(--amber); margin-bottom: 10px; }
+.pillar-name { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--ivory); margin-bottom: 8px; }
+.pillar-desc { font-size: 14px; color: var(--ivory-muted); line-height: 1.6; }
+
+/* SUBSCRIBE FORM */
+.subscribe-section {
+  background: var(--black-soft); border: 1px solid var(--black-border);
+  padding: 40px 32px; border-radius: 2px; border-left: 3px solid var(--amber);
+  margin-top: 40px;
+}
+.subscribe-title { font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--ivory); margin-bottom: 8px; }
+.subscribe-sub { font-size: 14px; color: var(--ivory-muted); margin-bottom: 24px; }
+
+/* ── Beehiiv embed placeholder ── */
+/* Replace the .beehiiv-placeholder block below with the actual Beehiiv embed code
+   from your Beehiiv dashboard: Audience → Forms → Embed Form
+   The embed will look like: <div id="beehiiv-embed-..."></div><script src="..."></script>        */
+.beehiiv-placeholder {
+  border: 1px dashed var(--black-border);
+  padding: 24px; text-align: center;
+  font-family: var(--mono); font-size: 11px; color: rgba(245,240,232,0.2);
+  letter-spacing: 0.08em;
+}
+
+/* Fallback form (active until Beehiiv is connected) */
+.subscribe-form { display: flex; gap: 10px; flex-wrap: wrap; }
+.subscribe-input {
+  flex: 1; min-width: 200px;
+  background: var(--black); border: 1px solid var(--black-border);
+  color: var(--ivory); font-family: var(--sans); font-size: 15px;
+  padding: 11px 16px; outline: none; border-radius: 0;
+  transition: border-color 0.2s;
+}
+.subscribe-input:focus { border-color: var(--amber); }
+.subscribe-input::placeholder { color: rgba(245,240,232,0.2); }
+.subscribe-submit {
+  background: var(--amber); color: var(--black); border: none;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 11px 24px; cursor: pointer;
+  transition: opacity 0.2s; white-space: nowrap;
+}
+.subscribe-submit:hover { opacity: 0.88; }
+.subscribe-privacy { font-family: var(--mono); font-size: 10px; color: rgba(245,240,232,0.2); margin-top: 12px; letter-spacing: 0.04em; }
+
+/* ARCHIVE SECTION */
+.archive-section { padding: 72px 0; }
+.archive-intro { font-size: 15px; color: var(--ivory-muted); margin-bottom: 36px; }
+.issue-list { display: flex; flex-direction: column; gap: 0; }
+.issue-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 0; border-bottom: 1px solid var(--black-border);
+  gap: 16px; text-decoration: none; transition: background 0.15s; cursor: pointer;
+}
+.issue-item:hover .issue-title { color: var(--amber); }
+.issue-item:last-child { border-bottom: none; }
+.issue-left { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.issue-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--amber); }
+.issue-title { font-size: 15px; color: var(--ivory); transition: color 0.2s; line-height: 1.4; }
+.issue-topics { font-family: var(--mono); font-size: 10px; color: var(--ivory-muted); letter-spacing: 0.04em; }
+.issue-right { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+.issue-date { font-family: var(--mono); font-size: 11px; color: rgba(245,240,232,0.25); white-space: nowrap; }
+.issue-arrow { font-size: 12px; color: rgba(245,240,232,0.2); transition: color 0.2s; }
+.issue-item:hover .issue-arrow { color: var(--amber); }
+
+.archive-empty { font-family: var(--mono); font-size: 12px; color: rgba(245,240,232,0.2); letter-spacing: 0.06em; padding: 24px 0; }
+
+/* FOOTER */
+footer {
+  padding: 40px 0; text-align: center; position: relative; z-index: 1;
+  border-top: 1px solid var(--black-border);
+}
+.footer-links { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-links a { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,240,232,0.3); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--ivory); }
+.footer-copy { font-family: var(--mono); font-size: 10px; color: rgba(245,240,232,0.15); letter-spacing: 0.06em; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (min-width: 640px) {
+  .container { padding: 0 40px; }
+  .site-nav { padding: 0 40px; }
+  .nav-links { display: flex; }
+  .pillars { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark"></div>
+      <div class="nav-logo-lockup">
+        <div class="nav-logo-name">Borelli <span>Consulting</span></div>
+        <div class="nav-logo-sub">AI Strategy</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#process">Process</a>
+      <a href="newsletter.html" class="active">Newsletter</a>
+    </div>
+    <a href="index.html#contact" class="nav-cta">Work With Me</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">
+      <div class="hero-diamond"></div>
+      Weekly Newsletter
+    </div>
+    <h1>The Edge</h1>
+    <p class="hero-sub">AI insights for small businesses in Bucks County, PA. Every week: what's new, what it means for your work, and one practical thing you can try today.</p>
+    <div class="hero-actions">
+      <a href="#subscribe" class="btn-primary">Subscribe Free</a>
+      <a href="#archive" class="btn-ghost">Browse past issues →</a>
+    </div>
+    <div class="hero-note">Free · Weekly · No spam · Unsubscribe any time</div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section>
+  <div class="container reveal">
+    <p class="section-label">What's inside</p>
+    <h2 class="section-title">Four things, every week</h2>
+    <p class="section-body">Each issue is built around what a Bucks County small business owner actually needs to know — not what's trending in Silicon Valley.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-number">◆ 01</div>
+        <div class="pillar-name">AI News</div>
+        <div class="pillar-desc">2–3 stories that actually matter for running a small business. Filtered for relevance — if it only matters to engineers, it's out.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-number">◆ 02</div>
+        <div class="pillar-name">The Workshop</div>
+        <div class="pillar-desc">One prompt technique per issue, explained clearly. What it is, when to use it, a before/after example, and a copy-paste template. Building real skills over time.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-number">◆ 03</div>
+        <div class="pillar-name">Local Corner</div>
+        <div class="pillar-desc">AI news with a Bucks County angle — when there's one worth covering. Amazon data centers, PA grants, local school policies, regional business impact.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-number">◆ 04</div>
+        <div class="pillar-name">Resources</div>
+        <div class="pillar-desc">A short, curated list of tools and links relevant to that week's topics. No affiliate deals. Just what's actually useful.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBSCRIBE -->
+<section id="subscribe">
+  <div class="container reveal">
+    <p class="section-label">Subscribe</p>
+    <h2 class="section-title">Get The Edge every Sunday</h2>
+    <p class="section-body">Free. Takes 10 seconds. You'll get the week's issue and nothing else.</p>
+
+    <div class="subscribe-section">
+      <div class="subscribe-title">Join the list</div>
+      <div class="subscribe-sub">Published every Sunday morning. Bucks County, PA focus.</div>
+
+      <!-- ═══ BEEHIIV EMBED ═══ -->
+      <!-- Replace this placeholder with the embed code from your Beehiiv dashboard.
+           Go to: app.beehiiv.com → Grow → Forms → Embed → Copy HTML
+           Paste it here in place of the .beehiiv-placeholder div below.          -->
+      <div class="beehiiv-placeholder">
+        [ Beehiiv subscribe form — paste embed code here ]
+      </div>
+      <!-- ═══ END BEEHIIV EMBED ═══ -->
+
+      <div class="subscribe-privacy">No spam. Unsubscribe any time. Your email stays private.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHIVE -->
+<section id="archive" class="archive-section">
+  <div class="container reveal">
+    <p class="section-label">Archive</p>
+    <h2 class="section-title">Past issues</h2>
+    <p class="archive-intro">Every issue, in order. Click any to read it.</p>
+
+    <div class="issue-list" id="issue-list">
+      <!-- Issue #001 — hardcoded seed entry; future issues added by the Saturday agent -->
+      <a class="issue-item" href="newsletters/2026-04-01-issue-001.html" target="_blank">
+        <div class="issue-left">
+          <div class="issue-num">Issue #001</div>
+          <div class="issue-title">AI Schools, Chatbot Sycophancy & Amazon's $20B Bucks County Bet</div>
+          <div class="issue-topics">Workshop: Chain of Thought · Local: Falls Township</div>
+        </div>
+        <div class="issue-right">
+          <div class="issue-date">Apr 1, 2026</div>
+          <div class="issue-arrow">→</div>
+        </div>
+      </a>
+      <!-- Future issues will be appended here by the Saturday night build script -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="#subscribe">Subscribe</a>
+  </div>
+  <div class="footer-copy">The Edge · Borelli Consulting · Warrington, PA</div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
