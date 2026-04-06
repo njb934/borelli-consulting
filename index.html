@@ -277,50 +277,6 @@ section:last-of-type { border-bottom: none; }
   left: 16px;
 }
 
-/* ═══ STAT BAR ═══ */
-.stat-bar {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1px;
-  background: var(--black-border);
-  border: 1px solid var(--black-border);
-  margin-top: 0;
-  padding: 0;
-  border-bottom: none;
-}
-
-.stat-bar-label {
-  grid-column: 1 / -1;
-  background: var(--black-soft);
-  padding: 20px 24px 0;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--amber);
-}
-
-.stat {
-  background: var(--black-soft);
-  padding: 24px;
-}
-
-.stat-number {
-  font-family: var(--serif);
-  font-size: 1.8rem;
-  color: var(--amber);
-  line-height: 1;
-  margin-bottom: 6px;
-}
-
-.stat-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--ivory-muted);
-}
 
 /* ═══ SECTION HEADERS ═══ */
 .section-label {
@@ -624,10 +580,6 @@ footer {
   background: #191207;
 }
 
-.stat-bar {
-  margin-top: 0;
-  border-top: 3px solid rgba(212, 147, 42, 0.45);
-}
 
 .edge-promo-inner {
   background: var(--black-card);
@@ -688,9 +640,6 @@ footer {
 
   .site-nav { padding: 0 40px; }
 
-  .stat-bar {
-    grid-template-columns: repeat(3, 1fr);
-  }
 
   .services {
     grid-template-columns: 1fr 1fr;
@@ -793,22 +742,6 @@ footer {
   </div>
 </section>
 
-<!-- ═══ STAT BAR ═══ -->
-<div class="stat-bar">
-  <div class="stat-bar-label">By the Numbers</div>
-  <div class="stat">
-    <div class="stat-number">82%</div>
-    <div class="stat-label">of small businesses think AI doesn't apply to them — it does</div>
-  </div>
-  <div class="stat">
-    <div class="stat-number">87%</div>
-    <div class="stat-label">of SMBs using AI report increased productivity</div>
-  </div>
-  <div class="stat">
-    <div class="stat-number">12%</div>
-    <div class="stat-label">of small businesses have invested in any AI training</div>
-  </div>
-</div>
 
 <!-- ═══ ABOUT ═══ -->
 <section id="about">
