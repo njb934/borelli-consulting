@@ -83,7 +83,6 @@ body::before {
 
 @media (max-width: 768px) {
   .nav-hamburger { display: block; }
-  .nav-cta { display: none; }
   .nav-links {
     display: none;
     position: absolute;
@@ -164,24 +163,6 @@ body::before {
 }
 
 .nav-links a:hover { color: var(--ivory); }
-
-.nav-cta {
-  display: inline-block;
-  border: 1px solid var(--amber);
-  color: var(--amber);
-  padding: 7px 18px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease;
-  white-space: nowrap;
-}
-.nav-cta:hover {
-  background: var(--amber);
-  color: var(--black);
-}
 
 /* ═══ LAYOUT ═══ */
 .container {
@@ -685,10 +666,13 @@ footer {
 
 .edge-promo-cta:hover { opacity: 0.88; }
 
+@media (min-width: 769px) {
+  .nav-links { display: flex; }
+  .nav-hamburger { display: none; }
+}
+
 @media (min-width: 640px) {
   .container { padding: 0 40px; }
-
-  .nav-links { display: flex; }
 
   .site-nav { padding: 0 40px; }
 
@@ -768,7 +752,6 @@ footer {
       <a href="newsletter.html">Newsletter</a>
       <a href="#contact">Work With Me</a>
     </div>
-    <a href="#contact" class="nav-cta">Work With Me</a>
     <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
   </div>
 </nav>
