@@ -245,7 +245,23 @@ footer {
     gap: 16px;
   }
   .nav-links.open { display: flex; }
-  .subscribe-section { padding: 24px 16px; }
+
+  /* ── Subscribe section mobile fixes ── */
+  #subscribe { padding: 48px 0 40px; }
+  #subscribe .section-body { margin-bottom: 20px; }
+  .subscribe-section {
+    padding: 20px 14px;
+    margin-top: 24px;
+    border-left-width: 2px;
+  }
+  .subscribe-title { font-size: 22px; margin-bottom: 4px; }
+  .subscribe-sub { margin-bottom: 16px; }
+  .subscribe-section iframe {
+    height: 280px;
+    width: 100% !important;
+    max-width: 100%;
+  }
+  .subscribe-privacy { margin-top: 8px; }
 }
 
 /* RESPONSIVE */
