@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Borelli Consulting — AI Strategy</title>
-<meta name="description" content="Borelli Consulting: AI Strategy for small businesses in Bucks County, PA. Practical AI adoption that saves time and drives growth.">
+<meta name="description" content="Borelli Consulting: AI Strategy for small businesses. Practical AI adoption that saves time and drives growth.">
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=IBM+Plex+Mono:wght@300;400&display=swap');
@@ -627,8 +627,13 @@ footer {
 /* ═══ EDGE PROMO SECTION ═══ */
 .edge-promo {
   padding: 48px 0;
-  border-bottom: 1px solid var(--black-border);
-  background: var(--black-soft);
+  border-bottom: none;
+  background: var(--black-card);
+}
+
+.stat-bar {
+  margin-top: 0;
+  border-top: 1px solid var(--amber-dim);
 }
 
 .edge-promo-inner {
@@ -761,6 +766,7 @@ footer {
       <a href="#about">About</a>
       <a href="#process">Process</a>
       <a href="newsletter.html">Newsletter</a>
+      <a href="#contact">Work With Me</a>
     </div>
     <a href="#contact" class="nav-cta">Work With Me</a>
     <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
@@ -786,7 +792,7 @@ footer {
     <div class="edge-promo-inner">
       <p class="edge-promo-label">Free Weekly Newsletter</p>
       <h2 class="edge-promo-title">The Edge — Weekly AI Insights</h2>
-      <p class="edge-promo-desc">A free weekly newsletter covering AI news and hands-on prompting experiments for professionals. No hype, no jargon — just what you can actually use this week.</p>
+      <p class="edge-promo-desc">Practical AI news and hands-on prompting experiments — built for people running a business, not a tech team.</p>
       <a href="newsletter.html" class="edge-promo-cta">Subscribe Free</a>
     </div>
   </div>
@@ -812,9 +818,9 @@ footer {
 <section id="about">
   <div class="container reveal">
     <p class="section-label">Background</p>
-    <h2 class="section-title">Fortune 10 experience,<br>applied locally</h2>
+    <h2 class="section-title">Fortune 10 experience,<br>applied practically</h2>
     <p class="section-body">I drive AI adoption strategy at one of the world's largest financial institutions. I've seen what works at scale — and more importantly, what doesn't. The principles that drive successful AI adoption at a 250,000-person company are the same ones that work for a 5-person insurance agency.</p>
-    <p class="section-body">The difference is that nobody's translating those principles for local businesses. That's what I do.</p>
+    <p class="section-body">The difference is that nobody's translating those principles for small businesses. That's what I do.</p>
 
     <div class="cred-block">
       <p>Based in the Philadelphia area, available to work with businesses anywhere — in person or remotely.</p>
@@ -826,7 +832,7 @@ footer {
 <section id="services">
   <div class="container reveal">
     <p class="section-label">What I do</p>
-    <h2 class="section-title">Practical AI adoption,<br>no jargon required</h2>
+    <h2 class="section-title">Practical AI adoption,<br>built for your business</h2>
 
     <div class="services">
       <div class="service-card">
@@ -921,20 +927,6 @@ footer {
   </div>
 </section>
 
-<!-- ═══ NEWSLETTER TEASER ═══ -->
-<section id="newsletter">
-  <div class="container reveal">
-    <p class="section-label">Weekly Newsletter</p>
-    <h2 class="section-title">The Edge</h2>
-    <p class="section-body">Every week: 2–3 AI news stories filtered for what matters to small businesses, one practical prompt technique from The Workshop, and a Bucks County local angle when there's one worth covering. No hype. No jargon. Just what you can actually use this week.</p>
-
-    <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:28px;">
-      <a href="newsletter.html" class="nav-cta" style="font-size:11px; padding:10px 24px;">Subscribe — It's Free</a>
-      <a href="newsletter.html#archive" style="font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ivory-muted); text-decoration:none; display:flex; align-items:center; transition:color 0.2s;" onmouseover="this.style.color='var(--ivory)'" onmouseout="this.style.color='var(--ivory-muted)'">Browse past issues →</a>
-    </div>
-  </div>
-</section>
-
 <!-- ═══ CONTACT ═══ -->
 <section class="contact-section" id="contact">
   <div class="container reveal">
@@ -961,7 +953,6 @@ footer {
 <footer>
   <div class="footer-line"></div>
   <div class="footer-text">Borelli Consulting</div>
-  <div class="footer-coords">40.2464°N  75.1383°W</div>
 </footer>
 
 <!-- ═══ SCROLL REVEAL ═══ -->
