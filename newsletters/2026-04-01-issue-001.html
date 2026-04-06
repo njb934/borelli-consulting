@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Edge — Issue #001 · April 1, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&family=IBM+Plex+Mono:wght@300;400&display=swap');
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --black:#0A0A09; --black-soft:#111110; --black-card:#161614; --black-border:#222220;
+  --amber:#D4932A; --amber-dim:rgba(212,147,42,0.15); --amber-glow:rgba(212,147,42,0.07);
+  --ivory:#F5F0E8; --ivory-dim:rgba(245,240,232,0.72); --ivory-muted:rgba(245,240,232,0.42);
+  --ivory-ghost:rgba(245,240,232,0.1);
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+html{font-size:16px;scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--black);color:var(--ivory);line-height:1.65;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 14px,rgba(245,240,232,.007) 14px,rgba(245,240,232,.007) 15px);pointer-events:none;z-index:0;}
+
+/* ── LAYOUT ── */
+.wrapper{max-width:640px;margin:0 auto;padding:0 20px;position:relative;z-index:1;}
+
+/* ── HEADER ── */
+.nl-header{padding:36px 0 32px;border-bottom:1px solid var(--black-border);text-align:center;}
+.nl-logo-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:6px;}
+.nl-diamond{width:18px;height:18px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);flex-shrink:0;}
+.nl-brand{font-family:var(--serif);font-size:28px;color:var(--ivory);letter-spacing:-.02em;}
+.nl-brand span{color:var(--amber);font-style:italic;}
+.nl-tagline{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ivory-muted);margin-bottom:20px;}
+.nl-meta-row{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;}
+.nl-meta-row span{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ivory-muted);}
+.nl-meta-row .divider{color:var(--black-border);}
+.nl-meta-row .iss{color:var(--amber);}
+
+/* ── NAV PILLS ── */
+.nl-nav{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:18px 0;border-bottom:1px solid var(--black-border);}
+.nl-nav a{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ivory-muted);text-decoration:none;padding:5px 12px;border:1px solid var(--black-border);transition:color .2s,border-color .2s;}
+.nl-nav a:hover,.nl-nav a.active{color:var(--amber);border-color:var(--amber-dim);}
+
+/* ── TL;DR ── */
+.tldr{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 24px;margin:32px 0;}
+.tldr-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.tldr-label::after{content:'';flex:1;height:1px;background:var(--amber-dim);}
+.tldr ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.tldr ul li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.55;color:var(--ivory-dim);}
+.tldr ul li::before{content:'◆';color:var(--amber);font-size:8px;flex-shrink:0;margin-top:4px;}
+.tldr ul li a{color:var(--ivory);font-weight:500;text-decoration:none;border-bottom:1px solid var(--amber-dim);}
+.tldr ul li a:hover{border-color:var(--amber);color:var(--amber);}
+
+/* ── SECTION HEADERS ── */
+.section-header{margin:48px 0 28px;display:flex;align-items:center;gap:12px;}
+.section-header-mark{width:10px;height:10px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);flex-shrink:0;}
+.section-header h2{font-family:var(--serif);font-size:20px;color:var(--ivory);letter-spacing:-.01em;}
+.section-header::after{content:'';flex:1;height:1px;background:var(--black-border);}
+
+/* ── ARTICLES ── */
+.article{margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--black-border);}
+.article:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.article-tag{display:inline-block;font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--ivory-muted);border:1px solid var(--black-border);padding:3px 10px;margin-bottom:14px;}
+.article-tag.local{color:var(--amber);border-color:var(--amber-dim);}
+.article h3{font-family:var(--serif);font-size:23px;color:var(--amber);line-height:1.2;letter-spacing:-.01em;margin-bottom:18px;}
+.article-img{width:100%;height:200px;object-fit:cover;margin-bottom:18px;}
+.article-img-placeholder{width:100%;height:190px;background:var(--black-card);border:1px solid var(--black-border);margin-bottom:18px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.article-img-placeholder::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--amber-glow),transparent);}
+.article-img-placeholder span{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ivory-muted);position:relative;}
+.article-body{font-size:15px;font-weight:300;color:var(--ivory-dim);line-height:1.78;}
+.article-body p{margin-bottom:16px;}
+.article-body p:last-child{margin-bottom:0;}
+
+.learn-more{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-decoration:none;margin-top:18px;transition:gap .2s;}
+.learn-more:hover{gap:8px;}
+
+/* ── WORKSHOP (v2 minimal) ── */
+.workshop-section{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 26px;margin-bottom:48px;}
+.workshop-header-row{display:flex;align-items:baseline;gap:10px;margin-bottom:4px;}
+.workshop-title{font-family:var(--serif);font-size:22px;color:var(--ivory);letter-spacing:-.01em;}
+.workshop-tagline-badge{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--amber);opacity:0.7;margin-left:auto;}
+.workshop-subline{font-size:15px;color:#aaa;font-style:italic;margin-bottom:22px;line-height:1.55;}
+.workshop-experiment p{font-size:15px;color:var(--ivory-dim);margin-bottom:14px;line-height:1.78;}
+.workshop-experiment p:last-child{margin-bottom:0;}
+.workshop-starter{background:rgba(0,0,0,.3);border-left:2px solid var(--amber);padding:12px 16px;margin:16px 0;font-family:var(--mono);font-size:12px;color:var(--ivory-dim);line-height:1.7;font-style:italic;}
+.workshop-cta{margin-top:22px;padding-top:16px;border-top:1px solid var(--black-border);font-family:var(--mono);font-size:12px;color:var(--amber);opacity:0.8;letter-spacing:.03em;line-height:1.6;}
+
+/* ── FOOTER ── */
+.nl-footer{border-top:1px solid var(--black-border);padding:32px 0 40px;text-align:center;margin-top:48px;}
+.footer-logo-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;}
+.footer-diamond{width:12px;height:12px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);}
+.footer-name{font-family:var(--serif);font-size:14px;color:var(--ivory);}
+.footer-name span{color:var(--amber);}
+.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:14px;}
+.footer-links a{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ivory-muted);text-decoration:none;}
+.footer-links a:hover{color:var(--amber);}
+.footer-fine{font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--ivory-muted);line-height:1.8;}
+
+/* ── SUBSCRIBE BAR ── */
+.subscribe-bar{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 24px;margin:48px 0 0;text-align:center;}
+.subscribe-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:8px;}
+.subscribe-headline{font-family:var(--serif);font-size:20px;color:var(--ivory);margin-bottom:6px;}
+.subscribe-sub{font-size:13px;color:var(--ivory-muted);margin-bottom:20px;}
+.subscribe-embed{width:100%;min-height:60px;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:540px){
+  .nl-header{padding:24px 0 20px;}
+  .nl-brand{font-size:24px;}
+  .tldr{padding:20px;}
+  .wrapper{padding:0 16px;}
+  .workshop-section{padding:22px 20px 20px;}
+  .workshop-header-row{flex-direction:column;gap:4px;}
+  .workshop-tagline-badge{margin-left:0;}
+}
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header class="nl-header">
+    <div class="nl-logo-row">
+      <div class="nl-diamond"></div>
+      <div class="nl-brand">The <span>Edge</span></div>
+    </div>
+    <div class="nl-tagline">AI moves for Bucks County businesses</div>
+    <div class="nl-meta-row">
+      <span class="iss">Issue #001</span>
+      <span class="divider">|</span>
+      <span>April 1, 2026</span>
+      <span class="divider">|</span>
+      <span>nicholasborelli.com</span>
+    </div>
+  </header>
+
+  <!-- NAV PILLS -->
+  <nav class="nl-nav">
+    <a href="#local" class="active">Local</a>
+    <a href="#ai-news">AI News</a>
+    <a href="#workshop">The Workshop</a>
+    <a href="https://nicholasborelli.com/newsletter">Subscribe</a>
+  </nav>
+
+  <!-- TL;DR -->
+  <div class="tldr">
+    <div class="tldr-label">◆ This week</div>
+    <ul>
+      <li><a href="#local">Amazon breaks ground on a $20B AI campus 15 minutes from Warrington</a> — what it actually means if you run a small business here.</li>
+      <li><a href="#article-1">Chicago school opens with AI replacing teachers</a> — top test scores, no traditional instruction, already dividing researchers and parents.</li>
+      <li><a href="#article-2">Stanford study: AI chatbots agree with you too much</a> — even when you're clearly wrong. The fix is one reframe away.</li>
+    </ul>
+  </div>
+
+  <!-- ───────── LOCAL ───────── -->
+  <div class="section-header" id="local">
+    <div class="section-header-mark"></div>
+    <h2>Local</h2>
+  </div>
+
+  <div class="article" id="article-local">
+    <div class="article-tag local">Bucks County</div>
+    <h3>Amazon Is Building a $20 Billion AI Campus 15 Minutes From Here</h3>
+    <div class="article-img-placeholder">
+      <span>Article Image</span>
+    </div>
+    <div class="article-body">
+      <p>Amazon announced a 2-million-square-foot digital infrastructure campus at the Keystone Trade Center — the old U.S. Steel site on Ben Fairless Drive in Falls Township. It's part of a $20 billion Pennsylvania-wide AWS investment and is expected to create 1,250+ high-skill jobs locally, with thousands more in the supply chain.</p>
+      <p>Data centers don't just create tech jobs — they create demand for every service business in the area. Property management, insurance, landscaping, accounting, staffing, catering. The companies that land those contracts will be the ones that can respond faster, quote more accurately, and follow up more consistently. That gap is widening every month.</p>
+    </div>
+    <a href="https://levittownnow.com/2025/06/09/amazon-building-falls-twp-tech-center-as-part-of-20-billion-project/" class="learn-more" target="_blank">Read full story →</a>
+  </div>
+
+  <!-- ───────── AI NEWS ───────── -->
+  <div class="section-header" id="ai-news">
+    <div class="section-header-mark"></div>
+    <h2>AI News</h2>
+  </div>
+
+  <!-- ARTICLE 1 -->
+  <div class="article" id="article-1">
+    <div class="article-tag">Education</div>
+    <h3>AI-Powered Private School Opens in Chicago — No Teachers, Just "Guides"</h3>
+    <div class="article-img-placeholder">
+      <span>Article Image</span>
+    </div>
+    <div class="article-body">
+      <p>Alpha School is set to open in Chicago this fall, offering an AI-driven model where students learn core subjects via software in just two hours daily. No traditional teachers — adults serve as motivational "guides" while the AI handles instruction, pacing, and assessment.</p>
+      <p>While the school touts top test scores and early support from the Trump administration, researchers warn the approach is largely untested at scale. Critics raise concerns about student surveillance, privacy, and what it means to compare wealthy private school outcomes to the general population.</p>
+    </div>
+    <a href="https://blockclubchicago.org/2026/03/25/an-ai-elementary-school-with-no-teachers-to-open-in-chicago-this-fall/" class="learn-more" target="_blank">Read full story →</a>
+  </div>
+
+  <!-- ARTICLE 2 -->
+  <div class="article" id="article-2">
+    <div class="article-tag">Research</div>
+    <h3>Stanford Study: AI Chatbots Side With Users Too Often — Even When They're Wrong</h3>
+    <div class="article-img-placeholder">
+      <span>Article Image</span>
+    </div>
+    <div class="article-body">
+      <p>Stanford researchers found that leading AI chatbots regularly take the user's side in personal disputes — even when the user is clearly wrong or describing harmful behavior. People liked and trusted the agreeable bot more. They also felt more certain they were right and less willing to consider other viewpoints.</p>
+      <p>The researchers call this "sycophancy." It's not a glitch being fixed anytime soon — it's baked into how these models are trained to seem helpful. Stop asking AI for approval. Instead of "Is this a good proposal?" try "What are the three weakest parts of this, and how would a skeptical client respond?"</p>
+    </div>
+    <a href="https://hai.stanford.edu" class="learn-more" target="_blank">Read full story →</a>
+  </div>
+
+  <!-- ───────── THE WORKSHOP ───────── -->
+  <div class="section-header" id="workshop">
+    <div class="section-header-mark"></div>
+    <h2>The Workshop</h2>
+  </div>
+
+  <div class="workshop-section">
+    <div class="workshop-header-row">
+      <div class="workshop-title">Chain of Thought</div>
+      <div class="workshop-tagline-badge">3 MIN · WEEK 1 OF 52</div>
+    </div>
+    <div class="workshop-subline">Same question. Seven extra words. Watch what changes.</div>
+
+    <div class="workshop-experiment">
+      <p>Ask Claude or ChatGPT to help you figure out something you're genuinely sitting with — a decision, a situation, something you haven't fully resolved yet. Read the answer.</p>
+      <p>Then send the exact same message again, with this added at the end: <strong style="color:var(--ivory);">"Think through this step by step."</strong></p>
+      <p>A starting point if you want one:</p>
+    </div>
+
+    <div class="workshop-starter">
+      "I've been putting off a difficult conversation with someone. Help me think through how to approach it. Think through this step by step."
+    </div>
+
+    <div class="workshop-experiment">
+      <p>Read both answers side by side. Notice what the second one addresses that the first one didn't.</p>
+    </div>
+
+    <div class="workshop-cta">What did you use it on? Drop it in my DMs on LinkedIn — I keep a running list of what this actually changes.</div>
+  </div>
+
+  <!-- SUBSCRIBE -->
+  <div class="subscribe-bar">
+    <div class="subscribe-label">◆ Stay in the loop</div>
+    <div class="subscribe-headline">Get The Edge every week</div>
+    <div class="subscribe-sub">Short, practical, free. One AI insight for Bucks County businesses.</div>
+    <!-- Beehiiv subscribe form -->
+    <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+    <iframe
+      src="https://subscribe-forms.beehiiv.com/066e6b32-a5b8-4457-abbd-bac647848065"
+      data-test-id="beehiiv-embed"
+      width="100%"
+      height="320"
+      frameborder="0"
+      scrolling="no"
+      class="subscribe-embed"
+      style="border-radius:4px;border:1px solid var(--black-border);background:transparent;">
+    </iframe>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="nl-footer">
+    <div class="footer-logo-row">
+      <div class="footer-diamond"></div>
+      <div class="footer-name">Borelli <span>Consulting</span></div>
+    </div>
+    <div class="footer-links">
+      <a href="https://nicholasborelli.com">Website</a>
+      <a href="https://nicholasborelli.com/newsletter">All Issues</a>
+      <a href="https://nicholasborelli.com/#contact">Book a Free Review</a>
+      <a href="#">Unsubscribe</a>
+    </div>
+    <div class="footer-fine">
+      Borelli Consulting · Warrington, PA<br>
+      You're receiving this because you subscribed at nicholasborelli.com<br>
+      © 2026 Borelli Consulting
+    </div>
+  </footer>
+
+</div><!-- /wrapper -->
+
+</body>
+</html>
