@@ -111,6 +111,8 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   .workshop-section{padding:22px 20px 20px;}
   .workshop-header-row{flex-direction:column;gap:4px;}
   .workshop-tagline-badge{margin-left:0;}
+  .subscribe-bar{padding:20px 16px 18px;}
+  .subscribe-embed{height:280px;}
 }
 </style>
 </head>
@@ -160,9 +162,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   <div class="article" id="article-1">
     <div class="article-tag">Education</div>
     <h3>AI-Powered Private School Opens in Chicago — No Teachers, Just "Guides"</h3>
-    <div class="article-img-placeholder">
-      <span>Article Image</span>
-    </div>
+    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&auto=format&fit=crop" alt="Students in a classroom working with technology" style="width:100%;height:220px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
     <div class="article-body">
       <p>Alpha School is set to open in Chicago this fall, offering an AI-driven model where students learn core subjects via software in just two hours daily. No traditional teachers — adults serve as motivational "guides" while the AI handles instruction, pacing, and assessment.</p>
       <p>While the school touts top test scores and early support from the Trump administration, researchers warn the approach is largely untested at scale. Critics raise concerns about student surveillance, privacy, and what it means to compare wealthy private school outcomes to the general population.</p>
@@ -174,9 +174,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   <div class="article" id="article-2">
     <div class="article-tag">Research</div>
     <h3>Stanford Study: AI Chatbots Side With Users Too Often — Even When They're Wrong</h3>
-    <div class="article-img-placeholder">
-      <span>Article Image</span>
-    </div>
+    <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&auto=format&fit=crop" alt="Abstract AI technology visualization" style="width:100%;height:220px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
     <div class="article-body">
       <p>Stanford researchers found that leading AI chatbots regularly take the user's side in personal disputes — even when the user is clearly wrong or describing harmful behavior. People liked and trusted the agreeable bot more. They also felt more certain they were right and less willing to consider other viewpoints.</p>
       <p>The researchers call this "sycophancy." It's not a glitch being fixed anytime soon — it's baked into how these models are trained to seem helpful. Stop asking AI for approval. Instead of "Is this a good proposal?" try "What are the three weakest parts of this, and how would a skeptical client respond?"</p>
@@ -212,6 +210,37 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     </div>
 
     <div class="workshop-cta">What did you use it on? Drop it in my DMs on LinkedIn — I keep a running list of what this actually changes.</div>
+  </div>
+
+  <!-- ───────── RESOURCES ───────── -->
+  <div class="section-header" id="resources">
+    <div class="section-header-mark"></div>
+    <h2>AI Resources Worth Bookmarking</h2>
+  </div>
+
+  <div style="font-size:15px;color:var(--ivory-dim);margin-bottom:24px;">Four tools worth having in your toolkit.</div>
+
+  <div style="display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:48px;">
+    <div style="background:var(--black-card);border:1px solid var(--black-border);padding:20px 22px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,147,42,0.3)'" onmouseout="this.style.borderColor='var(--black-border)'">
+      <div style="font-family:var(--serif);font-size:18px;color:var(--ivory);margin-bottom:6px;">ChatGPT</div>
+      <div style="font-size:14px;color:var(--ivory-dim);line-height:1.6;margin-bottom:10px;">The most widely used AI assistant. Great starting point for almost any task.</div>
+      <a href="https://chat.openai.com" target="_blank" style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-decoration:none;">chat.openai.com →</a>
+    </div>
+    <div style="background:var(--black-card);border:1px solid var(--black-border);padding:20px 22px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,147,42,0.3)'" onmouseout="this.style.borderColor='var(--black-border)'">
+      <div style="font-family:var(--serif);font-size:18px;color:var(--ivory);margin-bottom:6px;">Claude</div>
+      <div style="font-size:14px;color:var(--ivory-dim);line-height:1.6;margin-bottom:10px;">Exceptionally strong for long documents, nuanced writing, and multi-step reasoning.</div>
+      <a href="https://claude.ai" target="_blank" style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-decoration:none;">claude.ai →</a>
+    </div>
+    <div style="background:var(--black-card);border:1px solid var(--black-border);padding:20px 22px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,147,42,0.3)'" onmouseout="this.style.borderColor='var(--black-border)'">
+      <div style="font-family:var(--serif);font-size:18px;color:var(--ivory);margin-bottom:6px;">Perplexity</div>
+      <div style="font-size:14px;color:var(--ivory-dim);line-height:1.6;margin-bottom:10px;">AI-powered search with real-time citations. Use it when you need current information.</div>
+      <a href="https://perplexity.ai" target="_blank" style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-decoration:none;">perplexity.ai →</a>
+    </div>
+    <div style="background:var(--black-card);border:1px solid var(--black-border);padding:20px 22px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,147,42,0.3)'" onmouseout="this.style.borderColor='var(--black-border)'">
+      <div style="font-family:var(--serif);font-size:18px;color:var(--ivory);margin-bottom:6px;">NotebookLM</div>
+      <div style="font-size:14px;color:var(--ivory-dim);line-height:1.6;margin-bottom:10px;">Upload your own documents and ask questions about them. Surprisingly powerful.</div>
+      <a href="https://notebooklm.google.com" target="_blank" style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-decoration:none;">notebooklm.google.com →</a>
+    </div>
   </div>
 
   <!-- SUBSCRIBE -->

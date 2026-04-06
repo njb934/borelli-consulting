@@ -70,6 +70,35 @@ body::before {
   padding: 0 24px;
 }
 
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--ivory);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .nav-hamburger { display: block; }
+  .nav-cta { display: none; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--black);
+    border-bottom: 1px solid var(--black-border);
+    flex-direction: column;
+    padding: 16px 24px;
+    gap: 16px;
+  }
+  .nav-links.open { display: flex; }
+}
+
 .nav-inner {
   max-width: 760px;
   margin: 0 auto;
@@ -595,6 +624,62 @@ footer {
 }
 
 /* ═══ RESPONSIVE — TABLET + DESKTOP ═══ */
+/* ═══ EDGE PROMO SECTION ═══ */
+.edge-promo {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--black-border);
+  background: var(--black-soft);
+}
+
+.edge-promo-inner {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-left: 3px solid var(--amber);
+  padding: 32px 28px;
+}
+
+.edge-promo-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 12px;
+}
+
+.edge-promo-title {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  font-weight: 400;
+  color: var(--ivory);
+  margin-bottom: 12px;
+}
+
+.edge-promo-desc {
+  font-weight: 300;
+  color: var(--ivory-dim);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  max-width: 520px;
+}
+
+.edge-promo-cta {
+  display: inline-block;
+  background: var(--amber);
+  color: var(--black);
+  padding: 12px 28px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 400;
+  transition: opacity 0.2s;
+}
+
+.edge-promo-cta:hover { opacity: 0.88; }
+
 @media (min-width: 640px) {
   .container { padding: 0 40px; }
 
@@ -678,6 +763,7 @@ footer {
       <a href="newsletter.html">Newsletter</a>
     </div>
     <a href="#contact" class="nav-cta">Work With Me</a>
+    <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
   </div>
 </nav>
 
@@ -691,6 +777,18 @@ footer {
     <h1>I help small businesses<br>adopt <em>AI that works</em></h1>
     <p class="hero-sub">Not apps. Not agents. Not complicated workflows that break. I review your operations, find where AI saves you real time and money, and teach your team to use it.</p>
     <div class="hero-line"></div>
+  </div>
+</section>
+
+<!-- ═══ THE EDGE PROMO ═══ -->
+<section class="edge-promo">
+  <div class="container">
+    <div class="edge-promo-inner">
+      <p class="edge-promo-label">Free Weekly Newsletter</p>
+      <h2 class="edge-promo-title">The Edge — Weekly AI Insights</h2>
+      <p class="edge-promo-desc">A free weekly newsletter covering AI news and hands-on prompting experiments for professionals. No hype, no jargon — just what you can actually use this week.</p>
+      <a href="newsletter.html" class="edge-promo-cta">Subscribe Free</a>
+    </div>
   </div>
 </section>
 

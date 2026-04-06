@@ -217,6 +217,37 @@ footer {
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* HAMBURGER NAV */
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--ivory);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .nav-hamburger { display: block; }
+  .nav-cta { display: none; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--black);
+    border-bottom: 1px solid var(--black-border);
+    flex-direction: column;
+    padding: 16px 24px;
+    gap: 16px;
+  }
+  .nav-links.open { display: flex; }
+  .subscribe-section { padding: 24px 16px; }
+}
+
 /* RESPONSIVE */
 @media (min-width: 640px) {
   .container { padding: 0 40px; }
@@ -245,6 +276,7 @@ footer {
       <a href="newsletter.html" class="active">Newsletter</a>
     </div>
     <a href="index.html#contact" class="nav-cta">Work With Me</a>
+    <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
   </div>
 </nav>
 
@@ -269,7 +301,7 @@ footer {
 <section>
   <div class="container reveal">
     <p class="section-label">What's inside</p>
-    <h2 class="section-title">Four things, every week</h2>
+    <h2 class="section-title">Three things, every week</h2>
     <p class="section-body">Each issue is built around what a Bucks County small business owner actually needs to know — not what's trending in Silicon Valley.</p>
 
     <div class="pillars">
@@ -285,11 +317,6 @@ footer {
       </div>
       <div class="pillar">
         <div class="pillar-number">◆ 03</div>
-        <div class="pillar-name">Local Corner</div>
-        <div class="pillar-desc">AI news with a Bucks County angle — when there's one worth covering. Amazon data centers, PA grants, local school policies, regional business impact.</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-number">◆ 04</div>
         <div class="pillar-name">Resources</div>
         <div class="pillar-desc">A short, curated list of tools and links relevant to that week's topics. No affiliate deals. Just what's actually useful.</div>
       </div>
@@ -309,12 +336,16 @@ footer {
       <div class="subscribe-sub">Published every Sunday morning. Bucks County, PA focus.</div>
 
       <!-- ═══ BEEHIIV EMBED ═══ -->
-      <!-- Replace this placeholder with the embed code from your Beehiiv dashboard.
-           Go to: app.beehiiv.com → Grow → Forms → Embed → Copy HTML
-           Paste it here in place of the .beehiiv-placeholder div below.          -->
-      <div class="beehiiv-placeholder">
-        [ Beehiiv subscribe form — paste embed code here ]
-      </div>
+      <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+      <iframe
+        src="https://subscribe-forms.beehiiv.com/066e6b32-a5b8-4457-abbd-bac647848065"
+        data-test-id="beehiiv-embed"
+        width="100%"
+        height="320"
+        frameborder="0"
+        scrolling="no"
+        style="border-radius:4px; border:1px solid var(--black-border); background:transparent; max-width:100%;">
+      </iframe>
       <!-- ═══ END BEEHIIV EMBED ═══ -->
 
       <div class="subscribe-privacy">No spam. Unsubscribe any time. Your email stays private.</div>
@@ -330,18 +361,6 @@ footer {
     <p class="archive-intro">Every issue, in order. Click any to read it.</p>
 
     <div class="issue-list" id="issue-list">
-      <!-- Issue #001 — hardcoded seed entry; future issues added by the Saturday agent -->
-      <a class="issue-item" href="newsletters/2026-04-01-issue-001.html" target="_blank">
-        <div class="issue-left">
-          <div class="issue-num">Issue #001</div>
-          <div class="issue-title">AI Schools, Chatbot Sycophancy & Amazon's $20B Bucks County Bet</div>
-          <div class="issue-topics">Workshop: Chain of Thought · Local: Falls Township</div>
-        </div>
-        <div class="issue-right">
-          <div class="issue-date">Apr 1, 2026</div>
-          <div class="issue-arrow">→</div>
-        </div>
-      </a>
       <!-- Future issues will be appended here by the Saturday night build script -->
     </div>
   </div>
