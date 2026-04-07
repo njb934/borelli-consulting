@@ -150,22 +150,11 @@ section:last-of-type { border-bottom: none; }
 .subscribe-title { font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--ivory); margin-bottom: 8px; }
 .subscribe-sub { font-size: 14px; color: var(--ivory-muted); margin-bottom: 24px; }
 
-/* ── Beehiiv embed placeholder ── */
-/* Replace the .beehiiv-placeholder block below with the actual Beehiiv embed code
-   from your Beehiiv dashboard: Audience → Forms → Embed Form
-   The embed will look like: <div id="beehiiv-embed-..."></div><script src="..."></script>        */
-.beehiiv-placeholder {
-  border: 1px dashed var(--black-border);
-  padding: 24px; text-align: center;
-  font-family: var(--mono); font-size: 11px; color: rgba(245,240,232,0.2);
-  letter-spacing: 0.08em;
-}
-
-/* Fallback form (active until Beehiiv is connected) */
-.subscribe-form { display: flex; gap: 10px; flex-wrap: wrap; }
+/* Subscribe form */
+.subscribe-form { display: flex; gap: 10px; flex-direction: row; }
 .subscribe-input {
-  flex: 1; min-width: 200px;
-  background: var(--black); border: 1px solid var(--black-border);
+  flex: 1; min-width: 0;
+  background: var(--black-card); border: 1px solid var(--black-border);
   color: var(--ivory); font-family: var(--sans); font-size: 15px;
   padding: 11px 16px; outline: none; border-radius: 0;
   transition: border-color 0.2s;
@@ -179,6 +168,13 @@ section:last-of-type { border-bottom: none; }
   transition: opacity 0.2s; white-space: nowrap;
 }
 .subscribe-submit:hover { opacity: 0.88; }
+.subscribe-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+.subscribe-message {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em;
+  margin-top: 10px;
+}
+.subscribe-message.success { color: var(--amber); }
+.subscribe-message.error { color: #e25c5c; }
 .subscribe-privacy { font-family: var(--mono); font-size: 10px; color: rgba(245,240,232,0.2); margin-top: 12px; letter-spacing: 0.04em; }
 
 /* ARCHIVE SECTION */
@@ -256,11 +252,9 @@ footer {
   }
   .subscribe-title { font-size: 22px; margin-bottom: 4px; }
   .subscribe-sub { margin-bottom: 16px; }
-  .subscribe-section iframe {
-    height: 450px;
-    width: 100% !important;
-    max-width: 100%;
-  }
+  .subscribe-form { flex-direction: column; }
+  .subscribe-input { width: 100%; }
+  .subscribe-submit { width: 100%; padding: 13px 24px; }
   .subscribe-privacy { margin-top: 8px; }
 }
 
@@ -351,18 +345,64 @@ footer {
       <div class="subscribe-title">Join the list</div>
       <div class="subscribe-sub">One AI insight, every week. Free.</div>
 
-      <!-- ═══ BEEHIIV EMBED ═══ -->
-      <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-      <iframe
-        src="https://subscribe-forms.beehiiv.com/066e6b32-a5b8-4457-abbd-bac647848065"
-        data-test-id="beehiiv-embed"
-        width="100%"
-        height="320"
-        frameborder="0"
-        scrolling="no"
-        style="border-radius:4px; border:1px solid var(--black-border); background:transparent; max-width:100%;">
-      </iframe>
-      <!-- ═══ END BEEHIIV EMBED ═══ -->
+      <!-- ═══ SUBSCRIBE FORM ═══ -->
+      <form id="subscribe-form" class="subscribe-form">
+        <input
+          type="email"
+          class="subscribe-input"
+          placeholder="Enter your email"
+          required
+          autocomplete="email"
+        />
+        <button type="submit" class="subscribe-submit">Subscribe</button>
+      </form>
+      <div id="subscribe-message" class="subscribe-message" style="display:none;"></div>
+
+      <script>
+      (function() {
+        var form = document.getElementById('subscribe-form');
+        var msg = document.getElementById('subscribe-message');
+        var btn = form.querySelector('.subscribe-submit');
+
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var email = form.querySelector('.subscribe-input').value.trim();
+          if (!email) return;
+
+          btn.disabled = true;
+          btn.textContent = 'Sending…';
+          msg.style.display = 'none';
+
+          var body = new URLSearchParams();
+          body.append('email', email);
+          body.append('publication_id', '2b97f6f5-375d-4fca-a95a-bb4e0b873da8');
+          body.append('form_id', '066e6b32-a5b8-4457-abbd-bac647848065');
+
+          fetch('https://embeds.beehiiv.com/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: body.toString()
+          })
+          .then(function(res) {
+            if (!res.ok) throw new Error('Request failed');
+            msg.textContent = 'Check your inbox!';
+            msg.className = 'subscribe-message success';
+            msg.style.display = 'block';
+            form.reset();
+          })
+          .catch(function() {
+            msg.textContent = 'Something went wrong — please try again.';
+            msg.className = 'subscribe-message error';
+            msg.style.display = 'block';
+          })
+          .finally(function() {
+            btn.disabled = false;
+            btn.textContent = 'Subscribe';
+          });
+        });
+      })();
+      </script>
+      <!-- ═══ END SUBSCRIBE FORM ═══ -->
 
       <div class="subscribe-privacy">No spam. Unsubscribe any time. Your email stays private.</div>
     </div>
