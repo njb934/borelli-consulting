@@ -150,11 +150,6 @@ section:last-of-type { border-bottom: none; }
 .subscribe-title { font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--ivory); margin-bottom: 8px; }
 .subscribe-sub { font-size: 14px; color: var(--ivory-muted); margin-bottom: 24px; }
 
-/* Beehiiv embed white card wrapper */
-.beehiiv-card {
-  background: #ffffff; border-radius: 8px; padding: 24px;
-}
-.beehiiv-card iframe { display: block; }
 .subscribe-privacy { font-family: var(--mono); font-size: 10px; color: rgba(245,240,232,0.2); margin-top: 12px; letter-spacing: 0.04em; }
 
 /* ARCHIVE SECTION */
@@ -232,9 +227,8 @@ footer {
   }
   .subscribe-title { font-size: 22px; margin-bottom: 4px; }
   .subscribe-sub { margin-bottom: 16px; }
-  .beehiiv-card { padding: 16px; }
   .subscribe-section iframe {
-    height: 450px;
+    height: 500px;
     width: 100% !important;
     max-width: 100%;
   }
@@ -329,15 +323,15 @@ footer {
       <div class="subscribe-sub">One AI insight, every week. Free.</div>
 
       <!-- ═══ BEEHIIV EMBED ═══ -->
-      <div class="beehiiv-card">
+      <div style="background:#ffffff; border-radius:8px; padding:0; overflow:hidden; max-width:480px; margin:0 auto;">
         <iframe
-          src="https://embeds.beehiiv.com/066e6b32-a5b8-4457-abbd-bac647848065"
+          src="https://embeds.beehiiv.com/2b97f6f5-375d-4fca-a95a-bb4e0b873da8?slim=true"
           data-test-id="beehiiv-embed"
           width="100%"
           height="320"
           frameborder="0"
           scrolling="no"
-          style="border-radius:4px; border:none; background:transparent; max-width:100%;">
+          style="border:none; background:transparent; max-width:100%;">
         </iframe>
       </div>
       <!-- ═══ END BEEHIIV EMBED ═══ -->
