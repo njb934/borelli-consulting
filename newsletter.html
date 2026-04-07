@@ -236,11 +236,17 @@ footer {
   #subscribe { padding: 32px 0 28px; }
   #subscribe .section-body { margin-bottom: 20px; }
   .subscribe-section {
+    padding: 20px 14px;
     margin-top: 24px;
+    border-left-width: 2px;
   }
   .subscribe-title { font-size: 22px; margin-bottom: 4px; }
   .subscribe-sub { margin-bottom: 16px; }
-  .subscribe-form { flex-direction: column; }
+  .subscribe-section iframe {
+    height: 280px;
+    width: 100% !important;
+    max-width: 100%;
+  }
   .subscribe-privacy { margin-top: 8px; }
 }
 
@@ -331,10 +337,11 @@ footer {
       <div class="subscribe-title">Join the list</div>
       <div class="subscribe-sub">One AI insight, every week. Free.</div>
 
-      <form class="subscribe-form" onsubmit="event.preventDefault(); var e=this.querySelector('input').value; if(e) window.location.href='https://nicks-newsletter-919599.beehiiv.com/subscribe?email='+encodeURIComponent(e);">
-        <input type="email" placeholder="Your email address" required>
-        <button type="submit">Subscribe</button>
-      </form>
+      <!-- ═══ BEEHIIV EMBED ═══ -->
+      <div style="background: #ffffff; border-radius: 8px; overflow: hidden; max-width: 480px; margin: 0 auto;">
+        <iframe src="https://embeds.beehiiv.com/066e6b32-a5b8-4457-abbd-bac647848065" width="100%" height="320" frameborder="0" scrolling="no"></iframe>
+      </div>
+      <!-- ═══ END BEEHIIV EMBED ═══ -->
 
       <div class="subscribe-privacy">No spam. Unsubscribe any time. Your email stays private.</div>
     </div>
