@@ -189,6 +189,51 @@ section:last-of-type { border-bottom: none; }
 
 .archive-empty { font-family: var(--mono); font-size: 12px; color: rgba(245,240,232,0.2); letter-spacing: 0.06em; padding: 24px 0; }
 
+/* LATEST ISSUE CARD */
+.latest-issue-card {
+  display: block;
+  background: var(--black-card);
+  border: 1px solid var(--amber);
+  border-radius: 2px;
+  padding: 32px;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+  margin-bottom: 56px;
+}
+.latest-issue-card:hover { background: rgba(212,147,42,0.06); }
+.latest-issue-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--amber); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.latest-issue-label::before {
+  content: ''; display: inline-block; width: 8px; height: 8px;
+  background: var(--amber); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+.latest-issue-title {
+  font-family: var(--serif); font-size: clamp(1.4rem, 4vw, 1.9rem);
+  font-weight: 400; color: var(--ivory); line-height: 1.2; margin-bottom: 8px;
+}
+.latest-issue-meta {
+  font-family: var(--mono); font-size: 11px; color: var(--ivory-muted);
+  letter-spacing: 0.06em; margin-bottom: 24px;
+}
+.latest-issue-cta {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--amber);
+  transition: letter-spacing 0.2s;
+}
+.latest-issue-card:hover .latest-issue-cta { letter-spacing: 0.2em; }
+
+/* PAST ISSUES */
+.past-issues-heading {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ivory-muted); margin-bottom: 8px;
+}
+.past-issues-sub {
+  font-size: 14px; color: rgba(245,240,232,0.3); margin-bottom: 24px;
+}
+
 /* FOOTER */
 footer {
   padding: 40px 0; text-align: center; position: relative; z-index: 1;
@@ -353,22 +398,22 @@ footer {
 <!-- ARCHIVE -->
 <section id="archive" class="archive-section">
   <div class="container reveal">
-    <p class="section-label">Archive</p>
-    <h2 class="section-title">Past issues</h2>
-    <p class="archive-intro">Every issue, in order. Click any to read it.</p>
+    <p class="section-label">Issues</p>
 
+    <!-- LATEST ISSUE -->
+    <a href="/newsletters/2026-04-13-issue-001.html" class="latest-issue-card">
+      <div class="latest-issue-label">Latest Issue</div>
+      <div class="latest-issue-title">The Edge — Issue #001</div>
+      <div class="latest-issue-meta">Issue #001 &middot; April 13, 2026</div>
+      <div class="latest-issue-cta">Read this issue →</div>
+    </a>
+
+    <!-- PAST ISSUES -->
+    <p class="past-issues-heading">Past Issues</p>
+    <p class="past-issues-sub">Every issue, in order.</p>
     <div class="issue-list" id="issue-list">
-      <!-- Future issues will be appended here by the Saturday night build script -->
-      <a href="/newsletters/2026-04-13-issue-001.html" class="issue-item">
-        <div class="issue-left">
-          <span class="issue-num">Issue #001</span>
-          <span class="issue-title">The Edge — Issue #001</span>
-        </div>
-        <div class="issue-right">
-          <span class="issue-date">Apr 13, 2026</span>
-          <span class="issue-arrow">→</span>
-        </div>
-      </a>
+      <!-- Issues move here when a newer one is published -->
+      <p class="archive-empty">No past issues yet — check back after the next one drops.</p>
     </div>
   </div>
 </section>
