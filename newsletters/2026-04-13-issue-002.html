@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Edge — Issue #001 · April 13, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&family=IBM+Plex+Mono:wght@300;400&display=swap');
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --black:#0A0A09; --black-soft:#111110; --black-card:#161614; --black-border:#222220;
+  --amber:#D4932A; --amber-dim:rgba(212,147,42,0.15); --amber-glow:rgba(212,147,42,0.07);
+  --ivory:#F5F0E8; --ivory-dim:rgba(245,240,232,0.72); --ivory-muted:rgba(245,240,232,0.42);
+  --ivory-ghost:rgba(245,240,232,0.1);
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+html{font-size:16px;scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--black);color:var(--ivory);line-height:1.65;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 14px,rgba(245,240,232,.007) 14px,rgba(245,240,232,.007) 15px);pointer-events:none;z-index:0;}
+
+/* ── LAYOUT ── */
+.wrapper{max-width:640px;margin:0 auto;padding:0 20px;position:relative;z-index:1;}
+
+/* ── HEADER ── */
+.nl-header{padding:36px 0 32px;border-bottom:1px solid var(--black-border);text-align:center;}
+.nl-logo-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:6px;}
+.nl-diamond{width:18px;height:18px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);flex-shrink:0;}
+.nl-brand{font-family:var(--serif);font-size:28px;color:var(--ivory);letter-spacing:-.02em;}
+.nl-brand span{color:var(--amber);font-style:italic;}
+.nl-tagline{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ivory-muted);margin-bottom:20px;}
+.nl-meta-row{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;}
+.nl-meta-row span{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ivory-muted);}
+.nl-meta-row .divider{color:var(--black-border);}
+.nl-meta-row .iss{color:var(--amber);}
+
+/* ── NAV PILLS ── */
+.nl-nav{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:18px 0;border-bottom:1px solid var(--black-border);}
+.nl-nav a{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ivory-muted);text-decoration:none;padding:5px 12px;border:1px solid var(--black-border);transition:color .2s,border-color .2s;}
+.nl-nav a:hover,.nl-nav a.active{color:var(--amber);border-color:var(--amber-dim);}
+
+/* ── TL;DR ── */
+.tldr{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 24px;margin:32px 0;}
+.tldr-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.tldr-label::after{content:'';flex:1;height:1px;background:var(--amber-dim);}
+.tldr ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.tldr ul li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.55;color:var(--ivory-dim);}
+.tldr ul li::before{content:'◆';color:var(--amber);font-size:8px;flex-shrink:0;margin-top:4px;}
+.tldr ul li a{color:var(--ivory);font-weight:500;text-decoration:none;border-bottom:1px solid var(--amber-dim);}
+.tldr ul li a:hover{border-color:var(--amber);color:var(--amber);}
+
+/* ── SECTION HEADERS ── */
+.section-header{margin:48px 0 28px;display:flex;align-items:center;gap:12px;}
+.section-header-mark{width:10px;height:10px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);flex-shrink:0;}
+.section-header h2{font-family:var(--serif);font-size:20px;color:var(--ivory);letter-spacing:-.01em;}
+.section-header::after{content:'';flex:1;height:1px;background:var(--black-border);}
+
+/* ── ARTICLES ── */
+.article{margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--black-border);}
+.article:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.article-tag{display:inline-block;font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--ivory-muted);border:1px solid var(--black-border);padding:3px 10px;margin-bottom:14px;}
+.article h3{font-family:var(--serif);font-size:23px;color:var(--amber);line-height:1.2;letter-spacing:-.01em;margin-bottom:18px;}
+.article-img{width:100%;height:200px;object-fit:cover;margin-bottom:18px;}
+.article-img-placeholder{width:100%;height:190px;background:var(--black-card);border:1px solid var(--black-border);margin-bottom:18px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.article-img-placeholder::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--amber-glow),transparent);}
+.article-img-placeholder span{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ivory-muted);position:relative;}
+.article-body{font-size:15px;font-weight:300;color:var(--ivory-dim);line-height:1.78;}
+.article-body p{margin-bottom:16px;}
+.article-body p:last-child{margin-bottom:0;}
+
+.learn-more{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-decoration:none;margin-top:18px;transition:gap .2s;}
+.learn-more:hover{gap:8px;}
+
+/* ── WORKSHOP (v2 minimal) ── */
+.workshop-section{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 26px;margin-bottom:48px;}
+.workshop-header-row{display:flex;align-items:baseline;gap:10px;margin-bottom:4px;}
+.workshop-title{font-family:var(--serif);font-size:22px;color:var(--ivory);letter-spacing:-.01em;}
+.workshop-tagline-badge{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--amber);opacity:0.7;margin-left:auto;}
+.workshop-subline{font-size:15px;color:#aaa;font-style:italic;margin-bottom:22px;line-height:1.55;}
+.workshop-experiment p{font-size:15px;color:var(--ivory-dim);margin-bottom:14px;line-height:1.78;}
+.workshop-experiment p:last-child{margin-bottom:0;}
+.workshop-starter{background:rgba(0,0,0,.3);border-left:2px solid var(--amber);padding:12px 16px;margin:16px 0;font-family:var(--mono);font-size:12px;color:var(--ivory-dim);line-height:1.7;font-style:italic;}
+.workshop-cta{margin-top:22px;padding-top:16px;border-top:1px solid var(--black-border);font-family:var(--mono);font-size:12px;color:var(--amber);opacity:0.8;letter-spacing:.03em;line-height:1.6;}
+
+/* ── COLLAPSIBLE DETAILS ── */
+details.workshop-details{margin-top:22px;border-top:1px solid var(--black-border);padding-top:16px;}
+details.workshop-details summary{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);cursor:pointer;padding:6px 0;list-style:none;display:flex;align-items:center;gap:8px;}
+details.workshop-details summary::-webkit-details-marker{display:none;}
+details.workshop-details summary::before{content:'▸';font-size:11px;transition:transform .2s;}
+details.workshop-details[open] summary::before{transform:rotate(90deg);}
+details.workshop-details .details-body{padding:14px 0 4px;font-size:14px;color:var(--ivory-dim);line-height:1.75;}
+details.workshop-details .details-body p{margin-bottom:12px;}
+details.workshop-details .details-body p:last-child{margin-bottom:0;}
+
+/* ── FOOTER ── */
+.nl-footer{border-top:1px solid var(--black-border);padding:32px 0 40px;text-align:center;margin-top:48px;}
+.footer-logo-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;}
+.footer-diamond{width:12px;height:12px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);}
+.footer-name{font-family:var(--serif);font-size:14px;color:var(--ivory);}
+.footer-name span{color:var(--amber);}
+.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:14px;}
+.footer-links a{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ivory-muted);text-decoration:none;}
+.footer-links a:hover{color:var(--amber);}
+.footer-fine{font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--ivory-muted);line-height:1.8;}
+
+/* ── SUBSCRIBE BAR ── */
+.subscribe-bar{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 24px;margin:48px 0 0;text-align:center;}
+.subscribe-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:8px;}
+.subscribe-headline{font-family:var(--serif);font-size:20px;color:var(--ivory);margin-bottom:6px;}
+.subscribe-sub{font-size:13px;color:var(--ivory-muted);margin-bottom:20px;}
+.subscribe-embed{width:100%;min-height:60px;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:540px){
+  .nl-header{padding:24px 0 20px;}
+  .nl-brand{font-size:24px;}
+  .tldr{padding:20px;}
+  .wrapper{padding:0 16px;}
+  .workshop-section{padding:22px 20px 20px;}
+  .workshop-header-row{flex-direction:column;gap:4px;}
+  .workshop-tagline-badge{margin-left:0;}
+  .subscribe-bar{padding:20px 16px 18px;}
+  .subscribe-embed{height:280px;}
+}
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header class="nl-header">
+    <div class="nl-logo-row">
+      <div class="nl-diamond"></div>
+      <div class="nl-brand">The <span>Edge</span></div>
+    </div>
+    <div class="nl-meta-row">
+      <span class="iss">Issue #001</span>
+      <span class="divider">|</span>
+      <span>April 13, 2026</span>
+    </div>
+  </header>
+
+  <!-- NAV PILLS -->
+  <nav class="nl-nav">
+    <a href="#ai-news">AI News</a>
+    <a href="#workshop">The Workshop</a>
+    <a href="#resources">Resources</a>
+    <a href="https://nicholasborelli.com/newsletter">Subscribe</a>
+  </nav>
+
+  <!-- TL;DR -->
+  <div class="tldr">
+    <div class="tldr-label">◆ This week</div>
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <a href="#article-1" style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--black-border);text-decoration:none;transition:gap .2s;" onmouseover="this.style.gap='16px'" onmouseout="this.style.gap='12px'">
+        <span style="font-family:var(--mono);font-size:9px;color:var(--amber);flex-shrink:0;letter-spacing:.06em;">01</span>
+        <span style="font-size:14px;color:var(--ivory);line-height:1.5;">A $55K/year school just opened in Chicago with zero teachers — AI handles the classroom, and it's already dividing the education world.</span>
+        <span style="color:var(--amber);flex-shrink:0;font-size:13px;margin-left:auto;">→</span>
+      </a>
+      <a href="#article-2" style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--black-border);text-decoration:none;transition:gap .2s;" onmouseover="this.style.gap='16px'" onmouseout="this.style.gap='12px'">
+        <span style="font-family:var(--mono);font-size:9px;color:var(--amber);flex-shrink:0;letter-spacing:.06em;">02</span>
+        <span style="font-size:14px;color:var(--ivory);line-height:1.5;">Zuckerberg is building a personal AI agent to help him run Meta — and employees already have their own.</span>
+        <span style="color:var(--amber);flex-shrink:0;font-size:13px;margin-left:auto;">→</span>
+      </a>
+      <a href="#article-3" style="display:flex;align-items:center;gap:12px;padding:12px 0;text-decoration:none;transition:gap .2s;" onmouseover="this.style.gap='16px'" onmouseout="this.style.gap='12px'">
+        <span style="font-family:var(--mono);font-size:9px;color:var(--amber);flex-shrink:0;letter-spacing:.06em;">03</span>
+        <span style="font-size:14px;color:var(--ivory);line-height:1.5;">Anthropic quietly launched 13+ free courses on AI — with certificates — and almost nobody is talking about it.</span>
+        <span style="color:var(--amber);flex-shrink:0;font-size:13px;margin-left:auto;">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ───────── AI NEWS ───────── -->
+  <div class="section-header" id="ai-news">
+    <div class="section-header-mark"></div>
+    <h2>AI News</h2>
+  </div>
+
+  <!-- ARTICLE 1 -->
+  <div class="article" id="article-1">
+    <div class="article-tag">Education</div>
+    <h3>A School With No Teachers Just Opened in Chicago — And AI Runs the Classroom</h3>
+    <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80" alt="Students in a classroom setting" style="width:100%;height:220px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+    <div class="article-body">
+      <p>Alpha School is opening a campus in Chicago this fall. No teachers. Students do their core subjects — math, science, reading — through AI software in about two hours a day, then spend the rest of the time with human "guides" doing workshops in public speaking, coding, outdoor ed. Tuition is $55K a year. They're already running 22 campuses in other states with over 1,000 students, and they're expanding to 35+ locations. Whether this specific model works long-term or not, it tells you something about where education is headed and what the next generation of workers is going to expect when they show up to your company.</p>
+    </div>
+    <a href="https://blockclubchicago.org/2026/03/25/an-ai-elementary-school-with-no-teachers-to-open-in-chicago-this-fall/" class="learn-more" target="_blank">Read full story →</a>
+  </div>
+
+  <!-- ARTICLE 2 -->
+  <div class="article" id="article-2">
+    <div class="article-tag">Enterprise</div>
+    <h3>Zuckerberg Is Building an AI Agent to Help Him Run Meta</h3>
+    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80" alt="Modern tech office environment" style="width:100%;height:220px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+    <div class="article-body">
+      <p>Zuckerberg is reportedly building a personal AI agent to help him do his job as CEO — pulling up information fast without having to go through layers of people and reports, analyzing data, streamlining decisions. Meta employees are already using internal tools along the same lines: one called "Second Brain" that finds and organizes documents, and another called "My Claw" — a personalized AI agent that can actually talk to other agents. Zuckerberg's quote on where this is going: "We're elevating individual contributors and flattening teams." The goal is to use AI to collapse Meta's org structure and move faster. If the CEO of a $1.5 trillion company is using AI to skip management layers, that's a signal worth paying attention to.</p>
+    </div>
+    <a href="https://tech.yahoo.com/ai/meta-ai/articles/mark-zuckerberg-builds-ai-ceo-143240412.html" class="learn-more" target="_blank">Read full story →</a>
+  </div>
+
+  <!-- ARTICLE 3 -->
+  <div class="article" id="article-3">
+    <div class="article-tag">Learning</div>
+    <h3>Anthropic Just Made Their AI Education Completely Free</h3>
+    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80" alt="Person learning online at a computer" style="width:100%;height:220px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+    <div class="article-body">
+      <p>Anthropic — the company that builds Claude — launched something called Anthropic Academy. It's 13+ free courses, self-paced, with certificates when you finish. There's a track for people who just want to get better at using AI day to day (no technical skills needed), one for developers who want to build with the API, and one for enterprise cloud stuff. The non-technical track is where most people should start. You don't need a paid account. You sign up with an email and go. If you've been meaning to actually learn this stuff instead of just poking around, this is the best free option out there right now.</p>
+    </div>
+    <a href="https://anthropic.skilljar.com/" class="learn-more" target="_blank">Browse courses free →</a>
+  </div>
+
+  <!-- ───────── THE WORKSHOP ───────── -->
+  <div class="section-header" id="workshop">
+    <div class="section-header-mark"></div>
+    <h2>The Workshop</h2>
+  </div>
+
+  <div class="workshop-section">
+    <div class="workshop-header-row">
+      <div class="workshop-title">Chain of Thought</div>
+      <div class="workshop-tagline-badge">4 MIN · WEEK 1 OF 52</div>
+    </div>
+    <div class="workshop-experiment">
+      <p>So there's this thing called chain of thought reasoning. Sounds technical, but it's really not. All it means is: if you tell the AI to think through something step by step before it answers, the output gets noticeably better. More structured, more complete, less hand-wavy.</p>
+      <p>That's it. You add "think through this step by step" to whatever you're asking, and you get a different quality of answer back. Not a little different. I ran the same prompt both ways below using "compound interest" as the topic. See for yourself.</p>
+    </div>
+
+    <!-- ── EXAMPLE 1: WITHOUT STEP BY STEP ── -->
+    <details class="workshop-details" style="margin-top:20px;border-top:none;padding-top:0;">
+      <summary>Example 1 — Standard Prompt</summary>
+      <div class="details-body" style="padding-top:12px;">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ivory-muted);margin-bottom:8px;">The Prompt</div>
+        <div class="workshop-starter" style="margin-top:0;">
+          I want to understand compound interest well enough to actually use it.<br>
+          I'm at a beginner level.<br>
+          Teach me the core idea, show me a real example, and tell me what most people get wrong.
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ivory-muted);margin:14px 0 8px;display:flex;align-items:center;gap:8px;">What the AI gave back ↓<span style="flex:1;height:1px;background:var(--black-border);"></span></div>
+        <div style="background:rgba(0,0,0,.25);border:1px solid var(--black-border);border-radius:4px;padding:16px 18px;font-size:14px;color:var(--ivory-muted);line-height:1.7;">
+          Compound interest is when you earn interest on both your original deposit and on the interest that has already been added. For example, if you invest $1,000 at 5% annual interest, after one year you'd have $1,050, and in the second year you'd earn interest on $1,050 instead of $1,000. The most common mistake people make is not starting to invest early enough, since compound interest works best over long periods of time.
+        </div>
+        <div style="font-size:13px;color:var(--ivory-muted);font-style:italic;margin-top:12px;">Fine. Technically correct. But flat. You'd read it, nod, and forget it by tomorrow.</div>
+      </div>
+    </details>
+
+    <!-- ── EXAMPLE 2: WITH STEP BY STEP ── -->
+    <details class="workshop-details" style="margin-top:12px;border-top:none;padding-top:0;">
+      <summary style="color:var(--amber);">Example 2 — With "Step by Step"</summary>
+      <div class="details-body" style="padding-top:12px;">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:8px;">The Prompt</div>
+        <div class="workshop-starter" style="border-left-color:var(--amber);background:rgba(212,147,42,0.05);margin-top:0;">
+          I want to understand compound interest well enough to actually use it.<br>
+          I'm at a beginner level.<br>
+          Think through this step by step, then teach me the core idea,<br>
+          show me a real example, and tell me what most people get wrong.
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin:14px 0 8px;display:flex;align-items:center;gap:8px;">What the AI gave back ↓<span style="flex:1;height:1px;background:var(--amber-dim);"></span></div>
+        <div style="background:rgba(212,147,42,0.03);border:1px solid rgba(212,147,42,0.15);border-radius:4px;padding:16px 18px;font-size:14px;color:var(--ivory-dim);line-height:1.7;">
+          <strong style="color:var(--ivory);font-size:13px;">The core idea:</strong> Compound interest means your money earns returns on its returns. Simple interest pays you only on your original amount. Compound interest pays you on the original <em>plus</em> everything it's already earned. That's the entire difference, and over time, it's enormous.<br><br>
+          <strong style="color:var(--ivory);font-size:13px;">Real example:</strong> You invest $1,000 at 5% annual interest, compounded yearly.<br>
+          <span style="font-family:var(--mono);font-size:12px;color:var(--ivory-muted);">
+          &nbsp;&nbsp;Year 1: $1,000 × 1.05 = $1,050<br>
+          &nbsp;&nbsp;Year 2: $1,050 × 1.05 = $1,102.50<br>
+          &nbsp;&nbsp;Year 10: $1,628.89<br>
+          &nbsp;&nbsp;Year 30: $4,321.94</span><br><br>
+          You put in $1,000. You got back $4,321. $3,321 of that was interest earning interest. The growth isn't linear. It's a curve that accelerates.<br><br>
+          <strong style="color:var(--ivory);font-size:13px;">What most people get wrong:</strong> They focus on the rate and ignore the <em>time</em>. The difference between starting at 25 vs. 35 is bigger than the difference between a 5% and 8% return. They also forget that compound interest works against them on debt. Credit card balances grow the same way, just in the wrong direction.
+        </div>
+
+      </div>
+    </details>
+
+    <div class="workshop-experiment" style="margin-top:22px;">
+      <p>The more you use these tools, the more you start to notice what makes a good output vs. a lazy one. This is one of those small things that makes a big difference.</p>
+    </div>
+
+    <div class="workshop-cta">Try it on something you're actually working through. DM me on LinkedIn what you used it on.</div>
+  </div>
+
+  <!-- ───────── RESOURCES ───────── -->
+  <div class="section-header" id="resources">
+    <div class="section-header-mark"></div>
+    <h2>AI Resources Worth Bookmarking</h2>
+  </div>
+
+  <div style="font-size:15px;color:var(--ivory-dim);margin-bottom:24px;">Three tools worth having in your toolkit.</div>
+
+  <div style="display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:48px;">
+    <div style="background:var(--black-card);border:1px solid var(--black-border);padding:20px 22px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,147,42,0.3)'" onmouseout="this.style.borderColor='var(--black-border)'">
+      <div style="font-family:var(--serif);font-size:18px;color:var(--ivory);margin-bottom:6px;">Anthropic Academy</div>
+      <div style="font-size:14px;color:var(--ivory-dim);line-height:1.6;margin-bottom:10px;">Free AI courses from the team behind Claude. Certificates included.</div>
+      <a href="https://anthropic.skilljar.com/" target="_blank" style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-decoration:none;">anthropic.skilljar.com →</a>
+    </div>
+    <div style="background:var(--black-card);border:1px solid var(--black-border);padding:20px 22px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,147,42,0.3)'" onmouseout="this.style.borderColor='var(--black-border)'">
+      <div style="font-family:var(--serif);font-size:18px;color:var(--ivory);margin-bottom:6px;">Claude</div>
+      <div style="font-size:14px;color:var(--ivory-dim);line-height:1.6;margin-bottom:10px;">Exceptionally strong for long documents, nuanced writing, and multi-step reasoning.</div>
+      <a href="https://claude.ai" target="_blank" style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-decoration:none;">claude.ai →</a>
+    </div>
+    <div style="background:var(--black-card);border:1px solid var(--black-border);padding:20px 22px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,147,42,0.3)'" onmouseout="this.style.borderColor='var(--black-border)'">
+      <div style="font-family:var(--serif);font-size:18px;color:var(--ivory);margin-bottom:6px;">ChatGPT</div>
+      <div style="font-size:14px;color:var(--ivory-dim);line-height:1.6;margin-bottom:10px;">The most widely used AI assistant. Great starting point for almost any task.</div>
+      <a href="https://chatgpt.com" target="_blank" style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-decoration:none;">chatgpt.com →</a>
+    </div>
+  </div>
+
+  <!-- SUBSCRIBE -->
+  <div class="subscribe-bar" id="subscribe">
+    <div class="subscribe-label">◆ Stay in the loop</div>
+    <div class="subscribe-headline">Get The Edge every week</div>
+    <div class="subscribe-sub">One AI insight, every week. Free.</div>
+    <!-- Beehiiv subscribe form -->
+    <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+    <iframe
+      src="https://subscribe-forms.beehiiv.com/066e6b32-a5b8-4457-abbd-bac647848065"
+      data-test-id="beehiiv-embed"
+      width="100%"
+      height="320"
+      frameborder="0"
+      scrolling="no"
+      class="subscribe-embed"
+      style="border-radius:4px;border:1px solid var(--black-border);background:transparent;">
+    </iframe>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="nl-footer">
+    <div class="footer-logo-row">
+      <div class="footer-diamond"></div>
+      <div class="footer-name">Borelli <span>Consulting</span></div>
+    </div>
+    <div class="footer-links">
+      <a href="https://nicholasborelli.com">Website</a>
+      <a href="https://nicholasborelli.com/newsletter">All Issues</a>
+      <a href="https://nicholasborelli.com/#contact">Book a Free Review</a>
+      <a href="#unsubscribe">Unsubscribe</a>
+    </div>
+    <div class="footer-fine">
+      Borelli Consulting · nicholasborelli.com<br>
+      You're receiving this because you subscribed at nicholasborelli.com<br>
+      © 2026 Borelli Consulting
+    </div>
+  </footer>
+
+</div><!-- /wrapper -->
+
+</body>
+</html>
