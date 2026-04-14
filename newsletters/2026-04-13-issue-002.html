@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Edge — Issue #002 · April 13, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&family=IBM+Plex+Mono:wght@300;400&display=swap');
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --black:#0A0A09; --black-soft:#111110; --black-card:#161614; --black-border:#222220;
+  --amber:#D4932A; --amber-dim:rgba(212,147,42,0.15); --amber-glow:rgba(212,147,42,0.07);
+  --ivory:#F5F0E8; --ivory-dim:rgba(245,240,232,0.72); --ivory-muted:rgba(245,240,232,0.42);
+  --ivory-ghost:rgba(245,240,232,0.1);
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+html{font-size:16px;scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--black);color:var(--ivory);line-height:1.65;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 14px,rgba(245,240,232,.007) 14px,rgba(245,240,232,.007) 15px);pointer-events:none;z-index:0;}
+
+.wrapper{max-width:640px;margin:0 auto;padding:0 20px;position:relative;z-index:1;}
+
+.site-nav{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;background:#0a0a0a;border-bottom:1px solid var(--black-border);position:relative;z-index:10;}
+.site-nav a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ivory-muted);text-decoration:none;transition:color .2s;}
+.site-nav a:hover{color:var(--amber);}
+
+.nl-header{padding:36px 0 32px;border-bottom:1px solid var(--black-border);text-align:center;}
+.nl-logo-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:6px;}
+.nl-diamond{width:18px;height:18px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);flex-shrink:0;}
+.nl-brand{font-family:var(--serif);font-size:28px;color:var(--ivory);letter-spacing:-.02em;}
+.nl-brand span{color:var(--amber);font-style:italic;}
+.nl-meta-row{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;}
+.nl-meta-row span{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ivory-muted);}
+.nl-meta-row .divider{color:var(--black-border);}
+.nl-meta-row .iss{color:var(--amber);}
+
+.nl-nav{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:18px 0;border-bottom:1px solid var(--black-border);}
+.nl-nav a{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ivory-muted);text-decoration:none;padding:5px 12px;border:1px solid var(--black-border);transition:color .2s,border-color .2s;}
+.nl-nav a:hover,.nl-nav a.active{color:var(--amber);border-color:var(--amber-dim);}
+
+.tldr{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 24px;margin:32px 0;}
+.tldr-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.tldr-label::after{content:'';flex:1;height:1px;background:var(--amber-dim);}
+
+.section-header{margin:48px 0 28px;display:flex;align-items:center;gap:12px;}
+.section-header-mark{width:10px;height:10px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);flex-shrink:0;}
+.section-header h2{font-family:var(--serif);font-size:20px;color:var(--ivory);letter-spacing:-.01em;}
+.section-header::after{content:'';flex:1;height:1px;background:var(--black-border);}
+
+.article{margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--black-border);}
+.article:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.article-tag{display:inline-block;font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--ivory-muted);border:1px solid var(--black-border);padding:3px 10px;margin-bottom:14px;}
+.article h3{font-family:var(--serif);font-size:23px;line-height:1.2;letter-spacing:-.01em;margin-bottom:18px;}
+.article h3.amber{color:var(--amber);}
+.article h3.ivory{color:var(--ivory);}
+.article-body{font-size:15px;font-weight:300;color:var(--ivory-dim);line-height:1.78;}
+.article-body p{margin-bottom:16px;}
+.article-body p:last-child{margin-bottom:0;}
+.article-body a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber-dim);}
+.article-body a:hover{border-color:var(--amber);}
+.learn-more{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-decoration:none;margin-top:18px;transition:gap .2s;}
+.learn-more:hover{gap:8px;}
+
+.spotlight-banner{width:100%;border-radius:8px;overflow:hidden;margin-bottom:16px;display:block;}
+.spotlight-links{margin-top:20px;padding-top:16px;border-top:1px solid var(--black-border);display:flex;flex-direction:column;gap:12px;}
+.spotlight-link-item{display:flex;align-items:flex-start;gap:10px;}
+.spotlight-link-item a{color:var(--amber);text-decoration:none;font-weight:500;border-bottom:1px solid var(--amber-dim);transition:border-color .2s;}
+.spotlight-link-item a:hover{border-color:var(--amber);}
+.spotlight-link-item span{font-size:14px;color:var(--ivory-dim);line-height:1.6;}
+.spotlight-link-marker{font-family:var(--mono);font-size:9px;color:var(--amber);flex-shrink:0;margin-top:3px;}
+
+.workshop-section{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 26px;margin-bottom:48px;}
+.workshop-header-row{display:flex;align-items:baseline;gap:10px;margin-bottom:4px;}
+.workshop-title{font-family:var(--serif);font-size:22px;color:var(--ivory);letter-spacing:-.01em;}
+.workshop-tagline-badge{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--amber);opacity:0.7;margin-left:auto;}
+.workshop-subline{font-size:15px;color:#aaa;font-style:italic;margin-bottom:22px;line-height:1.55;}
+.workshop-experiment p{font-size:15px;color:var(--ivory-dim);margin-bottom:14px;line-height:1.78;}
+.workshop-experiment p:last-child{margin-bottom:0;}
+.workshop-experiment ul{margin:4px 0 14px 20px;display:flex;flex-direction:column;gap:5px;}
+.workshop-experiment ul li{font-size:15px;color:var(--ivory-dim);line-height:1.65;}
+.workshop-starter{background:rgba(0,0,0,.3);border-left:2px solid var(--amber);padding:12px 16px;margin:16px 0;font-family:var(--mono);font-size:12px;color:var(--ivory-dim);line-height:1.7;font-style:italic;}
+.workshop-cta{margin-top:22px;padding-top:16px;border-top:1px solid var(--black-border);font-family:var(--mono);font-size:12px;color:var(--amber);opacity:0.8;letter-spacing:.03em;line-height:1.6;}
+
+details.workshop-details{margin-top:22px;border-top:1px solid var(--black-border);padding-top:16px;}
+details.workshop-details summary{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);cursor:pointer;padding:6px 0;list-style:none;display:flex;align-items:center;gap:8px;}
+details.workshop-details summary::-webkit-details-marker{display:none;}
+details.workshop-details summary::before{content:'▸';font-size:11px;transition:transform .2s;}
+details.workshop-details[open] summary::before{transform:rotate(90deg);}
+details.workshop-details .details-body{padding:14px 0 4px;font-size:14px;color:var(--ivory-dim);line-height:1.75;}
+details.workshop-details .details-body p{margin-bottom:12px;}
+details.workshop-details .details-body p:last-child{margin-bottom:0;}
+
+.workshop-table{width:100%;border-collapse:collapse;font-size:12px;margin:4px 0;}
+.workshop-table th{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);padding:8px 10px;border-bottom:1px solid rgba(212,147,42,0.3);text-align:left;}
+.workshop-table td{padding:8px 10px;border-bottom:1px solid var(--black-border);color:var(--ivory-dim);vertical-align:top;line-height:1.55;}
+.workshop-table td:first-child{font-family:var(--mono);font-size:10px;color:var(--ivory-muted);white-space:nowrap;}
+.workshop-table tr:last-child td{border-bottom:none;}
+
+.subscribe-bar{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 24px;margin:48px 0 0;text-align:center;}
+.subscribe-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:8px;}
+.subscribe-headline{font-family:var(--serif);font-size:20px;color:var(--ivory);margin-bottom:6px;}
+.subscribe-sub{font-size:13px;color:var(--ivory-muted);margin-bottom:20px;}
+.subscribe-embed{width:100%;min-height:60px;}
+
+.nl-footer{border-top:1px solid var(--black-border);padding:32px 0 40px;text-align:center;margin-top:48px;}
+.footer-logo-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;}
+.footer-diamond{width:12px;height:12px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);}
+.footer-name{font-family:var(--serif);font-size:14px;color:var(--ivory);}
+.footer-name span{color:var(--amber);}
+.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:14px;}
+.footer-links a{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ivory-muted);text-decoration:none;}
+.footer-links a:hover{color:var(--amber);}
+.footer-fine{font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--ivory-muted);line-height:1.8;}
+
+@media(max-width:768px){
+  .subscribe-bar{margin-left:-20px;margin-right:-20px;padding:20px 0;}
+  .subscribe-embed{height:420px;width:100% !important;}
+}
+@media(max-width:540px){
+  .nl-header{padding:24px 0 20px;}
+  .nl-brand{font-size:24px;}
+  .tldr{padding:20px;}
+  .wrapper{padding:0 16px;}
+  .workshop-section{padding:22px 20px 20px;}
+  .workshop-header-row{flex-direction:column;gap:4px;}
+  .workshop-tagline-badge{margin-left:0;}
+  .subscribe-bar{margin-left:-16px;margin-right:-16px;padding:20px 0;}
+  .workshop-table td:first-child{white-space:normal;}
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="https://nicholasborelli.com">← Borelli Consulting</a>
+  <a href="https://nicholasborelli.com/newsletter.html">All Issues</a>
+</nav>
+
+<div class="wrapper">
+
+  <header class="nl-header">
+    <div class="nl-logo-row">
+      <div class="nl-diamond"></div>
+      <div class="nl-brand">The <span>Edge</span></div>
+    </div>
+    <div class="nl-meta-row">
+      <span class="iss">Issue #002</span>
+      <span class="divider">|</span>
+      <span>April 13, 2026</span>
+    </div>
+  </header>
+
+  <nav class="nl-nav">
+    <a href="#ai-news">AI News</a>
+    <a href="#workshop">The Workshop</a>
+    <a href="#subscribe">Subscribe</a>
+  </nav>
+
+  <div class="tldr">
+    <div class="tldr-label">◆ This week</div>
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <a href="#article-1" style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--black-border);text-decoration:none;transition:gap .2s;" onmouseover="this.style.gap='16px'" onmouseout="this.style.gap='12px'">
+        <span style="font-family:var(--mono);font-size:9px;color:var(--amber);flex-shrink:0;letter-spacing:.06em;">01</span>
+        <span style="font-size:14px;color:var(--ivory);line-height:1.5;">Anthropic is funding companies to find their own software vulnerabilities using AI — and putting $100M behind it.</span>
+        <span style="color:var(--amber);flex-shrink:0;font-size:13px;margin-left:auto;">→</span>
+      </a>
+      <a href="#spotlight" style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--black-border);text-decoration:none;transition:gap .2s;" onmouseover="this.style.gap='16px'" onmouseout="this.style.gap='12px'">
+        <span style="font-family:var(--mono);font-size:9px;color:var(--amber);flex-shrink:0;letter-spacing:.06em;">02</span>
+        <span style="font-size:14px;color:var(--ivory);line-height:1.5;"><strong style="color:var(--amber);font-weight:500;">Spotlight:</strong> Demis Hassabis runs Google DeepMind and Isomorphic Labs — and his team's work on protein folding may be AI's most important story.</span>
+        <span style="color:var(--amber);flex-shrink:0;font-size:13px;margin-left:auto;">→</span>
+      </a>
+      <a href="#workshop" style="display:flex;align-items:center;gap:12px;padding:12px 0;text-decoration:none;transition:gap .2s;" onmouseover="this.style.gap='16px'" onmouseout="this.style.gap='12px'">
+        <span style="font-family:var(--mono);font-size:9px;color:var(--amber);flex-shrink:0;letter-spacing:.06em;">03</span>
+        <span style="font-size:14px;color:var(--ivory);line-height:1.5;">This week's Workshop: one extra line of instruction that changes what the AI gives you back — two real before/afters.</span>
+        <span style="color:var(--amber);flex-shrink:0;font-size:13px;margin-left:auto;">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- AI NEWS -->
+  <div class="section-header" id="ai-news">
+    <div class="section-header-mark"></div>
+    <h2>AI News</h2>
+  </div>
+
+  <div class="article" id="article-1">
+    <div class="article-tag">Safety</div>
+    <h3 class="amber">Anthropic Just Put $100M Into AI-Powered Security</h3>
+    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80" alt="Cybersecurity" style="width:100%;height:220px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+    <div class="article-body">
+      <p>Anthropic announced Glasswing, a cybersecurity initiative backed by Apple, Amazon, Google, Microsoft, and Cisco. The project uses Claude to find software vulnerabilities at scale — before hackers do.</p>
+      <p>The results are concrete. It identified thousands of high-severity flaws across operating systems and browsers, including a 27-year-old vulnerability in OpenBSD and a 16-year-old flaw in FFmpeg. Anthropic is backing the work with $100 million in free model credits and $4 million in direct donations to open-source security organizations. Over 40 organizations now have access.</p>
+      <p>There's a lot of mythology around AI — the fear, the hype, the extremes. What gets lost in that noise is the importance of building safety into the capability itself, not bolting it on after the fact. Innovation is not slowing down. That's not a debate worth having. But this kind of work — building guardrails in from day one, funding it, making it real — is a meaningful step. Hopefully they do more of it.</p>
+      <p>There's a 2-minute video on the Glasswing page. It's a clear synopsis of what's happening and why it matters. Worth two minutes of your time.</p>
+    </div>
+    <a href="https://www.anthropic.com/glasswing" class="learn-more" target="_blank">Read more →</a>
+  </div>
+
+  <div class="article" id="spotlight">
+    <h3 class="ivory">Demis Hassabis Is Solving Problems We Thought Were Unsolvable</h3>
+    <div class="spotlight-banner"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" width="600" height="220">
+  <defs>
+    <clipPath id="rc">
+      <rect width="600" height="220" rx="8" ry="8"/>
+    </clipPath>
+
+    <!-- Film grain -->
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.15"/>
+      </feComponentTransfer>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+
+    <!-- Soft blur for bokeh -->
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <filter id="medBlur">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="tinyBlur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+
+    <!-- Deep base gradient — dark teal-charcoal shifting warm -->
+    <linearGradient id="baseBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D1117"/>
+      <stop offset="35%" stop-color="#0F1A1A"/>
+      <stop offset="65%" stop-color="#1A150F"/>
+      <stop offset="100%" stop-color="#151008"/>
+    </linearGradient>
+
+    <!-- Warm light shaft from upper right -->
+    <radialGradient id="warmShaft" cx="0.78" cy="0.1" r="0.7" fx="0.8" fy="0.08">
+      <stop offset="0%" stop-color="#D4932A" stop-opacity="0.22"/>
+      <stop offset="30%" stop-color="#C47F20" stop-opacity="0.1"/>
+      <stop offset="60%" stop-color="#8B5E1A" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Cool counterpoint glow from lower left -->
+    <radialGradient id="coolPool" cx="0.15" cy="0.85" r="0.6">
+      <stop offset="0%" stop-color="#2A5A6D" stop-opacity="0.12"/>
+      <stop offset="50%" stop-color="#1A3A4A" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Central warm focus -->
+    <radialGradient id="centerWarm" cx="0.5" cy="0.48" r="0.4">
+      <stop offset="0%" stop-color="#D4932A" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Vignette -->
+    <radialGradient id="vignette" cx="0.5" cy="0.5" r="0.7">
+      <stop offset="0%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="70%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.5"/>
+    </radialGradient>
+
+    <!-- Light leak gradient -->
+    <linearGradient id="lightLeak" x1="0.6" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#E8A832" stop-opacity="0.06"/>
+      <stop offset="50%" stop-color="#B87333" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <g clip-path="url(#rc)">
+    <!-- Deep atmospheric base -->
+    <rect width="600" height="220" fill="url(#baseBg)"/>
+
+    <!-- Warm light shaft -->
+    <rect width="600" height="220" fill="url(#warmShaft)"/>
+
+    <!-- Cool counter-glow -->
+    <rect width="600" height="220" fill="url(#coolPool)"/>
+
+    <!-- Light leak -->
+    <rect width="600" height="220" fill="url(#lightLeak)"/>
+
+    <!-- Atmospheric bokeh — large soft orbs -->
+    <circle cx="460" cy="55" r="45" fill="#D4932A" opacity="0.06" filter="url(#softBlur)"/>
+    <circle cx="140" cy="170" r="55" fill="#2A5A6D" opacity="0.07" filter="url(#softBlur)"/>
+    <circle cx="520" cy="180" r="30" fill="#B87333" opacity="0.05" filter="url(#softBlur)"/>
+    <circle cx="80" cy="50" r="35" fill="#D4932A" opacity="0.04" filter="url(#softBlur)"/>
+
+    <!-- Mid-ground bokeh -->
+    <circle cx="380" cy="40" r="18" fill="#E8A832" opacity="0.08" filter="url(#medBlur)"/>
+    <circle cx="200" cy="185" r="20" fill="#3A7A8A" opacity="0.06" filter="url(#medBlur)"/>
+    <circle cx="500" cy="130" r="14" fill="#D4932A" opacity="0.07" filter="url(#medBlur)"/>
+    <circle cx="100" cy="110" r="16" fill="#B87333" opacity="0.05" filter="url(#medBlur)"/>
+
+    <!-- Small sharp-ish bokeh specks -->
+    <circle cx="430" cy="80" r="3" fill="#E8A832" opacity="0.2" filter="url(#tinyBlur)"/>
+    <circle cx="170" cy="60" r="2.5" fill="#D4932A" opacity="0.18" filter="url(#tinyBlur)"/>
+    <circle cx="350" cy="175" r="2" fill="#B87333" opacity="0.15" filter="url(#tinyBlur)"/>
+    <circle cx="530" cy="95" r="2.5" fill="#D4932A" opacity="0.14" filter="url(#tinyBlur)"/>
+    <circle cx="250" cy="40" r="1.8" fill="#E8A832" opacity="0.2" filter="url(#tinyBlur)"/>
+    <circle cx="70" cy="145" r="2" fill="#D4932A" opacity="0.12" filter="url(#tinyBlur)"/>
+    <circle cx="480" cy="165" r="1.5" fill="#C47F20" opacity="0.16" filter="url(#tinyBlur)"/>
+
+    <!-- Subtle angular light streaks — like light through blinds -->
+    <line x1="350" y1="0" x2="500" y2="220" stroke="#D4932A" stroke-width="40" opacity="0.015"/>
+    <line x1="300" y1="0" x2="450" y2="220" stroke="#D4932A" stroke-width="25" opacity="0.02"/>
+    <line x1="400" y1="0" x2="550" y2="220" stroke="#B87333" stroke-width="30" opacity="0.012"/>
+
+    <!-- Central warm focus -->
+    <rect width="600" height="220" fill="url(#centerWarm)"/>
+
+    <!-- Single geometric diamond — subtle, not branded -->
+    <g transform="translate(300, 82)" opacity="0.25">
+      <polygon points="0,-10 10,0 0,10 -10,0" fill="none" stroke="#E8A832" stroke-width="0.8"/>
+    </g>
+
+    <!-- SPOTLIGHT — the word, confident but integrated into the atmosphere -->
+    <text x="300" y="120" text-anchor="middle" font-family="'IBM Plex Mono', 'SF Mono', 'Consolas', monospace" font-size="24" letter-spacing="12" fill="#F5F0E8" fill-opacity="0.65" font-weight="400">
+      SPOTLIGHT
+    </text>
+
+    <!-- THIS WEEK — quietly underneath -->
+    <text x="300" y="146" text-anchor="middle" font-family="'IBM Plex Mono', 'SF Mono', 'Consolas', monospace" font-size="8" letter-spacing="5" fill="#F5F0E8" fill-opacity="0.22" font-weight="300">
+      THIS WEEK
+    </text>
+
+    <!-- Vignette for photographic depth -->
+    <rect width="600" height="220" fill="url(#vignette)"/>
+
+    <!-- Film grain -->
+    <rect width="600" height="220" fill="#0A0A09" filter="url(#grain)" opacity="0.3"/>
+  </g>
+</svg></div>
+    <div class="article-body">
+      <p>I typically refrain from providing my opinions on the polarizing figures in AI. Details shift too fast, and taking a stance usually backfires. But if there's one person I'm most intrigued to watch, it's Demis Hassabis.</p>
+      <p>You've heard of Sam Altman (ChatGPT) and Dario Amodei (Anthropic). Hassabis runs Google DeepMind and Isomorphic Labs — and his work may end up being the most consequential story in AI. Isomorphic's research on protein folding and computational medicine is the most optimistic narrative I follow in this space. It often feels like my newsfeeds are overwhelmed with negativity, but following work that is actually being done to solve real-world problems — disease, cancer — is motivating and exciting.</p>
+      <p>Both of these are worth your time:</p>
+    </div>
+    <div class="spotlight-links">
+      <div class="spotlight-link-item">
+        <span class="spotlight-link-marker">▸</span>
+        <span><a href="https://www.youtube.com/watch?v=C0gErQtnNFE" target="_blank">The Hardest Problem AI Ever Solved</a> — One of Demis' latest interviews &nbsp;(60 min)</span>
+      </div>
+      <div class="spotlight-link-item">
+        <span class="spotlight-link-marker">▸</span>
+        <span><a href="https://www.youtube.com/watch?v=d95J8yzvjbQ&t=4838s" target="_blank">The Thinking Game</a> — Documentary on AlphaGo and what comes next &nbsp;(90 min)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKSHOP -->
+  <div class="section-header" id="workshop">
+    <div class="section-header-mark"></div>
+    <h2>The Workshop</h2>
+  </div>
+
+  <div class="workshop-section">
+    <div class="workshop-header-row">
+      <div class="workshop-title">Tell It How to Answer</div>
+      <div class="workshop-tagline-badge">5 MIN · WEEK 2 OF 52</div>
+    </div>
+    <div class="workshop-subline">Same question. One extra line. Watch what changes.</div>
+
+    <div class="workshop-experiment">
+      <p>Here's something I noticed early on when I started using these tools: I kept getting back walls of text. Paragraphs I didn't ask for. The AI would answer the question, but I'd have to dig through five sentences or five paragraphs to find the one thing I actually needed.</p>
+      <p>For some people this is fine. For others like me, who want a simpler approach, it turns out that specifying the format can get you a more powerful answer.</p>
+      <p>One thing to keep in mind as we venture through this journey together: context is everything. Yes, these models have been trained on "all of the world's knowledge" — aka the internet — but they don't have your experiences, and they don't know exactly what you're looking for until you tell them. The trick is knowing how to communicate with them.</p>
+      <p>When I first started using AI, I heard a word I would never use in my day-to-day — "Tabular." To this day when I hear it, I think of the phrase "Totally tubular." I was a Teenage Mutant Ninja Turtles fan growing up (still am), don't judge me. But why am I telling you this?</p>
+      <p>Someone showed me what happens if I say "provide this in tabular format" when speaking to AI — and it instantly changed not just how I was building my prompts, but how I was using the models. I was looking to purchase a new TV and was comparing different models. I asked an LLM and it spit out five pages. I then stopped, said give me the price, differences, and similarities in tabular format — and out came a simple table, easy to digest, with my choice staring me in the face. The bigger TV. It also got me thinking:</p>
+      <p style="font-weight:500;color:var(--ivory);">How else can we dictate what the output is?</p>
+      <ul>
+        <li>As a table</li>
+        <li>In bullet points (one sentence each)</li>
+        <li>Checklist</li>
+        <li>In 3 sentences or less</li>
+      </ul>
+      <p style="font-weight:500;color:var(--ivory);margin-top:14px;">Turns out, you have more control than you think.</p>
+      <p>If you've ever drafted an email using an LLM, you probably already do this almost subconsciously — "this is too long, rewrite it" or "change the tone to be more conversational." The real magic is what happens when you decide how things should look from the beginning. Controlling the context gives you more controlled responses. Check the examples below.</p>
+    </div>
+
+    <details class="workshop-details" style="margin-top:20px;border-top:none;padding-top:0;">
+      <summary>Example 1 — No Format Specified</summary>
+      <div class="details-body" style="padding-top:12px;">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ivory-muted);margin-bottom:8px;">The Prompt</div>
+        <div class="workshop-starter" style="margin-top:0;">What are the pros and cons of leasing vs. buying a work truck for a small contracting company?</div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ivory-muted);margin:14px 0 8px;display:flex;align-items:center;gap:8px;">What the AI gave back ↓<span style="flex:1;height:1px;background:var(--black-border);"></span></div>
+        <div style="background:rgba(0,0,0,.25);border:1px solid var(--black-border);border-radius:4px;padding:16px 18px;font-size:14px;color:var(--ivory-muted);line-height:1.75;">
+          <p>Great question — here's how the two options generally stack up for a small contracting company:</p>
+          <p>Leasing tends to work well when you want lower monthly payments and predictable costs. You avoid tying up a large chunk of capital upfront, which can matter a lot for a small business managing cash flow. Maintenance is often simpler since the truck is typically under warranty for the lease term, and you can upgrade to a newer vehicle every few years. On the tax side, lease payments are usually deductible as a business expense. The downsides: you don't build equity, there are mileage limits that can be punishing for contractors who drive a lot, and you'll face fees for excess wear and tear — which is almost inevitable on a work truck.</p>
+          <p>Buying (whether outright or financed) makes more sense when you plan to keep the truck long-term and put heavy miles on it. You own the asset, can customize it however you want, and there are no mileage penalties. Depreciation and loan interest can be deducted, and Section 179 expensing can let you write off a significant portion (sometimes the full cost) in the first year for qualifying vehicles. The trade-offs are higher upfront or monthly costs, you bear all maintenance and repair risk once the warranty expires, and you're stuck with a depreciating asset if your needs change.</p>
+          <p>A few practical considerations that often tip the decision:</p>
+          <p>Mileage is usually the biggest factor. If you're running 25,000+ miles a year on job sites, leasing penalties can eat you alive. Cash flow vs. equity is the second — leasing preserves cash, buying builds an asset on your balance sheet. How hard the truck gets used matters too; if it's hauling heavy loads and getting beat up, lease-end charges can be steep. And tax strategy is worth discussing with your accountant, since Section 179 can make buying dramatically more attractive in certain years.</p>
+          <p>For a lot of small contractors, buying a reliable used truck (2–3 years old, off-lease) and financing it hits a sweet spot — lower acquisition cost, still some useful life left, and full ownership flexibility. But it really depends on your specific situation.</p>
+          <p>Would you like to dig into any of these angles further — like the tax implications or how to run the numbers on a specific scenario?</p>
+        </div>
+        <div style="font-size:13px;color:var(--ivory-muted);font-style:italic;margin-top:12px;">It's all there. But you'd never forward this to your business partner and say "here, read this."</div>
+      </div>
+    </details>
+
+    <details class="workshop-details" style="margin-top:12px;border-top:none;padding-top:0;">
+      <summary style="color:var(--amber);">Example 2 — With a Format</summary>
+      <div class="details-body" style="padding-top:12px;">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:8px;">The Prompt</div>
+        <div class="workshop-starter" style="border-left-color:var(--amber);background:rgba(212,147,42,0.05);margin-top:0;">What are the pros and cons of leasing vs. buying a work truck for a small contracting company? Compare in a table.</div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin:14px 0 8px;display:flex;align-items:center;gap:8px;">What the AI gave back ↓<span style="flex:1;height:1px;background:var(--amber-dim);"></span></div>
+        <div style="background:rgba(212,147,42,0.03);border:1px solid rgba(212,147,42,0.15);border-radius:4px;padding:16px 18px;">
+          <p style="font-size:13px;color:var(--ivory-muted);margin-bottom:12px;">Here's a comparison for a small contracting company weighing lease vs. buy for a work truck:</p>
+          <div style="overflow-x:auto;">
+            <table class="workshop-table">
+              <thead><tr><th></th><th>Leasing</th><th>Buying</th></tr></thead>
+              <tbody>
+                <tr><td>Upfront cost</td><td>Low — minimal or no down payment</td><td>High — down payment + taxes + fees</td></tr>
+                <tr><td>Monthly payment</td><td>Generally lower</td><td>Higher (loan) or none (cash purchase)</td></tr>
+                <tr><td>Ownership</td><td>No equity built; you return it</td><td>You own an asset with resale value</td></tr>
+                <tr><td>Tax treatment</td><td>Lease payments typically deductible as a business expense</td><td>Depreciation deductions (Section 179 / bonus depreciation can be significant)</td></tr>
+                <tr><td>Mileage / use limits</td><td>Mileage caps and excess-wear penalties — tough for heavy field use</td><td>No restrictions; drive and use it as hard as you need</td></tr>
+                <tr><td>Customization</td><td>Limited — racks, wraps, and tool boxes may violate lease terms</td><td>Full freedom to upfit, wrap, and modify</td></tr>
+                <tr><td>Maintenance</td><td>Often covered or under warranty for the lease term</td><td>Your responsibility, costs rise as truck ages</td></tr>
+                <tr><td>Cash flow</td><td>Predictable, fixed monthly expense</td><td>Less predictable; big repair bills possible on older trucks</td></tr>
+                <tr><td>End of term</td><td>Return it and start over (or buy out)</td><td>Keep driving it payment-free for years</td></tr>
+                <tr><td>Turnover / image</td><td>Newer truck every 2–4 years</td><td>Truck ages unless you sell and replace</td></tr>
+                <tr><td>Best fit</td><td>Companies prioritizing low cash outlay, light-duty use, and always-new vehicles</td><td>Companies that put on heavy miles, need custom upfits, or want long-term cost savings</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:13px;color:var(--ivory-dim);margin-top:14px;"><strong style="color:var(--ivory);">Bottom line for most small contractors:</strong> Buying tends to win out because work trucks take a beating, mileage adds up fast, and the ability to customize freely matters. The Section 179 deduction can also offset a large chunk of the purchase price in year one. Leasing can make sense if you want to preserve cash, keep trucks under warranty, and your annual mileage stays modest.</p>
+          <p style="font-size:13px;color:var(--ivory-muted);margin-bottom:0;">Want me to run some rough numbers for a specific truck or scenario?</p>
+        </div>
+      </div>
+    </details>
+
+    <div class="workshop-experiment" style="margin-top:22px;">
+      <p>Try it right now. Take something you'd normally ask AI — and add one line at the end telling it how to format the response.</p>
+    </div>
+    <div class="workshop-cta">Drop a comment on my LinkedIn post with what you learned.</div>
+  </div>
+
+  <div class="subscribe-bar" id="subscribe">
+    <div class="subscribe-label">◆ Stay in the loop</div>
+    <div class="subscribe-headline">Get The Edge every week</div>
+    <div class="subscribe-sub">One AI insight, every week. Free.</div>
+    <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+    <iframe src="https://subscribe-forms.beehiiv.com/066e6b32-a5b8-4457-abbd-bac647848065" data-test-id="beehiiv-embed" width="100%" height="320" frameborder="0" scrolling="no" class="subscribe-embed" style="border-radius:4px;border:1px solid var(--black-border);background:transparent;"></iframe>
+  </div>
+
+  <footer class="nl-footer">
+    <div class="footer-logo-row">
+      <div class="footer-diamond"></div>
+      <div class="footer-name">Borelli <span>Consulting</span></div>
+    </div>
+    <div class="footer-links">
+      <a href="https://nicholasborelli.com">Website</a>
+      <a href="https://nicholasborelli.com/newsletter.html">All Issues</a>
+      <a href="https://nicholasborelli.com/#contact">Book a Free Review</a>
+      <a href="#unsubscribe">Unsubscribe</a>
+    </div>
+    <div class="footer-fine">
+      Borelli Consulting · nicholasborelli.com<br>
+      You're receiving this because you subscribed at nicholasborelli.com<br>
+      © 2026 Borelli Consulting
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
