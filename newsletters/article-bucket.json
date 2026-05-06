@@ -1,0 +1,20 @@
+{
+  "_meta": {
+    "description": "Article bucket for The Edge newsletter — tracks sourced articles and their usage status",
+    "last_updated": "2026-04-14"
+  },
+  "articles": [
+    {
+      "id": "art_20260407_001",
+      "title": "Glasswing and Anthropic partnership",
+      "status": "used",
+      "issue_used": "002"
+    },
+    {
+      "id": "art_20260408_190633",
+      "title": "Glasswing article (secondary)",
+      "status": "used",
+      "issue_used": "002"
+    }
+  ]
+}
