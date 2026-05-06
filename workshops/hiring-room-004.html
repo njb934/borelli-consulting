@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Hiring Room · The Edge Workshop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300..700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --black: #0A0A09;
+  --black-soft: #111110;
+  --black-card: #161614;
+  --black-border: #222220;
+  --black-deep: #060605;
+  --amber: #D4932A;
+  --amber-bright: #F0A63A;
+  --amber-dim: rgba(212,147,42,0.15);
+  --amber-line: rgba(212,147,42,0.35);
+  --copper: #B87333;
+  --copper-dim: rgba(184,115,51,0.35);
+  --ivory: #F5F0E8;
+  --ivory-dim: rgba(245,240,232,0.72);
+  --ivory-muted: rgba(245,240,232,0.42);
+  --ivory-faint: rgba(245,240,232,0.12);
+  --ivory-line: rgba(245,240,232,0.08);
+  --green: #6FA873;
+  --red-soft: #C26A5C;
+  --claude-accent: #D4823A;
+  --gpt-accent: #74A98F;
+  --perp-accent: #6E8FB5;
+  --gemini-accent: #B98AAE;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--black);
+  color: var(--ivory);
+  font-family: var(--sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+body {
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,147,42,0.05), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(184,115,51,0.03), transparent 60%);
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(135deg, transparent, transparent 14px, rgba(245,240,232,.007) 14px, rgba(245,240,232,.007) 15px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.frame {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 28px 20px 80px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--black-border);
+}
+.header-left { display: flex; align-items: center; gap: 10px; }
+.header-mark { width: 14px; height: 14px; background: var(--amber); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+.kicker {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+.kicker-meta {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ivory-muted);
+}
+
+.stage { flex: 1; position: relative; }
+.screen { display: none; animation: fadeIn 0.5s ease; }
+.screen.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.intro-eyebrow,
+.framework-eyebrow,
+.roster-eyebrow,
+.casting-eyebrow,
+.final-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 20px;
+}
+
+.intro-title,
+.framework-title,
+.roster-title,
+.casting-title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 6vw, 48px);
+  line-height: 1.05;
+  color: var(--ivory);
+  margin-bottom: 22px;
+  letter-spacing: -0.015em;
+}
+.intro-title em,
+.final-title em { color: var(--amber); font-style: italic; }
+.framework-title,
+.roster-title,
+.casting-title { font-size: clamp(28px, 5vw, 38px); line-height: 1.1; margin-bottom: 14px; }
+
+.intro-body,
+.framework-sub,
+.roster-sub,
+.casting-sub {
+  font-size: 16px;
+  color: var(--ivory-dim);
+  margin-bottom: 28px;
+  max-width: 540px;
+  line-height: 1.65;
+}
+.framework-sub,
+.roster-sub,
+.casting-sub { font-size: 15px; margin-bottom: 24px; max-width: 520px; }
+
+.intro-promise {
+  padding: 22px 24px;
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-left: 2px solid var(--amber);
+  margin-bottom: 36px;
+}
+.intro-promise-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 10px;
+}
+.intro-promise-text {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ivory);
+  letter-spacing: -0.005em;
+}
+
+.framework-stack { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+.framework-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 18px;
+  align-items: start;
+  padding: 16px 20px;
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  transition: border-color 0.2s ease;
+}
+.framework-row:hover { border-color: var(--copper-dim); }
+.framework-key {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--amber);
+  letter-spacing: -0.005em;
+  padding-top: 2px;
+}
+.framework-val { font-size: 14px; color: var(--ivory); line-height: 1.55; }
+.framework-val span { color: var(--ivory-dim); display: block; font-size: 13px; margin-top: 4px; }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 28px;
+  background: var(--amber);
+  color: var(--black);
+  border: none;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+  text-decoration: none;
+}
+.btn-primary:hover { background: var(--amber-bright); transform: translateY(-1px); }
+.btn-primary:disabled { background: var(--black-card); color: var(--ivory-muted); cursor: not-allowed; transform: none; }
+.btn-primary .arrow { font-family: var(--mono); font-size: 16px; margin-top: -2px; }
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  background: transparent;
+  color: var(--ivory);
+  border: 1px solid var(--ivory-faint);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+
+.team-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+.member-card {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  overflow: hidden;
+  transition: border-color 0.25s ease;
+}
+.member-card.expanded { border-color: var(--copper-dim); }
+.member-header {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  color: var(--ivory);
+  border: none;
+  padding: 18px 20px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 4px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  font-family: var(--sans);
+}
+.member-accent {
+  width: 4px;
+  align-self: stretch;
+  border-radius: 2px;
+  min-height: 36px;
+}
+.member-card[data-member="claude"] .member-accent { background: var(--claude-accent); }
+.member-card[data-member="gpt"] .member-accent { background: var(--gpt-accent); }
+.member-card[data-member="perplexity"] .member-accent { background: var(--perp-accent); }
+.member-card[data-member="gemini"] .member-accent { background: var(--gemini-accent); }
+.member-id { display: flex; flex-direction: column; gap: 2px; }
+.member-name { font-family: var(--serif); font-size: 22px; line-height: 1.1; letter-spacing: -0.01em; }
+.member-role {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ivory-muted);
+  margin-top: 4px;
+}
+.member-toggle {
+  font-family: var(--mono);
+  font-size: 18px;
+  color: var(--ivory-muted);
+  transition: transform 0.25s ease, color 0.2s ease;
+}
+.member-card.expanded .member-toggle { transform: rotate(45deg); color: var(--amber); }
+.member-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.member-card.expanded .member-body { max-height: 1000px; }
+.member-body-inner {
+  padding: 16px 20px 20px 40px;
+  border-top: 1px solid var(--black-border);
+}
+.member-line {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--ivory);
+  margin-bottom: 16px;
+  letter-spacing: -0.005em;
+}
+.member-strengths { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.member-strength {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: baseline;
+  font-size: 13.5px;
+  color: var(--ivory);
+  line-height: 1.55;
+}
+.strength-mark { font-family: var(--mono); font-size: 11px; color: var(--green); line-height: 1.5; }
+.weakness-mark { font-family: var(--mono); font-size: 11px; color: var(--red-soft); line-height: 1.5; }
+.member-strength strong {
+  color: var(--amber);
+  font-weight: 500;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-right: 6px;
+}
+.member-footer {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--black-border);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  line-height: 1.7;
+  color: var(--ivory-muted);
+  letter-spacing: 0.04em;
+}
+.member-footer strong {
+  color: var(--copper);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 9.5px;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.round-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ivory-muted);
+}
+.progress-bar { flex: 1; height: 1px; background: var(--ivory-line); margin: 0 16px; position: relative; }
+.progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--amber);
+  transition: width 0.5s ease;
+}
+
+.jobs { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+.job {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  padding: 18px 20px;
+  transition: border-color 0.2s ease;
+}
+.job.cast { border-color: var(--copper-dim); }
+.job-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.job-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--copper);
+  letter-spacing: 0.2em;
+}
+.job-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--ivory-muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid var(--black-border);
+}
+.job-text {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--ivory);
+  margin-bottom: 14px;
+  letter-spacing: -0.005em;
+}
+.cast-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.cast-btn {
+  padding: 10px 12px;
+  background: var(--black-soft);
+  border: 1px solid var(--black-border);
+  color: var(--ivory-dim);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  text-align: left;
+}
+.cast-btn:hover { border-color: var(--copper-dim); color: var(--ivory); }
+.cast-btn.picked { background: var(--black-card); border-color: var(--amber); color: var(--ivory); }
+.cast-btn-name { font-family: var(--serif); font-size: 15px; letter-spacing: -0.005em; }
+.cast-btn-role {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ivory-muted);
+}
+.job-result {
+  display: none;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--black-border);
+}
+.job-result.show { display: block; animation: fadeIn 0.4s ease; }
+.verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.verdict.right { color: var(--green); }
+.verdict.solid { color: var(--amber); }
+.verdict.sharper { color: var(--red-soft); }
+.verdict::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.job-result-text { color: var(--ivory); margin-bottom: 6px; font-size: 14px; line-height: 1.55; }
+.job-result-hint { color: var(--ivory-dim); font-size: 13px; line-height: 1.55; }
+
+.run-bar {
+  position: sticky;
+  bottom: 0;
+  padding: 16px 0;
+  background: linear-gradient(to top, var(--black) 70%, transparent);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.run-progress {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ivory-muted);
+}
+
+.final-title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 6vw, 48px);
+  line-height: 1.05;
+  margin-bottom: 22px;
+  letter-spacing: -0.015em;
+}
+.takeaway {
+  padding: 26px;
+  background: linear-gradient(180deg, #1a1814 0%, var(--black-card) 100%);
+  border: 1px solid var(--amber-line);
+  margin-bottom: 24px;
+}
+.takeaway-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 14px;
+}
+.takeaway-text {
+  font-family: var(--serif);
+  font-size: clamp(19px, 3.2vw, 24px);
+  line-height: 1.35;
+  color: var(--ivory);
+  letter-spacing: -0.01em;
+}
+.takeaway-text em { color: var(--amber); font-style: italic; }
+.debrief {
+  padding: 18px 20px;
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  margin-bottom: 14px;
+}
+.debrief-label {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 10px;
+}
+.debrief-text {
+  font-size: 14px;
+  color: var(--ivory-dim);
+  line-height: 1.65;
+}
+.next-up {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 14px 0;
+  margin: 14px 0 24px;
+  border-top: 1px solid var(--black-border);
+  border-bottom: 1px solid var(--black-border);
+}
+.next-up-label {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amber);
+  flex-shrink: 0;
+}
+.next-up-text { font-size: 13.5px; color: var(--ivory); line-height: 1.5; }
+.end-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 480px) {
+  .frame { padding: 20px 16px 60px; }
+  .framework-row { grid-template-columns: 90px 1fr; gap: 14px; padding: 14px 16px; }
+  .member-header { padding: 16px; gap: 14px; }
+  .member-name { font-size: 20px; }
+  .member-body-inner { padding-left: 30px; padding-right: 16px; }
+  .job { padding: 16px; }
+  .job-text { font-size: 16px; }
+  .takeaway { padding: 22px 20px; }
+}
+</style>
+</head>
+<body>
+<div class="frame">
+  <header class="header">
+    <div class="header-left">
+      <a href="https://nicholasborelli.com/theedge" style="font-family:var(--mono);font-size:10px;color:var(--amber);text-decoration:none;letter-spacing:.08em;margin-right:16px;">← The Edge</a>
+      <div class="header-mark"></div>
+      <span class="kicker">The Hiring Room</span>
+    </div>
+    <span class="kicker-meta">The Edge · Workshop</span>
+  </header>
+  <main class="stage">
+
+    <!-- SCREEN 0: INTRO -->
+    <section class="screen" id="screen-intro">
+      <div class="intro-eyebrow">Today's session</div>
+      <h1 class="intro-title">You've never <em>hired an AI</em> before.<br />That's the gap this closes.</h1>
+      <p class="intro-body">Most people pick one AI and use it for everything. That's the wrong frame. It's like hiring one person to write your emails, fact-check vendor claims, design your slides, and review your contracts. They might be good at one of those. They are not good at all four. The skill nobody has yet is knowing who to put on which job.</p>
+      <div class="intro-promise">
+        <div class="intro-promise-label">In about five minutes</div>
+        <p class="intro-promise-text">You'll know who's on the team, what each one is actually good at, and which of them is worth $20 a month to you.</p>
+      </div>
+      <button class="btn-primary" onclick="goTo('screen-framework')">Start the session <span class="arrow">→</span></button>
+    </section>
+
+    <!-- SCREEN 1: FRAMEWORK -->
+    <section class="screen active" id="screen-framework">
+      <div class="framework-eyebrow">First, the criteria</div>
+      <h2 class="framework-title">Four things separate one hire<br />from another.</h2>
+      <p class="framework-sub">Most everything else is marketing. Hold these loosely. You'll see them again on the candidate cards.</p>
+      <div class="framework-stack">
+        <div class="framework-row">
+          <div class="framework-key">Accuracy</div>
+          <div class="framework-val">How often it gets things right.<span>And whether it'll say "I don't know" instead of making something up.</span></div>
+        </div>
+        <div class="framework-row">
+          <div class="framework-key">Speed</div>
+          <div class="framework-val">How fast useful output lands.<span>Real speed is time-to-correct-answer, not raw words per second.</span></div>
+        </div>
+        <div class="framework-row">
+          <div class="framework-key">Context</div>
+          <div class="framework-val">How much it can read at once and still keep the thread.<span>Matters the moment you drop in a long contract or a year of email.</span></div>
+        </div>
+        <div class="framework-row">
+          <div class="framework-key">Cost</div>
+          <div class="framework-val">What you pay per useful answer.<span>Headline price is $20 a month. The honest unit is dollars per task you didn't have to redo.</span></div>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="goTo('screen-roster')">Meet the candidates <span class="arrow">→</span></button>
+    </section>
+
+    <!-- SCREEN 2: ROSTER -->
+    <section class="screen" id="screen-roster">
+      <div class="roster-eyebrow">The candidates</div>
+      <h2 class="roster-title">Four hires.<br />Four very different specialties.</h2>
+      <p class="roster-sub">Tap any card to read the file. Real strengths, real weak spots. No spec sheets.</p>
+      <div class="team-grid">
+
+        <article class="member-card" data-member="claude">
+          <button class="member-header" onclick="toggleMember(this)">
+            <div class="member-accent"></div>
+            <div class="member-id"><span class="member-name">Claude</span><span class="member-role">The Writer</span></div>
+            <span class="member-toggle">+</span>
+          </button>
+          <div class="member-body"><div class="member-body-inner">
+            <p class="member-line">"Hand me the messy email. I'll get the tone right."</p>
+            <div class="member-strengths">
+              <div class="member-strength"><span class="strength-mark">+</span><span><strong>Accuracy</strong>Lowest hallucination rate of the four on writing and reasoning. Will say "I don't know" before guessing.</span></div>
+              <div class="member-strength"><span class="strength-mark">+</span><span><strong>Context</strong>Reads a 60-page contract and still tracks the clause buried on page 41.</span></div>
+              <div class="member-strength"><span class="strength-mark">+</span><span><strong>Speed</strong>Steady, not flashy. Closer to a careful colleague than a sprinter.</span></div>
+              <div class="member-strength"><span class="weakness-mark">–</span><span><strong>Limits</strong>No native image generation. No voice mode. Search exists but feels bolted on.</span></div>
+            </div>
+            <div class="member-footer"><strong>Hire at</strong> claude.ai or the Claude desktop app<br><strong>Best for</strong> Tone-driven writing, long documents, code, careful reasoning<br><strong>Cost</strong> $20/mo for Pro · Free tier on Sonnet</div>
+          </div></div>
+        </article>
+
+        <article class="member-card" data-member="gpt">
+          <button class="member-header" onclick="toggleMember(this)">
+            <div class="member-accent"></div>
+            <div class="member-id"><span class="member-name">ChatGPT</span><span class="member-role">The Generalist</span></div>
+            <span class="member-toggle">+</span>
+          </button>
+          <div class="member-body"><div class="member-body-inner">
+            <p class="member-line">"What do you need? I can probably do it."</p>
+            <div class="member-strengths">
+              <div class="member-strength"><span class="strength-mark">+</span><span><strong>Speed</strong>Fastest of the four for everyday work. Voice mode lets you talk while doing something else.</span></div>
+              <div class="member-strength"><span class="strength-mark">+</span><span><strong>Range</strong>Broadest skill set on the team. Writing, brainstorming, voice, image generation, custom tools. The Swiss Army knife.</span></div>
+              <div class="member-strength"><span class="strength-mark">+</span><span><strong>Visuals</strong>Native image generation. The newest version handles text inside images well. Useful for posts, slides, mockups.</span></div>
+              <div class="member-strength"><span class="weakness-mark">–</span><span><strong>Accuracy</strong>Defaults to surface-level. Bullet-points everything. You have to push it for depth.</span></div>
+              <div class="member-strength"><span class="weakness-mark">–</span><span><strong>Cost</strong>Free tier now has ads. Plus is $20.</span></div>
+            </div>
+            <div class="member-footer"><strong>Hire at</strong> chatgpt.com or the ChatGPT app<br><strong>Best for</strong> General-purpose work, voice, quick visuals, custom GPTs<br><strong>Cost</strong> $20/mo for Plus · Free tier with ads</div>
+          </div></div>
+        </article>
+
+        <article class="member-card" data-member="perplexity">
+          <button class="member-header" onclick="toggleMember(this)">
+            <div class="member-accent"></div>
+            <div class="member-id"><span class="member-name">Perplexity</span><span class="member-role">The Researcher</span></div>
+            <span class="member-toggle">+</span>
+          </button>
+          <div class="member-body"><div class="member-body-inner">
+            <p class="member-line">"Don't take my word for it. Here are the sources."</p>
+            <div class="member-strengths">
+              <div class="member-strength"><span class="strength-mark">+</span><span><strong>Accuracy</strong>Citations on every claim. Every answer links back to where it came from. You can verify before you forward it.</span></div>
+              <div class="member-strength"><span class="strength-mark">+</span><span><strong>Speed</strong>Fast for research. Pulls live from the web. Best on the team for anything time-sensitive.</span></div>
+              <div class="member-strength"><span class="strength-mark">+</span><span><strong>Honesty</strong>Will tell you it doesn't know rather than make something up.</span></div>
+              <div class="member-strength"><span class="weakness-mark">–</span><span><strong>Voice</strong>Output is functional, not polished. Don't use it for anything that needs a voice.</span></div>
+              <div class="member-strength"><span class="weakness-mark">–</span><span><strong>Trust</strong>Recently caught downgrading paid users to cheaper models without telling them.</span></div>
+            </div>
+            <div class="member-footer"><strong>Hire at</strong> perplexity.ai or the Perplexity app<br><strong>Best for</strong> Research, fact-checking, current events, anything needing sources<br><strong>Cost</strong> $20/mo for Pro · Free tier exists</div>
+          </div></div>
+        </article>
+
+        <article class="member-card" data-member="gemini">
+          <button class="member-header" onclick="toggleMember(this)">
+            <div class="member-accent"></div>
+            <div class="member-id"><span class="member-name">Gemini</span><span class="member-role">The Integrator</span></div>
+            <span class="member-toggle">+</span>
+          </button>
+          <div class="member-body"><div class="member-body-inner">
+            <p class="member-line">"I'm already inside your Gmail. Just tell me what you need."</p>
+            <div class="member-strengths">
+              <div class="member-strength"><span class="strength-mark">+</span><span><strong>Context</strong>Largest context window on the team. Drop in a year of email or a 200-page report. It holds it all.</span></div>
+              <div class="member-strength"><span class="strength-mark">+</span><span><strong>Range</strong>Handles video and audio natively. Upload a recording and ask questions about it. No one else does this out of the box.</span></div>
+              <div class="member-strength"><span class="strength-mark">+</span><span><strong>Cost</strong>Lives inside Google Workspace. If you live in Gmail, Docs, and Sheets, the integration is the value.</span></div>
+              <div class="member-strength"><span class="weakness-mark">–</span><span><strong>Voice</strong>Writing is competent, not great. Use it for analysis and data, not tone-driven prose.</span></div>
+              <div class="member-strength"><span class="weakness-mark">–</span><span><strong>Limits</strong>Best inside Google's ecosystem. Outside it, the experience gets awkward.</span></div>
+            </div>
+            <div class="member-footer"><strong>Hire at</strong> gemini.google.com, the app, or inside Workspace<br><strong>Best for</strong> Very long documents, video and audio analysis, Google-shop workflows<br><strong>Cost</strong> $20/mo for Advanced · Free tier on Flash</div>
+          </div></div>
+        </article>
+
+      </div>
+      <button class="btn-primary" onclick="goTo('screen-casting')">Put them to work <span class="arrow">→</span></button>
+    </section>
+
+    <!-- SCREEN 3: CASTING -->
+    <section class="screen" id="screen-casting">
+      <div class="round-meta">
+        <span>The hiring</span>
+        <div class="progress-bar"><div class="progress-fill" id="cast-progress-bar" style="width: 0%"></div></div>
+        <span id="cast-progress-text">0 of 4</span>
+      </div>
+      <h2 class="casting-title">Four jobs.<br />Pick the right hire.</h2>
+      <p class="casting-sub">No revealed answers until you've assigned all four. Trust your gut.</p>
+      <div class="jobs">
+        <div class="job" data-job="1">
+          <div class="job-header"><span class="job-num">Job 01</span><span class="job-tag">Tone</span></div>
+          <p class="job-text">"Draft a difficult email to a client telling them we'll miss the deadline by a week."</p>
+          <div class="cast-options">
+            <button class="cast-btn" data-job="1" data-pick="claude" onclick="castJob(1,'claude')"><span class="cast-btn-name">Claude</span><span class="cast-btn-role">The Writer</span></button>
+            <button class="cast-btn" data-job="1" data-pick="gpt" onclick="castJob(1,'gpt')"><span class="cast-btn-name">ChatGPT</span><span class="cast-btn-role">The Generalist</span></button>
+            <button class="cast-btn" data-job="1" data-pick="perplexity" onclick="castJob(1,'perplexity')"><span class="cast-btn-name">Perplexity</span><span class="cast-btn-role">The Researcher</span></button>
+            <button class="cast-btn" data-job="1" data-pick="gemini" onclick="castJob(1,'gemini')"><span class="cast-btn-name">Gemini</span><span class="cast-btn-role">The Integrator</span></button>
+          </div>
+          <div class="job-result" id="result-1"></div>
+        </div>
+        <div class="job" data-job="2">
+          <div class="job-header"><span class="job-num">Job 02</span><span class="job-tag">Verify</span></div>
+          <p class="job-text">"Fact-check a competitor's pricing claim before I cite it in a proposal tomorrow."</p>
+          <div class="cast-options">
+            <button class="cast-btn" data-job="2" data-pick="claude" onclick="castJob(2,'claude')"><span class="cast-btn-name">Claude</span><span class="cast-btn-role">The Writer</span></button>
+            <button class="cast-btn" data-job="2" data-pick="gpt" onclick="castJob(2,'gpt')"><span class="cast-btn-name">ChatGPT</span><span class="cast-btn-role">The Generalist</span></button>
+            <button class="cast-btn" data-job="2" data-pick="perplexity" onclick="castJob(2,'perplexity')"><span class="cast-btn-name">Perplexity</span><span class="cast-btn-role">The Researcher</span></button>
+            <button class="cast-btn" data-job="2" data-pick="gemini" onclick="castJob(2,'gemini')"><span class="cast-btn-name">Gemini</span><span class="cast-btn-role">The Integrator</span></button>
+          </div>
+          <div class="job-result" id="result-2"></div>
+        </div>
+        <div class="job" data-job="3">
+          <div class="job-header"><span class="job-num">Job 03</span><span class="job-tag">Long Doc</span></div>
+          <p class="job-text">"Summarize this 40-page vendor contract and flag anything unusual."</p>
+          <div class="cast-options">
+            <button class="cast-btn" data-job="3" data-pick="claude" onclick="castJob(3,'claude')"><span class="cast-btn-name">Claude</span><span class="cast-btn-role">The Writer</span></button>
+            <button class="cast-btn" data-job="3" data-pick="gpt" onclick="castJob(3,'gpt')"><span class="cast-btn-name">ChatGPT</span><span class="cast-btn-role">The Generalist</span></button>
+            <button class="cast-btn" data-job="3" data-pick="perplexity" onclick="castJob(3,'perplexity')"><span class="cast-btn-name">Perplexity</span><span class="cast-btn-role">The Researcher</span></button>
+            <button class="cast-btn" data-job="3" data-pick="gemini" onclick="castJob(3,'gemini')"><span class="cast-btn-name">Gemini</span><span class="cast-btn-role">The Integrator</span></button>
+          </div>
+          <div class="job-result" id="result-3"></div>
+        </div>
+        <div class="job" data-job="4">
+          <div class="job-header"><span class="job-num">Job 04</span><span class="job-tag">Visual</span></div>
+          <p class="job-text">"Make a quick image for a LinkedIn post about my new service offering."</p>
+          <div class="cast-options">
+            <button class="cast-btn" data-job="4" data-pick="claude" onclick="castJob(4,'claude')"><span class="cast-btn-name">Claude</span><span class="cast-btn-role">The Writer</span></button>
+            <button class="cast-btn" data-job="4" data-pick="gpt" onclick="castJob(4,'gpt')"><span class="cast-btn-name">ChatGPT</span><span class="cast-btn-role">The Generalist</span></button>
+            <button class="cast-btn" data-job="4" data-pick="perplexity" onclick="castJob(4,'perplexity')"><span class="cast-btn-name">Perplexity</span><span class="cast-btn-role">The Researcher</span></button>
+            <button class="cast-btn" data-job="4" data-pick="gemini" onclick="castJob(4,'gemini')"><span class="cast-btn-name">Gemini</span><span class="cast-btn-role">The Integrator</span></button>
+          </div>
+          <div class="job-result" id="result-4"></div>
+        </div>
+      </div>
+      <div class="run-bar">
+        <span class="run-progress" id="run-progress">0 of 4 hired</span>
+        <button class="btn-primary" id="btn-run" disabled onclick="runHires()">See your hires <span class="arrow">→</span></button>
+      </div>
+    </section>
+
+    <!-- SCREEN 4: FINAL -->
+    <section class="screen" id="screen-final">
+      <div class="final-eyebrow">Session debrief</div>
+      <h2 class="final-title">You hired a team.<br /><em>Now you have one.</em></h2>
+      <div class="takeaway">
+        <div class="takeaway-label">Tape this to your monitor</div>
+        <p class="takeaway-text">Match the candidate to the job.<br /><em>Don't pick one for everything.</em></p>
+      </div>
+      <div class="debrief">
+        <div class="debrief-label">On paying any of them</div>
+        <p class="debrief-text">Each one has a $20 plan, with higher tiers above that. Mostly it buys a smarter model, more messages, and better tools. The free tiers exist so you can test them side by side. Pick the one closest to your week, run it for a month, then try the others on the side.</p>
+      </div>
+      <div class="debrief">
+        <div class="debrief-label">A note on the team</div>
+        <p class="debrief-text">This roster will look different in six months. Models keep getting better, and the gaps between them keep shrinking. For most everyday work, all four are good enough. The smart move is knowing the differences, not chasing whoever's in the lead that week.</p>
+      </div>
+      <div class="next-up">
+        <span class="next-up-label">Next week</span>
+        <span class="next-up-text">Once you've picked your team, the next question matters just as much. The differences within a single provider.</span>
+      </div>
+      <div class="end-actions">
+        <button class="btn-primary" onclick="restart()">Run it again</button>
+        <button class="btn-ghost" onclick="goToNewsletter()">Back to The Edge</button>
+      </div>
+    </section>
+
+  </main>
+</div>
+<script>
+  const state = { casts: {1:null, 2:null, 3:null, 4:null} };
+
+  const castResults = {
+    1: {
+      claude:     { v:'right',   text:'Right hire. Claude handles tone better than anyone on this team.', hint:'Sensitive client communication is where it earns its keep.' },
+      gpt:        { v:'solid',   text:'Solid hire. The newer GPT will get it done.', hint:'But ChatGPT defaults to bullet points. Claude\'s register is cleaner when prose needs to flow.' },
+      perplexity: { v:'sharper', text:'Could\'ve been sharper. Perplexity isn\'t built for original writing.', hint:'Output will be functional and flat. Not what you want when the client relationship is on the line.' },
+      gemini:     { v:'sharper', text:'Could\'ve been sharper. Gemini is competent.', hint:'Strong with data and documents. Weaker when tone is the whole job.' }
+    },
+    2: {
+      claude:     { v:'sharper', text:'Could\'ve been sharper. Claude\'s search wasn\'t built for verification.', hint:'You\'ll get a confident answer without the receipts. Wrong tool.' },
+      gpt:        { v:'solid',   text:'Solid hire. ChatGPT search works.', hint:'Just make sure you trigger the search option. Gets the job done. But Perplexity was built for this from the ground up.' },
+      perplexity: { v:'right',   text:'Right hire. This is exactly what Perplexity exists for.', hint:'Live web pull, sources you can click, lower hallucination risk. Built for "is this actually true."' },
+      gemini:     { v:'solid',   text:'Solid hire. Gemini pulls current information well.', hint:'But Perplexity gives you sourced answers by default. With Gemini you have to ask.' }
+    },
+    3: {
+      claude:     { v:'right',   text:'Right hire. Drop in the contract.', hint:'It holds the whole thing without losing the thread and surfaces the unusual clause you\'d have missed.' },
+      gpt:        { v:'sharper', text:'Could\'ve been sharper. ChatGPT handles long documents but has a smaller working memory.', hint:'On a 40-page contract, that gap shows up.' },
+      perplexity: { v:'sharper', text:'Could\'ve been sharper. Perplexity is built for searching the web, not reading files you bring in.', hint:'Wrong tool.' },
+      gemini:     { v:'right',   text:'Right hire. Gemini\'s context window is enormous.', hint:'Tied with Claude here. Pick Claude if you want sharper analysis. Pick Gemini if the document is unusually long.' }
+    },
+    4: {
+      claude:     { v:'sharper', text:'Could\'ve been sharper. Claude can\'t make images.', hint:'It will happily describe one for you. That is not what you asked for.' },
+      gpt:        { v:'right',   text:'Right hire. The only one on this team that natively generates images well.', hint:'The newer version handles text inside images well. Useful for posts, slides, mockups.' },
+      perplexity: { v:'sharper', text:'Could\'ve been sharper. Image generation isn\'t Perplexity\'s job.', hint:'Don\'t ask it.' },
+      gemini:     { v:'solid',   text:'Solid hire. Gemini generates images via Imagen.', hint:'ChatGPT\'s image generation is better right now, especially for text inside an image. But not the wrong call.' }
+    }
+  };
+
+  function goTo(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  function toggleMember(btn) {
+    btn.closest('.member-card').classList.toggle('expanded');
+  }
+  function castJob(jobNum, member) {
+    state.casts[jobNum] = member;
+    document.querySelectorAll(`.cast-btn[data-job="${jobNum}"]`).forEach(b => b.classList.toggle('picked', b.dataset.pick === member));
+    document.querySelector(`.job[data-job="${jobNum}"]`).classList.add('cast');
+    const cast = Object.values(state.casts).filter(v => v !== null).length;
+    document.getElementById('run-progress').textContent = `${cast} of 4 hired`;
+    document.getElementById('cast-progress-text').textContent = `${cast} of 4`;
+    document.getElementById('cast-progress-bar').style.width = `${(cast/4)*100}%`;
+    document.getElementById('btn-run').disabled = cast < 4;
+  }
+  function runHires() {
+    for (let j = 1; j <= 4; j++) {
+      const pick = state.casts[j];
+      const r = castResults[j][pick];
+      const label = r.v === 'right' ? 'Right hire' : r.v === 'solid' ? 'Solid hire' : 'Could\'ve been sharper';
+      const el = document.getElementById(`result-${j}`);
+      el.innerHTML = `<div class="verdict ${r.v}">${label}</div><div class="job-result-text">${r.text}</div><div class="job-result-hint">${r.hint}</div>`;
+      el.classList.add('show');
+      document.querySelectorAll(`.cast-btn[data-job="${j}"]`).forEach(b => b.disabled = true);
+    }
+    document.querySelector('.run-bar').innerHTML = `<span class="run-progress">Review complete</span><button class="btn-primary" onclick="goTo('screen-final')">Wrap up <span class="arrow">→</span></button>`;
+    setTimeout(() => document.getElementById('result-1').scrollIntoView({behavior:'smooth', block:'center'}), 100);
+  }
+  function restart() {
+    state.casts = {1:null, 2:null, 3:null, 4:null};
+    for (let j = 1; j <= 4; j++) {
+      document.querySelectorAll(`.cast-btn[data-job="${j}"]`).forEach(b => { b.classList.remove('picked'); b.disabled = false; });
+      document.querySelector(`.job[data-job="${j}"]`).classList.remove('cast');
+      const res = document.getElementById(`result-${j}`);
+      res.classList.remove('show');
+      res.innerHTML = '';
+    }
+    document.querySelector('.run-bar').innerHTML = `<span class="run-progress" id="run-progress">0 of 4 hired</span><button class="btn-primary" id="btn-run" disabled onclick="runHires()">See your hires <span class="arrow">→</span></button>`;
+    document.getElementById('cast-progress-text').textContent = '0 of 4';
+    document.getElementById('cast-progress-bar').style.width = '0%';
+    document.querySelectorAll('.member-card.expanded').forEach(c => c.classList.remove('expanded'));
+    goTo('screen-intro');
+  }
+  function goToNewsletter() {
+    window.location.href = 'https://nicholasborelli.com/theedge';
+  }
+</script>
+</body>
+</html>

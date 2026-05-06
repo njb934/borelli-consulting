@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Edge — Issue #004 · May 5, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&family=IBM+Plex+Mono:wght@300;400&display=swap');
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --black:#0A0A09; --black-soft:#111110; --black-card:#161614; --black-border:#222220;
+  --amber:#D4932A; --amber-dim:rgba(212,147,42,0.15); --amber-glow:rgba(212,147,42,0.07);
+  --ivory:#F5F0E8; --ivory-dim:rgba(245,240,232,0.72); --ivory-muted:rgba(245,240,232,0.42);
+  --ivory-ghost:rgba(245,240,232,0.1);
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+html{font-size:16px;scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--black);color:var(--ivory);line-height:1.65;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 14px,rgba(245,240,232,.007) 14px,rgba(245,240,232,.007) 15px);pointer-events:none;z-index:0;}
+
+.wrapper{max-width:640px;margin:0 auto;padding:0 20px;position:relative;z-index:1;}
+
+.site-nav{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;background:#0a0a0a;border-bottom:1px solid var(--black-border);position:relative;z-index:10;}
+.site-nav a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ivory-muted);text-decoration:none;transition:color .2s;}
+.site-nav a:hover{color:var(--amber);}
+
+.nl-header{padding:36px 0 32px;border-bottom:1px solid var(--black-border);text-align:center;}
+.nl-logo-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:6px;}
+.nl-diamond{width:18px;height:18px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);flex-shrink:0;}
+.nl-brand{font-family:var(--serif);font-size:28px;color:var(--ivory);letter-spacing:-.02em;}
+.nl-brand span{color:var(--amber);font-style:italic;}
+.nl-meta-row{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;}
+.nl-meta-row span{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ivory-muted);}
+.nl-meta-row .divider{color:var(--black-border);}
+.nl-meta-row .iss{color:var(--amber);}
+
+.nl-nav{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:18px 0;border-bottom:1px solid var(--black-border);}
+.nl-nav a{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ivory-muted);text-decoration:none;padding:5px 12px;border:1px solid var(--black-border);transition:color .2s,border-color .2s;}
+.nl-nav a:hover,.nl-nav a.active{color:var(--amber);border-color:var(--amber-dim);}
+
+.tldr{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 24px;margin:32px 0;}
+.tldr-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.tldr-label::after{content:'';flex:1;height:1px;background:var(--amber-dim);}
+
+.section-header{margin:48px 0 28px;display:flex;align-items:center;gap:12px;}
+.section-header-mark{width:10px;height:10px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);flex-shrink:0;}
+.section-header h2{font-family:var(--serif);font-size:20px;color:var(--ivory);letter-spacing:-.01em;}
+.section-header::after{content:'';flex:1;height:1px;background:var(--black-border);}
+
+.article{margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--black-border);}
+.article:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.article-tag{display:inline-block;font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--ivory-muted);border:1px solid var(--black-border);padding:3px 10px;margin-bottom:14px;}
+.article h3{font-family:var(--serif);font-size:23px;line-height:1.2;letter-spacing:-.01em;margin-bottom:18px;}
+.article h3.amber{color:var(--amber);}
+.article h3.ivory{color:var(--ivory);}
+.article-body{font-size:15px;font-weight:300;color:var(--ivory-dim);line-height:1.78;}
+.article-body p{margin-bottom:16px;}
+.article-body p:last-child{margin-bottom:0;}
+.article-body a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber-dim);}
+.article-body a:hover{border-color:var(--amber);}
+.learn-more{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-decoration:none;margin-top:18px;transition:gap .2s;}
+.learn-more:hover{gap:8px;}
+
+.spotlight-banner{width:100%;border-radius:8px;overflow:hidden;margin-bottom:16px;display:block;}
+.spotlight-links{margin-top:20px;padding-top:16px;border-top:1px solid var(--black-border);display:flex;flex-direction:column;gap:12px;}
+.spotlight-link-item{display:flex;align-items:flex-start;gap:10px;}
+.spotlight-link-item a{color:var(--amber);text-decoration:none;font-weight:500;border-bottom:1px solid var(--amber-dim);transition:border-color .2s;}
+.spotlight-link-item a:hover{border-color:var(--amber);}
+.spotlight-link-item span{font-size:14px;color:var(--ivory-dim);line-height:1.6;}
+.spotlight-link-marker{font-family:var(--mono);font-size:9px;color:var(--amber);flex-shrink:0;margin-top:3px;}
+
+/* ---- Workshop / Hiring Room ---- */
+.workshop-section{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 26px;margin-bottom:48px;}
+.workshop-header-row{display:flex;align-items:baseline;gap:10px;margin-bottom:4px;}
+.workshop-title{font-family:var(--serif);font-size:22px;color:var(--ivory);letter-spacing:-.01em;}
+.workshop-tagline-badge{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--amber);opacity:0.7;margin-left:auto;}
+.workshop-subline{font-size:15px;color:#aaa;font-style:italic;margin-bottom:22px;line-height:1.55;}
+.workshop-cta{margin-top:22px;padding-top:16px;border-top:1px solid var(--black-border);font-family:var(--mono);font-size:12px;color:var(--amber);opacity:0.8;letter-spacing:.03em;line-height:1.6;}
+
+/* ---- Hiring Room Booth ---- */
+.hr-booth{position:relative;width:100%;background:linear-gradient(180deg,#161513 0%,#121110 100%);border:1px solid rgba(245,240,232,.12);overflow:hidden;isolation:isolate;margin-top:22px;}
+.hr-booth::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(245,240,232,.022) 0,rgba(245,240,232,.022) 1px,transparent 1px,transparent 3px);pointer-events:none;z-index:10;}
+.hr-booth::after{content:'';position:absolute;left:0;right:0;height:80px;top:-80px;background:linear-gradient(180deg,transparent 0%,rgba(212,147,42,.04) 40%,rgba(212,147,42,.08) 50%,rgba(212,147,42,.04) 60%,transparent 100%);animation:hr-sweep 9s linear infinite;pointer-events:none;z-index:11;}
+@keyframes hr-sweep{0%{transform:translateY(0)}100%{transform:translateY(calc(100% + 600px))}}
+
+.hr-header{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid rgba(245,240,232,.12);font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,232,.42);gap:12px;flex-wrap:wrap;}
+.hr-room-id{display:flex;align-items:center;gap:12px;}
+.hr-room-label{color:#B87333;}
+.hr-leds{display:flex;gap:4px;}
+.hr-led{width:6px;height:6px;background:rgba(212,147,42,.15);border-radius:1px;}
+.hr-led.on{background:var(--amber);box-shadow:0 0 6px var(--amber);}
+.hr-led.blink{animation:hr-lb 1.3s ease-in-out infinite;}
+@keyframes hr-lb{0%,100%{opacity:1}50%{opacity:.2}}
+.hr-status{display:flex;align-items:center;gap:8px;padding:4px 10px;border:1px solid rgba(245,240,232,.12);background:rgba(0,0,0,.3);}
+.hr-status-dot{width:8px;height:8px;border-radius:50%;background:#B87333;box-shadow:0 0 4px rgba(184,115,51,.5);animation:hr-pulse 2s ease-in-out infinite;}
+@keyframes hr-pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.hr-status-text{color:#B87333;}
+.hr-meta{display:flex;align-items:center;gap:12px;}
+.hr-count{color:var(--amber);}
+.hr-count-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--amber);margin-right:6px;vertical-align:middle;animation:hr-bpm .9s steps(2,end) infinite;}
+@keyframes hr-bpm{0%{opacity:1;box-shadow:0 0 6px var(--amber)}100%{opacity:.2;box-shadow:none}}
+.hr-time{font-variant-numeric:tabular-nums;color:rgba(245,240,232,.42);}
+
+.hr-body{display:grid;grid-template-columns:1fr auto;gap:28px;padding:28px 24px;align-items:center;}
+@media(max-width:520px){.hr-body{grid-template-columns:1fr;gap:24px;padding:24px 20px;}}
+
+.hr-cue{font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--amber);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.hr-cue::before{content:'';width:6px;height:6px;background:var(--amber);border-radius:50%;box-shadow:0 0 6px var(--amber);animation:hr-pulse 1.4s ease-in-out infinite;}
+.hr-title{font-family:var(--serif);font-size:clamp(26px,5.5vw,38px);line-height:1;color:var(--ivory);letter-spacing:-.015em;margin-bottom:6px;}
+.hr-desc{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:rgba(245,240,232,.42);margin-bottom:20px;}
+
+.hr-roster{display:flex;align-items:center;gap:12px;}
+.hr-roster-label{font-family:var(--mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(245,240,232,.42);}
+.hr-roster-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.hr-roster-tag{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);padding:3px 8px;border:1px solid rgba(184,115,51,.35);background:rgba(184,115,51,.05);}
+
+.hr-action{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.hr-btn{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;padding:18px 26px;background:radial-gradient(circle at 35% 30%,#3a2f22 0%,#1a1510 60%,#0a0806 100%);border:1px solid rgba(184,115,51,.45);cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ivory);text-decoration:none;box-shadow:inset 0 1px 2px rgba(245,240,232,.08),0 4px 14px rgba(0,0,0,.5);transition:transform .12s,border-color .15s,box-shadow .15s;-webkit-tap-highlight-color:transparent;isolation:isolate;}
+.hr-btn::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at center,rgba(212,147,42,.18) 0%,transparent 70%);opacity:.4;z-index:0;animation:hr-breathe 3s ease-in-out infinite;}
+@keyframes hr-breathe{0%,100%{opacity:.4}50%{opacity:.7}}
+.hr-btn:hover{border-color:var(--amber);box-shadow:inset 0 1px 2px rgba(245,240,232,.08),0 6px 18px rgba(212,147,42,.25);}
+.hr-btn:hover::before{opacity:1;}
+.hr-btn:active{transform:translateY(1px);}
+.hr-btn span,.hr-btn svg{position:relative;z-index:1;}
+.hr-btn-arrow{font-family:var(--mono);color:var(--amber);font-size:14px;}
+.hr-btn-caption{font-family:var(--mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:rgba(245,240,232,.42);text-align:center;}
+
+.hr-ticker{position:relative;border-top:1px solid rgba(245,240,232,.12);background:rgba(0,0,0,.3);padding:10px 0;overflow:hidden;display:flex;align-items:center;}
+.hr-ticker-pin{flex-shrink:0;padding:0 14px 0 16px;font-family:var(--mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#0A0A09;background:var(--amber);height:100%;display:flex;align-items:center;position:relative;z-index:2;}
+.hr-ticker-pin::after{content:'';position:absolute;right:-10px;top:0;bottom:0;width:10px;background:var(--amber);clip-path:polygon(0 0,100% 50%,0 100%);}
+.hr-ticker-window{flex:1;overflow:hidden;padding-left:18px;height:18px;}
+.hr-ticker-track{display:inline-flex;gap:26px;white-space:nowrap;animation:hr-scroll 36s linear infinite;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,240,232,.42);}
+.hr-ticker-sep{color:#B87333;}
+.hr-ticker-hot{color:var(--amber);}
+@keyframes hr-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ---- Subscribe / Footer ---- */
+.subscribe-bar{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 24px;margin:48px 0 0;text-align:center;}
+.subscribe-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:8px;}
+.subscribe-headline{font-family:var(--serif);font-size:20px;color:var(--ivory);margin-bottom:6px;}
+.subscribe-sub{font-size:13px;color:var(--ivory-muted);margin-bottom:20px;}
+.subscribe-embed{width:100%;min-height:60px;}
+
+.nl-footer{border-top:1px solid var(--black-border);padding:32px 0 40px;text-align:center;margin-top:48px;}
+.footer-logo-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;}
+.footer-diamond{width:12px;height:12px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);}
+.footer-name{font-family:var(--serif);font-size:14px;color:var(--ivory);}
+.footer-name span{color:var(--amber);}
+.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:14px;}
+.footer-links a{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ivory-muted);text-decoration:none;}
+.footer-links a:hover{color:var(--amber);}
+.footer-fine{font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--ivory-muted);line-height:1.8;}
+
+@media(max-width:768px){
+  .subscribe-bar{margin-left:-20px;margin-right:-20px;padding:20px 0;}
+  .subscribe-embed{height:420px;width:100% !important;}
+}
+@media(max-width:540px){
+  .nl-header{padding:24px 0 20px;}
+  .nl-brand{font-size:24px;}
+  .tldr{padding:20px;}
+  .wrapper{padding:0 16px;}
+  .workshop-section{padding:22px 20px 20px;}
+  .subscribe-bar{margin-left:-16px;margin-right:-16px;padding:20px 0;}
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="https://nicholasborelli.com">← Borelli Consulting</a>
+  <a href="https://nicholasborelli.com/newsletter.html">All Issues</a>
+</nav>
+
+<div class="wrapper">
+
+  <header class="nl-header">
+    <div class="nl-logo-row">
+      <div class="nl-diamond"></div>
+      <div class="nl-brand">The <span>Edge</span></div>
+    </div>
+    <div class="nl-meta-row">
+      <span class="iss">Issue 004</span>
+      <span class="divider">|</span>
+      <span>May 5, 2026</span>
+    </div>
+  </header>
+
+  <nav class="nl-nav">
+    <a href="#ai-news">AI News</a>
+    <a href="#workshop">The Workshop</a>
+    <a href="#resources">Resources</a>
+    <a href="#subscribe">Subscribe</a>
+  </nav>
+
+  <!-- TL;DR -->
+  <div class="tldr">
+    <div class="tldr-label">◆ This week</div>
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <a href="#article-1" style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--black-border);text-decoration:none;transition:gap .2s;" onmouseover="this.style.gap='16px'" onmouseout="this.style.gap='12px'">
+        <span style="font-family:var(--mono);font-size:9px;color:var(--amber);flex-shrink:0;letter-spacing:.06em;">01</span>
+        <span style="font-size:14px;color:var(--ivory);line-height:1.5;">Perplexity Computer is the first tool that runs your task across 19 AI models simultaneously and decides who handles it best.</span>
+        <span style="color:var(--amber);flex-shrink:0;font-size:13px;margin-left:auto;">→</span>
+      </a>
+      <a href="#spotlight" style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--black-border);text-decoration:none;transition:gap .2s;" onmouseover="this.style.gap='16px'" onmouseout="this.style.gap='12px'">
+        <span style="font-family:var(--mono);font-size:9px;color:var(--amber);flex-shrink:0;letter-spacing:.06em;">02</span>
+        <span style="font-size:14px;color:var(--ivory);line-height:1.5;"><strong style="color:var(--amber);font-weight:500;">Spotlight:</strong> In 18 months, Dario Amodei went from writing that AI could end most disease and poverty within a decade, to warning the same AI could enable authoritarian takeover. Both essays are worth reading.</span>
+        <span style="color:var(--amber);flex-shrink:0;font-size:13px;margin-left:auto;">→</span>
+      </a>
+      <a href="#workshop" style="display:flex;align-items:center;gap:12px;padding:12px 0;text-decoration:none;transition:gap .2s;" onmouseover="this.style.gap='16px'" onmouseout="this.style.gap='12px'">
+        <span style="font-family:var(--mono);font-size:9px;color:var(--amber);flex-shrink:0;letter-spacing:.06em;">03</span>
+        <span style="font-size:14px;color:var(--ivory);line-height:1.5;">This week's Workshop: step into The Hiring Room. Four AI candidates, four real jobs. You decide who gets hired for what.</span>
+        <span style="color:var(--amber);flex-shrink:0;font-size:13px;margin-left:auto;">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- AI NEWS -->
+  <div class="section-header" id="ai-news">
+    <div class="section-header-mark"></div>
+    <h2>AI News</h2>
+  </div>
+
+  <!-- ARTICLE 1: Perplexity Computer -->
+  <div class="article" id="article-1">
+    <div class="article-tag">Tools</div>
+    <h3 class="amber">Perplexity Computer Routes Your Task Across 19 AI Models Automatically</h3>
+    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80" alt="Network of connected nodes" style="width:100%;height:220px;object-fit:cover;border-radius:8px;margin-bottom:20px;">
+    <div class="article-body">
+      <p>Most people interacting with AI are still picking a model and hoping they picked right. Perplexity Computer launched in February and took a different approach. It runs on 19 AI models simultaneously, including Claude, GPT, Gemini, and Grok, and routes your task automatically based on what the task actually requires. You don't choose the tool. You describe the problem. The system decides which model handles it best and assembles the result.</p>
+      <p>That matters more for adoption than it might seem. A big reason AI is hard to pick up isn't the technology itself. It's the overhead: which model do I use, for what, when does it fail? Perplexity Computer removes that layer. The parallel here is what happened when Anthropic moved from Claude Code, a developer CLI tool, to Claude Cowork, a desktop interface built for non-developers. The capability didn't change. The surface did. Perplexity Computer is doing something similar: taking a complicated routing decision and making it invisible. At $200 a month, it's priced for professionals and businesses who want the full range of current AI without the maintenance cost of figuring out which model to deploy for each task.</p>
+    </div>
+    <a href="https://www.perplexity.ai/computer" class="learn-more" target="_blank">Learn more about Perplexity Computer →</a>
+  </div>
+
+  <!-- SPOTLIGHT: Dario Amodei — flows as article inside AI News -->
+  <div class="article" id="spotlight">
+    <div class="article-tag">SPOTLIGHT</div>
+    <h3 class="ivory">Dario Amodei and the 18-Month Gap</h3>
+    <div class="spotlight-banner"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" style="width:100%;height:auto;display:block;">
+  <defs>
+    <clipPath id="rc">
+      <rect width="600" height="220" rx="8" ry="8"/>
+    </clipPath>
+
+    <!-- Film grain -->
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.15"/>
+      </feComponentTransfer>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+
+    <!-- Soft blur for bokeh -->
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <filter id="medBlur">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="tinyBlur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+
+    <!-- Deep base gradient — dark teal-charcoal shifting warm -->
+    <linearGradient id="baseBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D1117"/>
+      <stop offset="35%" stop-color="#0F1A1A"/>
+      <stop offset="65%" stop-color="#1A150F"/>
+      <stop offset="100%" stop-color="#151008"/>
+    </linearGradient>
+
+    <!-- Warm light shaft from upper right -->
+    <radialGradient id="warmShaft" cx="0.78" cy="0.1" r="0.7" fx="0.8" fy="0.08">
+      <stop offset="0%" stop-color="#D4932A" stop-opacity="0.22"/>
+      <stop offset="30%" stop-color="#C47F20" stop-opacity="0.1"/>
+      <stop offset="60%" stop-color="#8B5E1A" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Cool counterpoint glow from lower left -->
+    <radialGradient id="coolPool" cx="0.15" cy="0.85" r="0.6">
+      <stop offset="0%" stop-color="#2A5A6D" stop-opacity="0.12"/>
+      <stop offset="50%" stop-color="#1A3A4A" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Central warm focus -->
+    <radialGradient id="centerWarm" cx="0.5" cy="0.48" r="0.4">
+      <stop offset="0%" stop-color="#D4932A" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Vignette -->
+    <radialGradient id="vignette" cx="0.5" cy="0.5" r="0.7">
+      <stop offset="0%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="70%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.5"/>
+    </radialGradient>
+
+    <!-- Light leak gradient -->
+    <linearGradient id="lightLeak" x1="0.6" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#E8A832" stop-opacity="0.06"/>
+      <stop offset="50%" stop-color="#B87333" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <g clip-path="url(#rc)">
+    <!-- Deep atmospheric base -->
+    <rect width="600" height="220" fill="url(#baseBg)"/>
+
+    <!-- Warm light shaft -->
+    <rect width="600" height="220" fill="url(#warmShaft)"/>
+
+    <!-- Cool counter-glow -->
+    <rect width="600" height="220" fill="url(#coolPool)"/>
+
+    <!-- Light leak -->
+    <rect width="600" height="220" fill="url(#lightLeak)"/>
+
+    <!-- Atmospheric bokeh — large soft orbs -->
+    <circle cx="460" cy="55" r="45" fill="#D4932A" opacity="0.06" filter="url(#softBlur)"/>
+    <circle cx="140" cy="170" r="55" fill="#2A5A6D" opacity="0.07" filter="url(#softBlur)"/>
+    <circle cx="520" cy="180" r="30" fill="#B87333" opacity="0.05" filter="url(#softBlur)"/>
+    <circle cx="80" cy="50" r="35" fill="#D4932A" opacity="0.04" filter="url(#softBlur)"/>
+
+    <!-- Mid-ground bokeh -->
+    <circle cx="380" cy="40" r="18" fill="#E8A832" opacity="0.08" filter="url(#medBlur)"/>
+    <circle cx="200" cy="185" r="20" fill="#3A7A8A" opacity="0.06" filter="url(#medBlur)"/>
+    <circle cx="500" cy="130" r="14" fill="#D4932A" opacity="0.07" filter="url(#medBlur)"/>
+    <circle cx="100" cy="110" r="16" fill="#B87333" opacity="0.05" filter="url(#medBlur)"/>
+
+    <!-- Small sharp-ish bokeh specks -->
+    <circle cx="430" cy="80" r="3" fill="#E8A832" opacity="0.2" filter="url(#tinyBlur)"/>
+    <circle cx="170" cy="60" r="2.5" fill="#D4932A" opacity="0.18" filter="url(#tinyBlur)"/>
+    <circle cx="350" cy="175" r="2" fill="#B87333" opacity="0.15" filter="url(#tinyBlur)"/>
+    <circle cx="530" cy="95" r="2.5" fill="#D4932A" opacity="0.14" filter="url(#tinyBlur)"/>
+    <circle cx="250" cy="40" r="1.8" fill="#E8A832" opacity="0.2" filter="url(#tinyBlur)"/>
+    <circle cx="70" cy="145" r="2" fill="#D4932A" opacity="0.12" filter="url(#tinyBlur)"/>
+    <circle cx="480" cy="165" r="1.5" fill="#C47F20" opacity="0.16" filter="url(#tinyBlur)"/>
+
+    <!-- Subtle angular light streaks — like light through blinds -->
+    <line x1="350" y1="0" x2="500" y2="220" stroke="#D4932A" stroke-width="40" opacity="0.015"/>
+    <line x1="300" y1="0" x2="450" y2="220" stroke="#D4932A" stroke-width="25" opacity="0.02"/>
+    <line x1="400" y1="0" x2="550" y2="220" stroke="#B87333" stroke-width="30" opacity="0.012"/>
+
+    <!-- Central warm focus -->
+    <rect width="600" height="220" fill="url(#centerWarm)"/>
+
+    <!-- Single geometric diamond — subtle, not branded -->
+    <g transform="translate(300, 82)" opacity="0.25">
+      <polygon points="0,-10 10,0 0,10 -10,0" fill="none" stroke="#E8A832" stroke-width="0.8"/>
+    </g>
+
+    <!-- SPOTLIGHT — the word, confident but integrated into the atmosphere -->
+    <text x="300" y="120" text-anchor="middle" font-family="'IBM Plex Mono', 'SF Mono', 'Consolas', monospace" font-size="24" letter-spacing="12" fill="#F5F0E8" fill-opacity="0.65" font-weight="400">
+      SPOTLIGHT
+    </text>
+
+    <!-- THIS WEEK — quietly underneath -->
+    <text x="300" y="146" text-anchor="middle" font-family="'IBM Plex Mono', 'SF Mono', 'Consolas', monospace" font-size="8" letter-spacing="5" fill="#F5F0E8" fill-opacity="0.22" font-weight="300">
+      THIS WEEK
+    </text>
+
+    <!-- Vignette for photographic depth -->
+    <rect width="600" height="220" fill="url(#vignette)"/>
+
+    <!-- Film grain -->
+    <rect width="600" height="220" fill="#0A0A09" filter="url(#grain)" opacity="0.3"/>
+  </g>
+</svg></div>
+    <div class="article-body">
+      <p>Most people writing about AI pick a lane. They're optimists or they're doomsayers, and they stay there. Dario Amodei, CEO of Anthropic, went on 60 Minutes to say AI might compress a decade of scientific progress into a few years. That is not a careful statement. That is one of the most sweeping claims a tech CEO has made in public, attached to a name that carries real credibility in the field.</p>
+      <p>What makes Amodei worth watching is that he wrote both essays. In 2024, he published Machines of Loving Grace, an optimistic case that AI could help defeat most disease and lift billions out of poverty within a decade. Eighteen months later, he published The Adolescence of Technology, and the register had shifted. Not a reversal. More like a researcher returning to a hypothesis after seeing new data. The second essay grapples seriously with how the same capabilities that could accelerate medicine could concentrate power in dangerous ways. He's not catastrophizing. He's updating.</p>
+      <p>That 18-month gap is the real signal. The first essay was written by someone confident in the trajectory. The second was written by someone who had watched the trajectory accelerate faster than expected, and started asking harder questions about where it ends. Both are worth reading, in order.</p>
+    </div>
+    <div class="spotlight-links">
+      <div class="spotlight-link-item">
+        <span class="spotlight-link-marker">▸</span>
+        <span><a href="https://www.anthropic.com/news/machines-of-loving-grace" target="_blank">Machines of Loving Grace</a> &nbsp;(2024)</span>
+      </div>
+      <div class="spotlight-link-item">
+        <span class="spotlight-link-marker">▸</span>
+        <span><a href="https://www.anthropic.com/news/the-adolescence-of-technology" target="_blank">The Adolescence of Technology</a> &nbsp;(2026)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKSHOP -->
+  <div class="section-header" id="workshop">
+    <div class="section-header-mark"></div>
+    <h2>The Workshop</h2>
+  </div>
+
+  <div class="workshop-section">
+    <div class="workshop-header-row">
+      <div class="workshop-title">The Hiring Room</div>
+      <div class="workshop-tagline-badge">5 MIN · WEEK 18 OF 52</div>
+    </div>
+    <div class="workshop-subline">An interactive simulation. You're the hiring manager.</div>
+
+    <!-- Hiring Room Entry Booth -->
+    <div class="hr-booth" id="hrBooth">
+      <div class="hr-header">
+        <div class="hr-room-id">
+          <span class="hr-room-label">Hiring Room — Session 004</span>
+          <span class="hr-leds">
+            <span class="hr-led on"></span>
+            <span class="hr-led on blink"></span>
+            <span class="hr-led on"></span>
+            <span class="hr-led"></span>
+          </span>
+        </div>
+        <div class="hr-status" id="hrStatus">
+          <span class="hr-status-dot"></span>
+          <span class="hr-status-text">Now Open</span>
+        </div>
+        <div class="hr-meta">
+          <span class="hr-count"><span class="hr-count-dot"></span>4 Candidates</span>
+          <span class="hr-time" id="hrTime">--:--:--</span>
+        </div>
+      </div>
+
+      <div class="hr-body">
+        <div>
+          <div class="hr-cue">Now Interviewing</div>
+          <div class="hr-title">The Hiring Room</div>
+          <div class="hr-desc">Four candidates. Four roles. One right call.</div>
+          <div class="hr-roster">
+            <span class="hr-roster-label">Roster</span>
+            <div class="hr-roster-tags">
+              <span class="hr-roster-tag">Claude</span>
+              <span class="hr-roster-tag">ChatGPT</span>
+              <span class="hr-roster-tag">Perplexity</span>
+              <span class="hr-roster-tag">Gemini</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hr-action">
+          <a href="../workshops/hiring-room-004.html" class="hr-btn" id="hrBtn" aria-label="Enter the Hiring Room">
+            <span>ENTER THE HIRING ROOM</span>
+            <span class="hr-btn-arrow">→</span>
+          </a>
+          <div class="hr-btn-caption">5-minute session</div>
+        </div>
+      </div>
+
+      <div class="hr-ticker">
+        <div class="hr-ticker-pin">Live</div>
+        <div class="hr-ticker-window">
+          <div class="hr-ticker-track">
+            <span>Candidate Evaluation</span><span class="hr-ticker-sep">·</span>
+            <span class="hr-ticker-hot">AI Literacy</span><span class="hr-ticker-sep">·</span>
+            <span>Role Matching</span><span class="hr-ticker-sep">·</span>
+            <span>Hiring Decisions</span><span class="hr-ticker-sep">·</span>
+            <span class="hr-ticker-hot">Workforce Strategy</span><span class="hr-ticker-sep">·</span>
+            <span>The Edge Workshop</span><span class="hr-ticker-sep">·</span>
+            <span>Candidate Evaluation</span><span class="hr-ticker-sep">·</span>
+            <span class="hr-ticker-hot">AI Literacy</span><span class="hr-ticker-sep">·</span>
+            <span>Role Matching</span><span class="hr-ticker-sep">·</span>
+            <span>Hiring Decisions</span><span class="hr-ticker-sep">·</span>
+            <span class="hr-ticker-hot">Workforce Strategy</span><span class="hr-ticker-sep">·</span>
+            <span>The Edge Workshop</span><span class="hr-ticker-sep">·</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="workshop-cta">Run the room. DM me on LinkedIn which hire surprised you.</div>
+  </div>
+
+  <!-- RESOURCES -->
+  <div class="section-header" id="resources">
+    <div class="section-header-mark"></div>
+    <h2>AI Resources Worth Bookmarking</h2>
+  </div>
+
+  <div style="font-size:15px;color:var(--ivory-dim);margin-bottom:24px;">Three worth knowing this week.</div>
+
+  <div style="display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:48px;">
+    <div style="background:var(--black-card);border:1px solid var(--black-border);padding:20px 22px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,147,42,0.3)'" onmouseout="this.style.borderColor='var(--black-border)'">
+      <div style="font-family:var(--serif);font-size:18px;color:var(--ivory);margin-bottom:6px;">Perplexity</div>
+      <div style="font-size:14px;color:var(--ivory-dim);line-height:1.6;margin-bottom:10px;">The multi-model AI browser. Search, reason, and get answers using the best available model for the job.</div>
+      <a href="https://www.perplexity.ai" target="_blank" style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-decoration:none;">perplexity.ai →</a>
+    </div>
+    <div style="background:var(--black-card);border:1px solid var(--black-border);padding:20px 22px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,147,42,0.3)'" onmouseout="this.style.borderColor='var(--black-border)'">
+      <div style="font-family:var(--serif);font-size:18px;color:var(--ivory);margin-bottom:6px;">Anthropic</div>
+      <div style="font-size:14px;color:var(--ivory-dim);line-height:1.6;margin-bottom:10px;">The company behind Claude. Their research on AI safety and capability is some of the most important reading in the field.</div>
+      <a href="https://www.anthropic.com" target="_blank" style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-decoration:none;">anthropic.com →</a>
+    </div>
+    <div style="background:var(--black-card);border:1px solid var(--black-border);padding:20px 22px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,147,42,0.3)'" onmouseout="this.style.borderColor='var(--black-border)'">
+      <div style="font-family:var(--serif);font-size:18px;color:var(--ivory);margin-bottom:6px;">Claude</div>
+      <div style="font-size:14px;color:var(--ivory-dim);line-height:1.6;margin-bottom:10px;">Anthropic's AI assistant. Strong at analysis, writing, and reasoning. One of the 19 models Perplexity Computer routes to.</div>
+      <a href="https://claude.ai" target="_blank" style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-decoration:none;">claude.ai →</a>
+    </div>
+  </div>
+
+  <div class="subscribe-bar" id="subscribe">
+    <div class="subscribe-label">◆ Stay in the loop</div>
+    <div class="subscribe-headline">Get The Edge every week</div>
+    <div class="subscribe-sub">One AI insight, every week. Free.</div>
+    <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+    <iframe src="https://subscribe-forms.beehiiv.com/066e6b32-a5b8-4457-abbd-bac647848065" data-test-id="beehiiv-embed" width="100%" height="320" frameborder="0" scrolling="no" class="subscribe-embed" style="border-radius:4px;border:1px solid var(--black-border);background:transparent;"></iframe>
+  </div>
+
+  <footer class="nl-footer">
+    <div class="footer-logo-row">
+      <div class="footer-diamond"></div>
+      <div class="footer-name">Borelli <span>Consulting</span></div>
+    </div>
+    <div class="footer-links">
+      <a href="https://nicholasborelli.com">Website</a>
+      <a href="https://nicholasborelli.com/newsletter.html">All Issues</a>
+      <a href="https://nicholasborelli.com/#contact">Book a Free Review</a>
+      <a href="#unsubscribe">Unsubscribe</a>
+    </div>
+    <div class="footer-fine">
+      Borelli Consulting · nicholasborelli.com<br>
+      You're receiving this because you subscribed at nicholasborelli.com<br>
+      © 2026 Borelli Consulting
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // Live clock
+  function updateTime() {
+    const now = new Date();
+    const t = [now.getHours(), now.getMinutes(), now.getSeconds()].map(n => String(n).padStart(2,'0')).join(':');
+    const el = document.getElementById('hrTime');
+    if (el) el.textContent = t;
+  }
+  updateTime();
+  setInterval(updateTime, 1000);
+</script>
+</body>
+</html>
