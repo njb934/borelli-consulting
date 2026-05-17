@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Edge — Issue #005 · May 13, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&family=IBM+Plex+Mono:wght@300;400&display=swap');
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --black:#0A0A09; --black-soft:#111110; --black-card:#161614; --black-border:#222220;
+  --amber:#D4932A; --amber-dim:rgba(212,147,42,0.15); --amber-glow:rgba(212,147,42,0.07);
+  --ivory:#F5F0E8; --ivory-dim:rgba(245,240,232,0.72); --ivory-muted:rgba(245,240,232,0.42);
+  --ivory-ghost:rgba(245,240,232,0.1);
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+html{font-size:16px;scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--black);color:var(--ivory);line-height:1.65;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 14px,rgba(245,240,232,.007) 14px,rgba(245,240,232,.007) 15px);pointer-events:none;z-index:0;}
+
+.wrapper{max-width:640px;margin:0 auto;padding:0 20px;position:relative;z-index:1;}
+
+.site-nav{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;background:#0a0a0a;border-bottom:1px solid var(--black-border);position:relative;z-index:10;}
+.site-nav a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ivory-muted);text-decoration:none;transition:color .2s;}
+.site-nav a:hover{color:var(--amber);}
+
+.nl-header{padding:36px 0 32px;border-bottom:1px solid var(--black-border);text-align:center;}
+.nl-logo-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:6px;}
+.nl-diamond{width:18px;height:18px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);flex-shrink:0;}
+.nl-brand{font-family:var(--serif);font-size:28px;color:var(--ivory);letter-spacing:-.02em;}
+.nl-brand span{color:var(--amber);font-style:italic;}
+.nl-meta-row{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;}
+.nl-meta-row span{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ivory-muted);}
+.nl-meta-row .divider{color:var(--black-border);}
+.nl-meta-row .iss{color:var(--amber);}
+
+.nl-nav{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:18px 0;border-bottom:1px solid var(--black-border);}
+.nl-nav a{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ivory-muted);text-decoration:none;padding:5px 12px;border:1px solid var(--black-border);transition:color .2s,border-color .2s;}
+.nl-nav a:hover,.nl-nav a.active{color:var(--amber);border-color:var(--amber-dim);}
+
+.tldr{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 24px;margin:32px 0;}
+.tldr-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.tldr-label::after{content:'';flex:1;height:1px;background:var(--amber-dim);}
+.tldr-item{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--black-border);font-size:14px;color:var(--ivory-dim);line-height:1.65;}
+.tldr-item:first-of-type{border-top:none;padding-top:4px;}
+.tldr-num{font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:.1em;flex-shrink:0;padding-top:3px;}
+
+.section-header{margin:48px 0 28px;display:flex;align-items:center;gap:12px;}
+.section-header-mark{width:10px;height:10px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);flex-shrink:0;}
+.section-header h2{font-family:var(--serif);font-size:20px;color:var(--ivory);letter-spacing:-.01em;}
+.section-header::after{content:'';flex:1;height:1px;background:var(--black-border);}
+
+.article{margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--black-border);}
+.article:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.article-tag{display:inline-block;font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--ivory-muted);border:1px solid var(--black-border);padding:3px 10px;margin-bottom:14px;}
+.article h3{font-family:var(--serif);font-size:23px;line-height:1.2;letter-spacing:-.01em;margin-bottom:18px;}
+.article h3.amber{color:var(--amber);}
+.article h3.ivory{color:var(--ivory);}
+.article-image{width:100%;height:auto;display:block;margin-bottom:22px;border:1px solid var(--black-border);}
+.article-body{font-size:15px;font-weight:300;color:var(--ivory-dim);line-height:1.78;}
+.article-body p{margin-bottom:16px;}
+.article-body p:last-child{margin-bottom:0;}
+.article-body a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber-dim);}
+.article-body a:hover{border-color:var(--amber);}
+.learn-more{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-decoration:none;margin-top:18px;transition:gap .2s;}
+.learn-more:hover{gap:8px;}
+
+.wt-intro-box{border-left:3px solid var(--amber);background:rgba(212,147,42,0.04);padding:14px 18px;margin-bottom:28px;}
+.wt-intro-box p{font-size:13px;font-style:italic;color:var(--ivory-muted);line-height:1.65;margin:0;}
+.wt-title{font-family:var(--serif);font-size:23px;line-height:1.2;letter-spacing:-.01em;color:var(--amber);margin-bottom:18px;}
+.wt-body{font-size:15px;font-weight:300;color:var(--ivory-dim);line-height:1.82;}
+.wt-body p{margin-bottom:18px;}
+.wt-body p:last-child{margin-bottom:0;}
+
+.workshop-section{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 26px;margin-bottom:48px;}
+.workshop-header-row{display:flex;align-items:baseline;gap:10px;margin-bottom:4px;}
+.workshop-title{font-family:var(--serif);font-size:22px;color:var(--ivory);letter-spacing:-.01em;}
+.workshop-tagline-badge{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--amber);opacity:0.7;margin-left:auto;}
+.workshop-subline{font-size:15px;color:#aaa;font-style:italic;margin-bottom:22px;line-height:1.55;}
+.workshop-body{font-size:15px;font-weight:300;color:var(--ivory-dim);line-height:1.78;}
+.workshop-body p{margin-bottom:16px;}
+.workshop-cta{margin-top:22px;padding-top:16px;border-top:1px solid var(--black-border);font-family:var(--mono);font-size:12px;color:var(--amber);opacity:0.8;letter-spacing:.03em;line-height:1.6;}
+.workshop-cta a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber-dim);}
+.workshop-cta a:hover{border-color:var(--amber);}
+
+.prompt-block{background:rgba(0,0,0,0.4);border-left:2px solid var(--amber);padding:16px 20px;margin:20px 0;font-size:14px;line-height:1.72;}
+.prompt-speaker{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;}
+.prompt-speaker.you{color:var(--amber);}
+.prompt-speaker.claude{color:var(--ivory-muted);}
+.prompt-text{color:var(--ivory-dim);font-weight:300;}
+.prompt-text p{margin-bottom:12px;}
+.prompt-text p:last-child{margin-bottom:0;}
+.prompt-divider{height:1px;background:var(--black-border);margin:14px 0;}
+.prompt-bridge{font-size:14px;color:var(--ivory-dim);font-style:italic;margin:20px 0;line-height:1.65;}
+
+.resource-card{background:var(--black-card);border:1px solid var(--black-border);padding:18px 20px;margin-bottom:14px;transition:border-color .2s;}
+.resource-card:hover{border-color:var(--amber-dim);}
+.resource-card-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px;flex-wrap:wrap;}
+.resource-name{font-family:var(--serif);font-size:17px;color:var(--ivory);}
+.resource-url{font-family:var(--mono);font-size:10px;color:var(--amber);text-decoration:none;letter-spacing:.04em;}
+.resource-url:hover{text-decoration:underline;}
+.resource-desc{font-size:13px;color:var(--ivory-dim);line-height:1.6;font-weight:300;}
+
+.subscribe-bar{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 24px;margin:48px 0 0;text-align:center;}
+.subscribe-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:8px;}
+.subscribe-headline{font-family:var(--serif);font-size:20px;color:var(--ivory);margin-bottom:6px;}
+.subscribe-sub{font-size:13px;color:var(--ivory-muted);margin-bottom:20px;}
+.subscribe-embed{width:100%;min-height:60px;}
+
+.nl-footer{border-top:1px solid var(--black-border);padding:32px 0 40px;text-align:center;margin-top:48px;}
+.footer-logo-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;}
+.footer-diamond{width:12px;height:12px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);}
+.footer-name{font-family:var(--serif);font-size:14px;color:var(--ivory);}
+.footer-name span{color:var(--amber);}
+.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:14px;}
+.footer-links a{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ivory-muted);text-decoration:none;}
+.footer-links a:hover{color:var(--amber);}
+.footer-fine{font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--ivory-muted);line-height:1.8;}
+
+@media(max-width:540px){
+  .nl-header{padding:24px 0 20px;}
+  .nl-brand{font-size:24px;}
+  .tldr{padding:20px;}
+  .wrapper{padding:0 16px;}
+  .workshop-section{padding:22px 20px 20px;}
+  .wt-intro-box{padding:12px 14px;}
+  .workshop-tagline-badge{margin-left:0;display:block;width:100%;margin-top:4px;}
+  .workshop-header-row{flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="https://nicholasborelli.com/">← Nicholas Borelli</a>
+  <a href="https://nicholasborelli.com/the-edge/">The Edge Archive</a>
+</nav>
+
+<div class="wrapper">
+
+  <header class="nl-header">
+    <div class="nl-logo-row">
+      <div class="nl-diamond"></div>
+      <div class="nl-brand">The <span>Edge</span></div>
+    </div>
+    <div class="nl-meta-row">
+      <span class="iss">Issue #005</span>
+      <span class="divider">·</span>
+      <span>May 13, 2026</span>
+    </div>
+  </header>
+
+  <nav class="nl-nav">
+    <a href="#working-theory">Working Theory</a>
+    <a href="#ai-news">AI News</a>
+    <a href="#workshop">Workshop</a>
+    <a href="#resources">Resources</a>
+    <a href="#subscribe">Subscribe</a>
+  </nav>
+
+  <div class="tldr">
+    <div class="tldr-label">&#9670; This week</div>
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <a href="#working-theory" style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--black-border);text-decoration:none;transition:gap .2s;" onmouseover="this.style.gap='16px'" onmouseout="this.style.gap='12px'">
+        <span style="font-family:var(--mono);font-size:9px;color:var(--amber);flex-shrink:0;letter-spacing:.06em;">01</span>
+        <span style="font-size:14px;color:var(--ivory);line-height:1.5;">Working Theory: companies are moving faster than anyone predicted. The race is real. Nobody knows what they're running toward.</span>
+        <span style="color:var(--amber);flex-shrink:0;font-size:13px;margin-left:auto;">&#8594;</span>
+      </a>
+      <a href="#article-1" style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--black-border);text-decoration:none;transition:gap .2s;" onmouseover="this.style.gap='16px'" onmouseout="this.style.gap='12px'">
+        <span style="font-family:var(--mono);font-size:9px;color:var(--amber);flex-shrink:0;letter-spacing:.06em;">02</span>
+        <span style="font-size:14px;color:var(--ivory);line-height:1.5;">Harvey raised $200M on top of Anthropic's Claude. Last week, Anthropic launched Claude for Legal. The company that powers Harvey just became their competitor.</span>
+        <span style="color:var(--amber);flex-shrink:0;font-size:13px;margin-left:auto;">&#8594;</span>
+      </a>
+      <a href="#article-2" style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--black-border);text-decoration:none;transition:gap .2s;" onmouseover="this.style.gap='16px'" onmouseout="this.style.gap='12px'">
+        <span style="font-family:var(--mono);font-size:9px;color:var(--amber);flex-shrink:0;letter-spacing:.06em;">03</span>
+        <span style="font-size:14px;color:var(--ivory);line-height:1.5;">Isomorphic Labs just raised $2.1 billion to design drugs with AI. They're based in London, not Silicon Valley. That's worth noting.</span>
+        <span style="color:var(--amber);flex-shrink:0;font-size:13px;margin-left:auto;">&#8594;</span>
+      </a>
+      <a href="#workshop" style="display:flex;align-items:center;gap:12px;padding:12px 0;text-decoration:none;transition:gap .2s;" onmouseover="this.style.gap='16px'" onmouseout="this.style.gap='12px'">
+        <span style="font-family:var(--mono);font-size:9px;color:var(--amber);flex-shrink:0;letter-spacing:.06em;">04</span>
+        <span style="font-size:14px;color:var(--ivory);line-height:1.5;">This week's Workshop: don't figure out what to ask. Tell Claude what you're trying to do and ask it to build the prompt. Then refine it. Then a clean new chat.</span>
+        <span style="color:var(--amber);flex-shrink:0;font-size:13px;margin-left:auto;">&#8594;</span>
+      </a>
+    </div>
+  </div>
+
+  <section id="working-theory">
+    <div class="section-header">
+      <div class="section-header-mark"></div>
+      <h2>Working Theory</h2>
+    </div>
+
+    <div class="wt-intro-box">
+      <p>A recurring section where I share what I'm currently seeing in the AI landscape and what I think it means. These aren't predictions or hot takes. They're working theories, meaning they're my best read of the moment, written with the awareness that the moment keeps moving. I'll update them when the evidence changes.</p>
+    </div>
+
+    <h3 class="wt-title">A Good Decision From a Fast One</h3>
+
+    <div class="wt-body">
+      <p>Over the course of my career, I've watched a lot of technology land in large organizations. The pattern is usually the same. The technology arrives, consultants explain it, leadership schedules a strategy session, a working group forms, a pilot gets approved, 18+ months later we are live in production.</p>
+
+      <p>Today feels different. What I'm watching right now is more about the race. Oddly, nobody can quite name what they're racing toward and nobody wants to find out what happens if they finish last. You can sense the urgency. Not in press releases but in how decisions are getting made.</p>
+
+      <p>A year ago, I'd have said the kind of adoption I'm seeing today was still three years away. The technology continues to move fast. That part I expected. What I didn't expect was that change management at scale would speed up to match it. Large organizations are being tested to absorb change at this pace. Keeping up with what these tools can actually do, week to week, is genuinely hard. The decisions getting made aren't necessarily wrong. They just feel like decisions made to avoid being last more than decisions made to do this the right way, because there is certainly real value here.</p>
+
+      <p>Companies appear to be responding in two ways. Some are building internally. That tends to be the slower path. It requires hiring, training, governance, infrastructure, and a tolerance for moving at the pace your own organization can actually move. Some don't have all of that, so they turn to third parties to move faster. Harvey for legal. Glean for enterprise search. Hebbia for research workflows. There are hundreds of these now and the good ones are genuinely good. They're specialized in ways the general-purpose tools aren't yet. They've spent years building workflows, integrations, and guardrails for a specific job. For a lot of teams, that depth is the reason to buy.</p>
+
+      <p>It's also worth knowing what you're actually paying for. Most of these products are wrappers. Built on top of an AI provider (OpenAI, Anthropic, Google), packaging the underlying capability into a workflow and reselling access as a service. You pay the vendor. The vendor pays for tokens. The buyer rarely touches the technology directly, which means the buyer also doesn't develop much understanding of what's actually doing the work.</p>
+
+      <p>That tradeoff used to be straightforward. You gave up understanding in exchange for a more polished product. The AI providers are now starting to change the second half of that equation. Claude tools and add-ons are showing up directly in design work, legal work, code, and desktop task automation. These companies that used to sit one layer back are now building the products on top too. And living inside one provider's ecosystem is starting to look meaningfully different from living across multiple wrappers. This is also part of what makes building internally worth the patience it requires. A team that builds directly on a provider's platform inherits that same interconnection, plus the understanding that comes from doing the work themselves.</p>
+
+      <p>None of this means the specialized tools are going away. Harvey isn't getting displaced by Claude in legal work next quarter. But the calculus is shifting, which could be problematic if your company is already halfway through the race.</p>
+
+      <p>I don't think every decision made while running this race was a bad one, but I do think they were familiar. Some companies know how to buy software and benefit from working with vendors. Some know how and have the ability to build on their own. The difficulty is understanding a good decision from a fast one.</p>
+    </div>
+  </section>
+
+  <section id="ai-news">
+    <div class="section-header">
+      <div class="section-header-mark"></div>
+      <h2>AI News</h2>
+    </div>
+
+    <article class="article" id="article-1">
+      <span class="article-tag">Legal AI</span>
+      <h3 class="amber">The Company That Powered Harvey Just Became Its Competitor</h3>
+      <img class="article-image" src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=600&q=80" alt="Dark moody courtroom interior" />
+      <div class="article-body">
+        <p>Harvey raised $200M last year. They built their legal AI product on top of Claude, Anthropic's model. A few weeks ago, Anthropic launched Claude for Legal, their own product aimed directly at the same market.</p>
+
+        <p>Anthropic has begun developing tools that directly compete with companies building on top of their models. Harvey's bet was that their product layer would be defensible. The workflows, the trust, the enterprise contracts. That bet just got harder.</p>
+      </div>
+      <a class="learn-more" href="https://techcrunch.com/2026/05/12/the-ai-legal-services-industry-is-heating-up-anthropic-is-getting-in-on-the-action/" target="_blank" rel="noopener">Read full story →</a>
+    </article>
+
+    <article class="article" id="article-2">
+      <span class="article-tag">Science</span>
+      <h3 class="ivory">A $2.1 Billion Bet That AI Can Design Better Drugs Than We Can</h3>
+      <img class="article-image" src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80" alt="Dark moody molecular science laboratory" />
+      <div class="article-body">
+        <p>Isomorphic Labs just closed a $2.1 billion Series B. They're using AI to design drug molecules from scratch, not to accelerate existing research methods but to generate candidates that human scientists wouldn't have known to look for.</p>
+
+        <p>They're based in London. The AlphaFold research that underpins all of this came out of DeepMind, also London. This isn't just a funding story. The talent doing the most serious AI research in biomedicine isn't concentrated in one zip code in California. That window is open in a lot of places right now.</p>
+      </div>
+      <a class="learn-more" href="https://www.isomorphiclabs.com/articles/isomorphic-labs-announces-series-b-investment-round" target="_blank" rel="noopener">Read full story →</a>
+    </article>
+  </section>
+
+  <section id="workshop">
+    <div class="section-header">
+      <div class="section-header-mark"></div>
+      <h2>The Workshop</h2>
+    </div>
+
+    <div class="workshop-section">
+      <div class="workshop-header-row">
+        <div class="workshop-title">Give Me a Prompt</div>
+      </div>
+      <div class="workshop-subline">A short, practical experiment. Try it now.</div>
+
+      <div class="workshop-body">
+        <p>Most people sit down with a task and try to figure out what to ask AI. That's the hard part. Skip it.</p>
+
+        <p>Tell Claude what you're trying to do and ask it to build the prompt for you.</p>
+
+        <div class="prompt-block">
+          <div class="prompt-speaker you">You:</div>
+          <div class="prompt-text">
+            <p>I need to write a performance review for someone who did solid work this year but missed a few deadlines. Give me a prompt I can use to write this well.</p>
+          </div>
+          <div class="prompt-divider"></div>
+          <div class="prompt-speaker claude">Claude:</div>
+          <div class="prompt-text">
+            <p>Here's one:</p>
+            <p>"Write a performance review for an employee who delivered strong work this year and demonstrated [specific strengths]. They missed [X] deadlines related to [context]. Acknowledge the good work specifically, address the deadline pattern without over-penalizing it, and frame the path forward as motivating rather than punitive. Tone: direct and fair. Length: 300-400 words."</p>
+          </div>
+        </div>
+
+        <div class="prompt-bridge">Now refine it. You don't have to take the first version.</div>
+
+        <div class="prompt-block">
+          <div class="prompt-speaker you">You:</div>
+          <div class="prompt-text">
+            <p>Make it more specific to someone in a client-facing role.</p>
+          </div>
+          <div class="prompt-divider"></div>
+          <div class="prompt-speaker claude">Claude:</div>
+          <div class="prompt-text">
+            <p>"Write a performance review for an employee in a client-facing role who delivered strong work this year and demonstrated [specific strengths, e.g., client relationship management, responsiveness under pressure]. They missed [X] deadlines on [types of deliverables, e.g., client reports, proposals]. Acknowledge the good work with specific examples where possible, address the deadline pattern directly without framing it as a character issue, and close with a concrete path forward in a tone that is motivating and specific to their growth in client work. Tone: direct and fair. Length: 300-400 words."</p>
+          </div>
+        </div>
+
+        <div class="prompt-bridge">When it feels right, stop. Open a new chat. Paste the prompt. Get your output. The reason a new chat matters: the back-and-forth you used to build the prompt is now clutter. A clean context gets you a cleaner result.</div>
+      </div>
+
+      <div class="workshop-cta">
+        Try it this week on something that's been sitting on your list. <a href="https://www.linkedin.com/in/nicholasborelli/" target="_blank" rel="noopener">DM me on LinkedIn</a> with what you built it for.
+      </div>
+    </div>
+  </section>
+
+  <section id="resources">
+    <div class="section-header">
+      <div class="section-header-mark"></div>
+      <h2>Resources</h2>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-card-head">
+        <div class="resource-name">Claude for Legal</div>
+        <a class="resource-url" href="https://claude.ai" target="_blank" rel="noopener">claude.ai →</a>
+      </div>
+      <div class="resource-desc">Anthropic's direct legal AI offering. If your firm or business touches legal work, worth knowing it exists.</div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-card-head">
+        <div class="resource-name">Isomorphic Labs</div>
+        <a class="resource-url" href="https://isomorphiclabs.com" target="_blank" rel="noopener">isomorphiclabs.com →</a>
+      </div>
+      <div class="resource-desc">The DeepMind spinout using AI to design drugs. Worth following if you want to track where AI is being aimed at hardest problems.</div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-card-head">
+        <div class="resource-name">Harvey</div>
+        <a class="resource-url" href="https://harvey.ai" target="_blank" rel="noopener">harvey.ai →</a>
+      </div>
+      <div class="resource-desc">The legal AI company built on Claude. Still one of the stronger vertical AI tools. Useful context for understanding the ecosystem shift.</div>
+    </div>
+  </section>
+
+  <section class="subscribe-bar" id="subscribe">
+    <div class="subscribe-label">◆ Subscribe</div>
+    <div class="subscribe-headline">Get The Edge in your inbox.</div>
+    <div class="subscribe-sub">One issue a week. AI news, working theory, a short practical workshop.</div>
+    <iframe src="https://embeds.beehiiv.com/2c0d2c8c-5e35-4d65-9c8e-3a1c6e5a4e89?slim=true" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" class="subscribe-embed" style="margin:0;border-radius:0;background-color:transparent;"></iframe>
+  </section>
+
+  <footer class="nl-footer">
+    <div class="footer-logo-row">
+      <div class="footer-diamond"></div>
+      <div class="footer-name">The <span>Edge</span></div>
+    </div>
+    <div class="footer-links">
+      <a href="https://nicholasborelli.com/">Nicholas Borelli</a>
+      <a href="https://nicholasborelli.com/the-edge/">Archive</a>
+      <a href="https://www.linkedin.com/in/nicholasborelli/">LinkedIn</a>
+    </div>
+    <div class="footer-fine">
+      © 2026 Borelli Consulting · Issue #005 · May 13, 2026<br>
+      Written by Nicholas Borelli · Plain English about AI for people running real businesses.
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
