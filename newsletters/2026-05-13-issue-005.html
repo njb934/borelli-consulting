@@ -120,6 +120,10 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .footer-links a:hover{color:var(--amber);}
 .footer-fine{font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--ivory-muted);line-height:1.8;}
 
+@media(max-width:768px){
+  .subscribe-bar{margin-left:-20px;margin-right:-20px;padding:20px 0;}
+  .subscribe-embed{height:420px;width:100% !important;}
+}
 @media(max-width:540px){
   .nl-header{padding:24px 0 20px;}
   .nl-brand{font-size:24px;}
@@ -129,6 +133,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   .wt-intro-box{padding:12px 14px;}
   .workshop-tagline-badge{margin-left:0;display:block;width:100%;margin-top:4px;}
   .workshop-header-row{flex-wrap:wrap;}
+  .subscribe-bar{margin-left:-16px;margin-right:-16px;padding:20px 0;}
 }
 </style>
 </head>
