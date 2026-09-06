@@ -1,6 +1,66 @@
 {
   "redirects": [
     {
+      "source": "/theedge/001",
+      "destination": "/newsletters/2026-04-06-issue-001.html",
+      "permanent": false
+    },
+    {
+      "source": "/the-edge/001",
+      "destination": "/newsletters/2026-04-06-issue-001.html",
+      "permanent": false
+    },
+    {
+      "source": "/theedge/002",
+      "destination": "/newsletters/2026-04-13-issue-002.html",
+      "permanent": false
+    },
+    {
+      "source": "/the-edge/002",
+      "destination": "/newsletters/2026-04-13-issue-002.html",
+      "permanent": false
+    },
+    {
+      "source": "/theedge/003",
+      "destination": "/newsletters/2026-04-20-issue-003.html",
+      "permanent": false
+    },
+    {
+      "source": "/the-edge/003",
+      "destination": "/newsletters/2026-04-20-issue-003.html",
+      "permanent": false
+    },
+    {
+      "source": "/theedge/004",
+      "destination": "/newsletters/2026-05-05-issue-004.html",
+      "permanent": false
+    },
+    {
+      "source": "/the-edge/004",
+      "destination": "/newsletters/2026-05-05-issue-004.html",
+      "permanent": false
+    },
+    {
+      "source": "/theedge/005",
+      "destination": "/newsletters/2026-05-13-issue-005.html",
+      "permanent": false
+    },
+    {
+      "source": "/the-edge/005",
+      "destination": "/newsletters/2026-05-13-issue-005.html",
+      "permanent": false
+    },
+    {
+      "source": "/theedge/006",
+      "destination": "/newsletters/2026-09-05-issue-006.html",
+      "permanent": false
+    },
+    {
+      "source": "/the-edge/006",
+      "destination": "/newsletters/2026-09-05-issue-006.html",
+      "permanent": false
+    },
+    {
       "source": "/theedge",
       "destination": "/newsletters/2026-09-05-issue-006.html",
       "permanent": false
