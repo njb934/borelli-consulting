@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>The Prompt Studio · Mix Your Prompt</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300..700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+
+
 <style>
 :root{--bg:#0A0A09;--bgl:#121110;--bgp:#161513;--bgd:#0F0E0D;--amb:#D4932A;--ambb:#F0A63A;--cop:#B87333;--iv:#F5F0E8;--dim:rgba(245,240,232,.6);--fnt:rgba(245,240,232,.12);--fntr:rgba(245,240,232,.05);--copd:rgba(184,115,51,.35);--red:#C84A3A;--grn:#7FA268}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -173,203 +173,241 @@ h1{font-family:'DM Serif Display',serif;font-size:clamp(32px,6.5vw,54px);line-he
 .reveal-content p+p{margin-top:10px}
 .reveal-content strong{color:var(--grn);font-weight:500}
 </style>
-</head>
+<link href="/assets/favicon.svg" rel="icon" type="image/svg+xml"/><style id="edge-light">/* ===== The Edge light redesign (October 2026): look only; the studio's code and words are unchanged ===== */
+@font-face{font-family:"Gelasio";src:url("/assets/fonts/gelasio-latin-400-normal.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Gelasio";src:url("/assets/fonts/gelasio-latin-700-normal.woff2") format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Arimo";src:url("/assets/fonts/arimo-latin-400-normal.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Arimo";src:url("/assets/fonts/arimo-latin-700-normal.woff2") format("woff2");font-weight:700;font-display:swap}
+:root{--bg:#f8f7f3;--bgl:#ffffff;--bgp:#ffffff;--bgd:#f4f5fb;--amb:#2548f4;--ambb:#4a68ff;--cop:#b8432c;--iv:#111116;--dim:rgba(17,17,22,.64);
+  --fnt:rgba(17,17,22,.15);--fntr:rgba(17,17,22,.08);--copd:rgba(37,72,244,.35);--red:#d23f2e;--grn:#2f7a3a;
+  --ps-serif:Georgia,"Gelasio","Times New Roman",serif;--ps-sans:Arial,"Arimo",Helvetica,sans-serif;--ps-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Courier New",monospace}
+html,body{font-family:var(--ps-sans)}
+h1,.kv,.lesson h2,.lesson h3{font-family:var(--ps-serif)!important;font-weight:700}
+h1{letter-spacing:-.03em}
+.kick,.kick-back,.producer-badge,.producer-label,.producer .sig,.fw-note,.sh,.kl,.ktl,.klv,.pl,.pm,.cpy,.rec-icon,.rec-caption,.output-text.empty,.tpin,.trk,.note{font-family:var(--ps-sans)!important;font-weight:700}
+.prompt-text{font-family:var(--ps-mono)!important;font-size:13.5px}
+.output-text{font-family:var(--ps-sans)!important;font-size:15px}
+/* surfaces: drop the dark scanlines and glow, keep clean white panels */
+.producer::before,.studio::before{display:none}
+.studio::after{background:linear-gradient(180deg,transparent 0%,rgba(37,72,244,.025) 50%,transparent 100%)}
+.studio,.producer,.lesson{background:#fff!important;border-color:var(--fnt)}
+.studio{border-top:3px solid var(--blue,#2548f4)}
+.producer{border-left:3px solid #2548f4}
+.producer-badge{background:#e9ecff!important;border-color:rgba(37,72,244,.35)!important;box-shadow:none!important;color:#2548f4}
+.fw-tag{background:#fff}
+.fw-tag.on{background:#e9ecff;border-color:rgba(37,72,244,.35)}
+.sh-st{background:#fff}
+.led{background:#d6dcff}
+.led.on{box-shadow:none}
+.controls{background:#fbfbfd!important}
+.record-bay{background:radial-gradient(ellipse at center,rgba(210,63,46,.06) 0%,transparent 70%),#fff!important}
+.footer{background:#f1f2f8!important}
+.tpin{color:#fff}
+.kd{background:rgba(17,17,22,.16)}
+.kd.act{box-shadow:none}
+.pl::before{box-shadow:none}
+.bpm-d{box-shadow:none!important}
+/* the three knobs: a light dome with a blue pointer instead of a brass dial */
+.knob [id^="g"]:not([id^="gi"]) stop:nth-child(1){stop-color:#ffffff}
+.knob [id^="g"]:not([id^="gi"]) stop:nth-child(2){stop-color:#eef0f8}
+.knob [id^="g"]:not([id^="gi"]) stop:nth-child(3){stop-color:#d5daea}
+.knob [id^="gi"] stop:nth-child(1){stop-color:rgba(255,255,255,1)}
+.knob [id^="gi"] stop:nth-child(2){stop-color:rgba(233,236,255,.9)}
+.knob [id^="gi"] stop:nth-child(3){stop-color:rgba(200,208,238,.95)}
+.knob g[stroke],.knob circle.kr{stroke:#2548f4}
+.knob .kbody>circle{stroke:rgba(17,17,22,.18)}
+.knob .kp line{stroke:#2548f4}
+.knob .kp circle{fill:#ed6b50}
+.knob:hover .kr{stroke:#ed6b50}
+/* record button: a red button in a light bezel */
+.rec-btn{background:radial-gradient(circle at 35% 30%,#ffffff 0%,#eceef5 70%,#dfe2ec 100%)!important;box-shadow:0 2px 8px rgba(17,17,22,.12),0 0 0 6px #f1f2f8,0 0 0 7px var(--fnt)!important}
+.rec-btn:active{box-shadow:0 1px 4px rgba(17,17,22,.12),0 0 0 6px #f1f2f8,0 0 0 7px var(--fnt)!important}
+.rec-icon{color:#fff;text-shadow:none}
+.rec-dot{background:#fff;box-shadow:none}
+.prompt-text,.output-text{background:var(--bgd);border-color:var(--fntr)}
+@keyframes pf{0%{background:rgba(37,72,244,.10)}100%{background:var(--bgd)}}
+</style></head>
 <body>
 <div class="page">
-
-<div class="kick"><span style="margin:0;">The Workshop</span><span>·</span>Week 3 of 52<span>·</span>8 min<a href="/newsletters/2026-04-20-issue-003.html#workshop" class="kick-back">← Back to Issue #003</a></div>
+<div class="kick"><span style="margin:0;">The Workshop</span><span>·</span>Week 3 of 52<span>·</span>8 min<a class="kick-back" href="/newsletters/2026-04-20-issue-003-workshop.html">← Back to Issue #003</a></div>
 <h1>The Prompt Studio.</h1>
-
 <div class="producer">
-  <div class="producer-badge">P</div>
-  <div class="producer-label">From the producer's chair</div>
-  <p>Welcome to the board. Three dials in front of you — <strong>Role</strong>, <strong>Task</strong>, <strong>Format</strong>. That's RTF, one of the classic prompt frameworks. Role is who Claude should be. Task is what you want. Format is how it comes back.</p>
-  <p>There are a lot of these frameworks — CRAFT, RISEN, RACE, APE. They all do the same job: a checklist so you don't forget to tell the AI something that matters.</p>
-  <p>Here's the test. Turn the dials. Hit record. Read what comes back. Then try a different mix. Somewhere on this board there's a combination that sounds clean. There are also mixes where the track falls apart. <strong>Find both.</strong> That's the lesson.</p>
-  <div class="sig">— The Producer</div>
+<div class="producer-badge">P</div>
+<div class="producer-label">From the producer's chair</div>
+<p>Welcome to the board. Three dials in front of you — <strong>Role</strong>, <strong>Task</strong>, <strong>Format</strong>. That's RTF, one of the classic prompt frameworks. Role is who Claude should be. Task is what you want. Format is how it comes back.</p>
+<p>There are a lot of these frameworks — CRAFT, RISEN, RACE, APE. They all do the same job: a checklist so you don't forget to tell the AI something that matters.</p>
+<p>Here's the test. Turn the dials. Hit record. Read what comes back. Then try a different mix. Somewhere on this board there's a combination that sounds clean. There are also mixes where the track falls apart. <strong>Find both.</strong> That's the lesson.</p>
+<div class="sig">— The Producer</div>
 </div>
-
 <div class="studio" id="studio">
-
-  <div class="sh">
-    <div class="sh-l">
-      <span class="sh-s">Session 004</span>
-      <span class="leds"><span class="led on"></span><span class="led on bl"></span><span class="led on"></span><span class="led"></span></span>
-    </div>
-    <div class="sh-st" id="shSt">
-      <span class="st-d"></span>
-      <span class="st-t" id="stTxt">Standby</span>
-    </div>
-    <div class="sh-r">
-      <span class="bpm"><span class="bpm-d"></span>120</span>
-      <span class="tm" id="hdrTm">--:--:--</span>
-      <button class="mu" id="muBtn" aria-label="Toggle sound">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path class="wv" d="M3 5h2l3-2.5v9L5 9H3V5z" fill="currentColor"/>
-          <path class="wv" d="M10 4.5c1 .8 1 4.2 0 5" stroke="currentColor" stroke-linecap="round" fill="none"/>
-          <path class="sl" d="M3 5h2l3-2.5v9L5 9H3V5z" fill="currentColor"/>
-          <line class="sl" x1="10" y1="4" x2="13" y2="10" stroke="currentColor" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- CONTROLS (top) -->
-  <div class="controls">
-    <div class="kw">
-      <div class="kl"><b>R</b> · Role</div>
-      <div class="knob" id="kR" role="slider" aria-label="Role" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" tabindex="0">
-        <svg viewBox="0 0 108 108">
-          <g stroke-width="1.1" stroke-linecap="round" stroke="#B87333" opacity=".7">
-            <line x1="26" y1="32" x2="30" y2="36"/>
-            <line x1="54" y1="12" x2="54" y2="20"/>
-            <line x1="82" y1="32" x2="78" y2="36"/>
-          </g>
-          <circle class="kr" cx="54" cy="54" r="43" stroke="#B87333" stroke-width=".75" fill="none" opacity=".4"/>
-          <defs>
-            <radialGradient id="g1" cx="35%" cy="30%"><stop offset="0%" stop-color="#3a2f22"/><stop offset="60%" stop-color="#1a1510"/><stop offset="100%" stop-color="#0a0806"/></radialGradient>
-            <radialGradient id="gi1" cx="35%" cy="25%"><stop offset="0%" stop-color="rgba(212,147,42,.35)"/><stop offset="40%" stop-color="rgba(184,115,51,.2)"/><stop offset="100%" stop-color="rgba(50,30,15,.9)"/></radialGradient>
-          </defs>
-          <g class="kbody">
-          <circle cx="54" cy="54" r="37" fill="url(#g1)" stroke="#B87333" stroke-width=".5" opacity=".9"/>
-          <circle cx="54" cy="54" r="32" fill="url(#gi1)" stroke="rgba(245,240,232,.08)" stroke-width=".5"/>
-          <g class="kp" id="pR">
-            <line x1="54" y1="54" x2="54" y2="24" stroke="#F0A63A" stroke-width="2.4" stroke-linecap="round"/>
-            <circle cx="54" cy="54" r="3.5" fill="#D4932A"/>
-          </g>
-          </g>
-        </svg>
-        <div class="ktix" id="tixR"></div>
-      </div>
-      <div class="kdots" id="dR"></div>
-      <div class="kc">
-        <div class="kv" id="vR">None</div>
-        <div class="klv" id="lR">1 of 3</div>
-      </div>
-    </div>
-
-    <div class="kw">
-      <div class="kl"><b>T</b> · Task</div>
-      <div class="knob" id="kT" role="slider" aria-label="Task" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" tabindex="0">
-        <svg viewBox="0 0 108 108">
-          <g stroke-width="1.1" stroke-linecap="round" stroke="#B87333" opacity=".7">
-            <line x1="26" y1="32" x2="30" y2="36"/>
-            <line x1="54" y1="12" x2="54" y2="20"/>
-            <line x1="82" y1="32" x2="78" y2="36"/>
-          </g>
-          <circle class="kr" cx="54" cy="54" r="43" stroke="#B87333" stroke-width=".75" fill="none" opacity=".4"/>
-          <g class="kbody">
-          <circle cx="54" cy="54" r="37" fill="url(#g1)" stroke="#B87333" stroke-width=".5" opacity=".9"/>
-          <circle cx="54" cy="54" r="32" fill="url(#gi1)" stroke="rgba(245,240,232,.08)" stroke-width=".5"/>
-          <g class="kp" id="pT">
-            <line x1="54" y1="54" x2="54" y2="24" stroke="#F0A63A" stroke-width="2.4" stroke-linecap="round"/>
-            <circle cx="54" cy="54" r="3.5" fill="#D4932A"/>
-          </g>
-          </g>
-        </svg>
-        <div class="ktix" id="tixT"></div>
-      </div>
-      <div class="kdots" id="dT"></div>
-      <div class="kc">
-        <div class="kv" id="vT">Basic</div>
-        <div class="klv" id="lT">1 of 3</div>
-      </div>
-    </div>
-
-    <div class="kw">
-      <div class="kl"><b>F</b> · Format</div>
-      <div class="knob" id="kF" role="slider" aria-label="Format" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" tabindex="0">
-        <svg viewBox="0 0 108 108">
-          <g stroke-width="1.1" stroke-linecap="round" stroke="#B87333" opacity=".7">
-            <line x1="26" y1="32" x2="30" y2="36"/>
-            <line x1="54" y1="12" x2="54" y2="20"/>
-            <line x1="82" y1="32" x2="78" y2="36"/>
-          </g>
-          <circle class="kr" cx="54" cy="54" r="43" stroke="#B87333" stroke-width=".75" fill="none" opacity=".4"/>
-          <g class="kbody">
-          <circle cx="54" cy="54" r="37" fill="url(#g1)" stroke="#B87333" stroke-width=".5" opacity=".9"/>
-          <circle cx="54" cy="54" r="32" fill="url(#gi1)" stroke="rgba(245,240,232,.08)" stroke-width=".5"/>
-          <g class="kp" id="pF">
-            <line x1="54" y1="54" x2="54" y2="24" stroke="#F0A63A" stroke-width="2.4" stroke-linecap="round"/>
-            <circle cx="54" cy="54" r="3.5" fill="#D4932A"/>
-          </g>
-          </g>
-        </svg>
-        <div class="ktix" id="tixF"></div>
-      </div>
-      <div class="kdots" id="dF"></div>
-      <div class="kc">
-        <div class="kv" id="vF">None</div>
-        <div class="klv" id="lF">1 of 3</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PROMPT panel -->
-  <div class="panel">
-    <div class="ph">
-      <div class="pl">Prompt · The Mix</div>
-      <div class="pm">
-        <button class="cpy" id="cpyBtn">Copy</button>
-      </div>
-    </div>
-    <div class="prompt-text" id="promptText"></div>
-  </div>
-
-  <!-- RECORD bay -->
-  <div class="record-bay">
-    <button class="rec-btn" id="recBtn" aria-label="Record the take">
-      <span class="rec-icon"><span class="rec-dot"></span></span>
-    </button>
-    <div class="rec-caption" id="recCap">Press record to roll tape</div>
-  </div>
-
-  <!-- OUTPUT -->
-  <div class="panel">
-    <div class="ph">
-      <div class="pl">Output · Take <span id="takeNum">—</span></div>
-      <div class="pm"><span id="wc">— words</span></div>
-    </div>
-    <div class="output-text empty" id="outputText">Awaiting take. Adjust the dials. Press record.</div>
-  </div>
-
-  <div class="footer">
-    <div class="tpin">Studio</div>
-    <div class="twn">
-      <div class="trk">
-        <span>Role</span><span class="sp">·</span>
-        <span>Task</span><span class="sp">·</span>
-        <span>Format</span><span class="sp">·</span>
-        <span class="ht">Roll tape</span><span class="sp">·</span>
-        <span>Roll back</span><span class="sp">·</span>
-        <span>Mix again</span><span class="sp">·</span>
-        <span>Role</span><span class="sp">·</span>
-        <span>Task</span><span class="sp">·</span>
-        <span>Format</span><span class="sp">·</span>
-        <span class="ht">Roll tape</span><span class="sp">·</span>
-        <span>Roll back</span><span class="sp">·</span>
-        <span>Mix again</span><span class="sp">·</span>
-      </div>
-    </div>
-  </div>
+<div class="sh">
+<div class="sh-l">
+<span class="sh-s">Session 004</span>
+<span class="leds"><span class="led on"></span><span class="led on bl"></span><span class="led on"></span><span class="led"></span></span>
 </div>
-
+<div class="sh-st" id="shSt">
+<span class="st-d"></span>
+<span class="st-t" id="stTxt">Standby</span>
+</div>
+<div class="sh-r">
+<span class="bpm"><span class="bpm-d"></span>120</span>
+<span class="tm" id="hdrTm">--:--:--</span>
+<button aria-label="Toggle sound" class="mu" id="muBtn">
+<svg fill="none" height="14" viewbox="0 0 14 14" width="14">
+<path class="wv" d="M3 5h2l3-2.5v9L5 9H3V5z" fill="currentColor"></path>
+<path class="wv" d="M10 4.5c1 .8 1 4.2 0 5" fill="none" stroke="currentColor" stroke-linecap="round"></path>
+<path class="sl" d="M3 5h2l3-2.5v9L5 9H3V5z" fill="currentColor"></path>
+<line class="sl" stroke="currentColor" stroke-linecap="round" x1="10" x2="13" y1="4" y2="10"></line>
+</svg>
+</button>
+</div>
+</div>
+<!-- CONTROLS (top) -->
+<div class="controls">
+<div class="kw">
+<div class="kl"><b>R</b> · Role</div>
+<div aria-label="Role" aria-valuemax="3" aria-valuemin="1" aria-valuenow="1" class="knob" id="kR" role="slider" tabindex="0">
+<svg viewbox="0 0 108 108">
+<g opacity=".7" stroke="#B87333" stroke-linecap="round" stroke-width="1.1">
+<line x1="26" x2="30" y1="32" y2="36"></line>
+<line x1="54" x2="54" y1="12" y2="20"></line>
+<line x1="82" x2="78" y1="32" y2="36"></line>
+</g>
+<circle class="kr" cx="54" cy="54" fill="none" opacity=".4" r="43" stroke="#B87333" stroke-width=".75"></circle>
+<defs>
+<radialgradient cx="35%" cy="30%" id="g1"><stop offset="0%" stop-color="#3a2f22"></stop><stop offset="60%" stop-color="#1a1510"></stop><stop offset="100%" stop-color="#0a0806"></stop></radialgradient>
+<radialgradient cx="35%" cy="25%" id="gi1"><stop offset="0%" stop-color="rgba(212,147,42,.35)"></stop><stop offset="40%" stop-color="rgba(184,115,51,.2)"></stop><stop offset="100%" stop-color="rgba(50,30,15,.9)"></stop></radialgradient>
+</defs>
+<g class="kbody">
+<circle cx="54" cy="54" fill="url(#g1)" opacity=".9" r="37" stroke="#B87333" stroke-width=".5"></circle>
+<circle cx="54" cy="54" fill="url(#gi1)" r="32" stroke="rgba(245,240,232,.08)" stroke-width=".5"></circle>
+<g class="kp" id="pR">
+<line stroke="#F0A63A" stroke-linecap="round" stroke-width="2.4" x1="54" x2="54" y1="54" y2="24"></line>
+<circle cx="54" cy="54" fill="#D4932A" r="3.5"></circle>
+</g>
+</g>
+</svg>
+<div class="ktix" id="tixR"></div>
+</div>
+<div class="kdots" id="dR"></div>
+<div class="kc">
+<div class="kv" id="vR">None</div>
+<div class="klv" id="lR">1 of 3</div>
+</div>
+</div>
+<div class="kw">
+<div class="kl"><b>T</b> · Task</div>
+<div aria-label="Task" aria-valuemax="3" aria-valuemin="1" aria-valuenow="1" class="knob" id="kT" role="slider" tabindex="0">
+<svg viewbox="0 0 108 108">
+<g opacity=".7" stroke="#B87333" stroke-linecap="round" stroke-width="1.1">
+<line x1="26" x2="30" y1="32" y2="36"></line>
+<line x1="54" x2="54" y1="12" y2="20"></line>
+<line x1="82" x2="78" y1="32" y2="36"></line>
+</g>
+<circle class="kr" cx="54" cy="54" fill="none" opacity=".4" r="43" stroke="#B87333" stroke-width=".75"></circle>
+<g class="kbody">
+<circle cx="54" cy="54" fill="url(#g1)" opacity=".9" r="37" stroke="#B87333" stroke-width=".5"></circle>
+<circle cx="54" cy="54" fill="url(#gi1)" r="32" stroke="rgba(245,240,232,.08)" stroke-width=".5"></circle>
+<g class="kp" id="pT">
+<line stroke="#F0A63A" stroke-linecap="round" stroke-width="2.4" x1="54" x2="54" y1="54" y2="24"></line>
+<circle cx="54" cy="54" fill="#D4932A" r="3.5"></circle>
+</g>
+</g>
+</svg>
+<div class="ktix" id="tixT"></div>
+</div>
+<div class="kdots" id="dT"></div>
+<div class="kc">
+<div class="kv" id="vT">Basic</div>
+<div class="klv" id="lT">1 of 3</div>
+</div>
+</div>
+<div class="kw">
+<div class="kl"><b>F</b> · Format</div>
+<div aria-label="Format" aria-valuemax="3" aria-valuemin="1" aria-valuenow="1" class="knob" id="kF" role="slider" tabindex="0">
+<svg viewbox="0 0 108 108">
+<g opacity=".7" stroke="#B87333" stroke-linecap="round" stroke-width="1.1">
+<line x1="26" x2="30" y1="32" y2="36"></line>
+<line x1="54" x2="54" y1="12" y2="20"></line>
+<line x1="82" x2="78" y1="32" y2="36"></line>
+</g>
+<circle class="kr" cx="54" cy="54" fill="none" opacity=".4" r="43" stroke="#B87333" stroke-width=".75"></circle>
+<g class="kbody">
+<circle cx="54" cy="54" fill="url(#g1)" opacity=".9" r="37" stroke="#B87333" stroke-width=".5"></circle>
+<circle cx="54" cy="54" fill="url(#gi1)" r="32" stroke="rgba(245,240,232,.08)" stroke-width=".5"></circle>
+<g class="kp" id="pF">
+<line stroke="#F0A63A" stroke-linecap="round" stroke-width="2.4" x1="54" x2="54" y1="54" y2="24"></line>
+<circle cx="54" cy="54" fill="#D4932A" r="3.5"></circle>
+</g>
+</g>
+</svg>
+<div class="ktix" id="tixF"></div>
+</div>
+<div class="kdots" id="dF"></div>
+<div class="kc">
+<div class="kv" id="vF">None</div>
+<div class="klv" id="lF">1 of 3</div>
+</div>
+</div>
+</div>
+<!-- PROMPT panel -->
+<div class="panel">
+<div class="ph">
+<div class="pl">Prompt · The Mix</div>
+<div class="pm">
+<button class="cpy" id="cpyBtn">Copy</button>
+</div>
+</div>
+<div class="prompt-text" id="promptText"></div>
+</div>
+<!-- RECORD bay -->
+<div class="record-bay">
+<button aria-label="Record the take" class="rec-btn" id="recBtn">
+<span class="rec-icon"><span class="rec-dot"></span></span>
+</button>
+<div class="rec-caption" id="recCap">Press record to roll tape</div>
+</div>
+<!-- OUTPUT -->
+<div class="panel">
+<div class="ph">
+<div class="pl">Output · Take <span id="takeNum">—</span></div>
+<div class="pm"><span id="wc">— words</span></div>
+</div>
+<div class="output-text empty" id="outputText">Awaiting take. Adjust the dials. Press record.</div>
+</div>
+<div class="footer">
+<div class="tpin">Studio</div>
+<div class="twn">
+<div class="trk">
+<span>Role</span><span class="sp">·</span>
+<span>Task</span><span class="sp">·</span>
+<span>Format</span><span class="sp">·</span>
+<span class="ht">Roll tape</span><span class="sp">·</span>
+<span>Roll back</span><span class="sp">·</span>
+<span>Mix again</span><span class="sp">·</span>
+<span>Role</span><span class="sp">·</span>
+<span>Task</span><span class="sp">·</span>
+<span>Format</span><span class="sp">·</span>
+<span class="ht">Roll tape</span><span class="sp">·</span>
+<span>Roll back</span><span class="sp">·</span>
+<span>Mix again</span><span class="sp">·</span>
+</div>
+</div>
+</div>
+</div>
 <p class="note"><strong>On authenticity:</strong> Each output is what Claude produces for the exact prompt shown. Copy the prompt and test it yourself — exact wording will vary slightly run-to-run, but the structural pattern (bloat, placeholders, pompous voice, over-formatting) is consistent.</p>
-
 <div class="lesson">
-  <div class="llb">The Takeaway</div>
-  <h2 class="lt">Frameworks are a ladder, not an elevator.</h2>
-  <p class="lb">RTF — and every other framework — is a <strong>checklist that helps you remember the pillars</strong>. But each pillar has a ceiling. Turn Role too high and Claude opens with credentials and technical jargon. Turn Task too high and it tries to cover everything you mentioned — history, formulas, edge cases — instead of doing the one thing you needed. Turn Format too high and you get headers, bullets, quizzes, and callouts whether the content warrants them or not.</p>
-  <p class="lb">The ladder metaphor: frameworks help you climb out of vague-prompt territory, but they don't tell you where to stop. That's your job — and it's why testing matters.</p>
-  <button class="reveal" id="revealBtn">◆ Reveal the sweet spot</button>
-  <div class="reveal-content" id="revealContent">
-    <p><strong>The sweet spot on this board: R2 · T2 · F2.</strong> A role specified clearly (not stacked with credentials). A task targeted at a specific audience (not sprawling). One format cue (not a whole production template).</p>
-    <p>Try the extremes too. <strong>R3 · T3 · F3</strong> is a 600-word credentialed lecture with emojis, a quiz, and a fake Einstein quote. Useful only as a cautionary tale.</p>
-  </div>
+<div class="llb">The Takeaway</div>
+<h2 class="lt">Frameworks are a ladder, not an elevator.</h2>
+<p class="lb">RTF — and every other framework — is a <strong>checklist that helps you remember the pillars</strong>. But each pillar has a ceiling. Turn Role too high and Claude opens with credentials and technical jargon. Turn Task too high and it tries to cover everything you mentioned — history, formulas, edge cases — instead of doing the one thing you needed. Turn Format too high and you get headers, bullets, quizzes, and callouts whether the content warrants them or not.</p>
+<p class="lb">The ladder metaphor: frameworks help you climb out of vague-prompt territory, but they don't tell you where to stop. That's your job — and it's why testing matters.</p>
+<button class="reveal" id="revealBtn">◆ Reveal the sweet spot</button>
+<div class="reveal-content" id="revealContent">
+<p><strong>The sweet spot on this board: R2 · T2 · F2.</strong> A role specified clearly (not stacked with credentials). A task targeted at a specific audience (not sprawling). One format cue (not a whole production template).</p>
+<p>Try the extremes too. <strong>R3 · T3 · F3</strong> is a 600-word credentialed lecture with emojis, a quiz, and a fake Einstein quote. Useful only as a cautionary tale.</p>
 </div>
-
 </div>
-
+</div>
 <script>
 // ============ DATA ============
 const R = [
