@@ -94,6 +94,16 @@
       "source": "/the-edge/",
       "destination": "/newsletter.html",
       "permanent": false
+    },
+    {
+      "source": "/newsletters/2026-04-01-issue-001.html",
+      "destination": "/newsletters/2026-04-06-issue-001.html",
+      "permanent": false
+    },
+    {
+      "source": "/workshops/2026-04-20-issue-003.html",
+      "destination": "/newsletters/2026-04-20-issue-003.html",
+      "permanent": false
     }
   ]
 }
