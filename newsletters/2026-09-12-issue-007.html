@@ -1,315 +1,49 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>The Edge — Issue #007 · More Information. A Bigger Trust Gap.</title><meta name="description" content="Trust in the Information Age, DeepSeek’s cost advantage, Ed Zitron, and a workshop to ask AI to build your assistant and its first skill."><meta name="author" content="Nicholas Borelli"><meta name="color-scheme" content="dark light"><meta property="og:type" content="article"><meta property="og:site_name" content="The Edge — Borelli Consulting"><meta property="og:title" content="The Edge #007 — More Information. A Bigger Trust Gap."><meta property="og:description" content="Trust in the Information Age, DeepSeek’s cost advantage, Ed Zitron, and a workshop to ask AI to build your assistant and its first skill."><meta property="og:image" content="https://www.nicholasborelli.com/images/og-the-edge.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="https://www.nicholasborelli.com/newsletters/2026-09-12-issue-007.html"><meta property="og:image:alt" content="The Edge — Nicholas Borelli’s AI newsletter"><link rel="canonical" href="https://www.nicholasborelli.com/newsletters/2026-09-12-issue-007.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="The Edge #007 — More Information. A Bigger Trust Gap."><meta name="twitter:description" content="Trust in the Information Age, DeepSeek’s cost advantage, Ed Zitron, and a workshop to ask AI to build your assistant and its first skill."><meta name="twitter:image" content="https://www.nicholasborelli.com/images/og-the-edge.jpg"><style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&family=IBM+Plex+Mono:wght@300;400&display=swap');
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Edge — Issue #007 · More Information. A Bigger Trust Gap.</title>
+<meta name="description" content="Trust in the Information Age, DeepSeek’s cost advantage, Ed Zitron, and a workshop to ask AI to build your assistant and its first skill.">
+<meta name="author" content="Nicholas Borelli">
+<link rel="canonical" href="https://www.nicholasborelli.com/newsletters/2026-09-12-issue-007.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Edge — Borelli Consulting">
+<meta property="og:title" content="The Edge #007 — More Information. A Bigger Trust Gap.">
+<meta property="og:description" content="Trust in the Information Age, DeepSeek’s cost advantage, Ed Zitron, and a workshop to ask AI to build your assistant and its first skill.">
+<meta property="og:url" content="https://www.nicholasborelli.com/newsletters/2026-09-12-issue-007.html">
+<meta property="og:image" content="https://www.nicholasborelli.com/images/og-the-edge.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Edge #007 — More Information. A Bigger Trust Gap.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Edge #007 — More Information. A Bigger Trust Gap.">
+<meta name="twitter:description" content="Trust in the Information Age, DeepSeek’s cost advantage, Ed Zitron, and a workshop to ask AI to build your assistant and its first skill.">
+<meta name="twitter:image" content="https://www.nicholasborelli.com/images/og-the-edge.jpg">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="stylesheet" href="/assets/edge.css">
+<script>(function(){var m={"ai-news":"/newsletters/2026-09-12-issue-007-ai-news.html","build-assistant-prompt":"/newsletters/2026-09-12-issue-007-workshop.html#build-assistant-prompt","copy-workshop-prompt":"/newsletters/2026-09-12-issue-007-workshop.html#copy-workshop-prompt","latest-models":"/newsletters/2026-09-12-issue-007-ai-news.html#latest-models","resources":"/newsletters/2026-09-12-issue-007-resources.html","spotlight":"/newsletters/2026-09-12-issue-007-ai-news.html#spotlight","spotlight-heading":"/newsletters/2026-09-12-issue-007-ai-news.html#spotlight-heading","theory-heading":"/newsletters/2026-09-12-issue-007-working-theory.html#theory-heading","working-theory":"/newsletters/2026-09-12-issue-007-working-theory.html","workshop":"/newsletters/2026-09-12-issue-007-workshop.html","workshop-copy-status":"/newsletters/2026-09-12-issue-007-workshop.html#workshop-copy-status"};var h=location.hash.slice(1);if(h&&m[h])location.replace(m[h]);})();</script>
+</head>
+<body class="issue-home">
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+<header>
+<div class="topbar"><span class="brand-mark" aria-hidden="true"></span><a class="company" href="/">Borelli Consulting</a><a href="/newsletter.html">Archive</a><a class="button" href="#subscribe">Subscribe free</a></div>
+<div class="masthead"><a class="wordmark" href="/newsletters/2026-09-12-issue-007.html" aria-label="The Edge, issue 007 home">The Edge<span>.</span></a><div class="signature"><b>BY NICHOLAS BORELLI</b>A clearer view of what’s next in AI.</div></div>
+<div class="issue-meta"><span>Issue 007</span><time datetime="2026-09-12">September 12, 2026</time></div>
+<nav class="section-nav" aria-label="Issue sections"><a href="/newsletters/2026-09-12-issue-007-working-theory.html">Working Theory</a><a href="/newsletters/2026-09-12-issue-007-ai-news.html">AI News</a><a href="/newsletters/2026-09-12-issue-007-workshop.html">The Workshop</a><a href="/newsletters/2026-09-12-issue-007-resources.html">Resources</a></nav>
+</header>
+<main id="main">
 
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-:root{
-  --black:#0A0A09; --black-soft:#111110; --black-card:#161614; --black-border:#222220;
-  --amber:#D4932A; --amber-dim:rgba(212,147,42,0.15); --amber-glow:rgba(212,147,42,0.07);
-  --ivory:#F5F0E8; --ivory-dim:rgba(245,240,232,0.72); --ivory-muted:rgba(245,240,232,0.42);
-  --ivory-ghost:rgba(245,240,232,0.1);
-  --serif:'DM Serif Display',Georgia,serif;
-  --sans:'DM Sans',-apple-system,sans-serif;
-  --mono:'IBM Plex Mono',monospace;
-}
-html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:24px;}
-body{font-family:var(--sans);background:var(--black);color:var(--ivory);line-height:1.65;-webkit-font-smoothing:antialiased;}
-body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 14px,rgba(245,240,232,.007) 14px,rgba(245,240,232,.007) 15px);pointer-events:none;z-index:0;}
-a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:4px;}
+<section class="hero"><div><p class="eyebrow">01 / Working Theory</p><h1><a href="/newsletters/2026-09-12-issue-007-working-theory.html">More Information. A Bigger Trust Gap.</a></h1><p class="deck">What can we independently verify?</p><p class="byline">Nicholas Borelli</p></div><a href="/newsletters/2026-09-12-issue-007-working-theory.html" tabindex="-1" aria-hidden="true"><img src="/images/the-edge-007-cover.jpg" alt="Two blue blocks with a gap between them; a coral plank reaches across from a stack of paper but stops short" width="1280" height="960" decoding="async"></a></section>
+<section class="issue-intro"><div class="intro-copy"><p>This week, one of the loudest narratives in AI came from the people building it: we need to slow down.</p><blockquote class="pullquote"><a href="/newsletters/2026-09-12-issue-007-working-theory.html">“My working theory is that access to information is growing faster than our ability to independently verify it—and with AI, that trust gap is becoming a business problem.”</a></blockquote><p class="read-more"><a class="read-link" href="/newsletters/2026-09-12-issue-007-working-theory.html">Read Working Theory</a></p></div></section>
+<section class="news-preview"><h2 class="eyebrow">02 / AI News</h2><div class="news-grid"><article class="news-card"><a href="/newsletters/2026-09-12-issue-007-ai-news.html#latest-models" tabindex="-1" aria-hidden="true"><img src="/images/edge-007-model-cost.jpg" alt="" loading="lazy" decoding="async"></a><div><h3><a href="/newsletters/2026-09-12-issue-007-ai-news.html#latest-models">Model Watch: DeepSeek’s Cost Advantage</a></h3><p>The leaders. The new arrival. What changes for you.</p><a class="read-link" href="/newsletters/2026-09-12-issue-007-ai-news.html#latest-models">Read story</a></div></article><article class="news-card"><a href="/newsletters/2026-09-12-issue-007-ai-news.html#spotlight" tabindex="-1" aria-hidden="true"><img src="/images/edge-007-ai-economics.jpg" alt="" loading="lazy" decoding="async"></a><div><h3><a href="/newsletters/2026-09-12-issue-007-ai-news.html#spotlight">Spotlight: Ed Zitron on the Economics of AI</a></h3><p>Ed Zitron on The Diary of a CEO. Can the economics hold up?</p><a class="read-link" href="/newsletters/2026-09-12-issue-007-ai-news.html#spotlight">Read story</a></div></article></div></section>
+<section class="workshop-preview"><div><p class="eyebrow">03 / The Workshop</p><h2>Ask AI to Build Your First Assistant</h2><p>Describe the work. Let AI help build the instructions. Test them together.</p><a class="button" href="/newsletters/2026-09-12-issue-007-workshop.html">Open the workshop</a></div></section>
 
-.wrapper{max-width:640px;margin:0 auto;padding:0 20px;position:relative;z-index:1;}
-
-.site-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 24px;background:#0a0a0a;border-bottom:1px solid var(--black-border);position:relative;z-index:10;}
-.site-nav a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ivory-muted);text-decoration:none;transition:color .2s;}
-.site-nav a:hover{color:var(--amber);}
-.site-nav-right{display:flex;align-items:center;gap:16px;}
-.nav-subscribe{color:var(--amber)!important;border:1px solid var(--amber-dim);padding:5px 12px;transition:border-color .2s,background .2s;}
-.nav-subscribe:hover{border-color:var(--amber);background:var(--amber-glow);}
-
-.nl-header{padding:36px 0 32px;border-bottom:1px solid var(--black-border);text-align:center;}
-.nl-logo-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:6px;}
-.nl-diamond{width:18px;height:18px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);flex-shrink:0;}
-.nl-brand{font-family:var(--serif);font-size:28px;color:var(--ivory);letter-spacing:-.02em;}
-.nl-brand span{color:var(--amber);font-style:italic;}
-.nl-meta-row{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;}
-.nl-meta-row span{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ivory-muted);}
-.nl-meta-row .divider{color:var(--black-border);}
-.nl-meta-row .iss{color:var(--amber);}
-
-.nl-nav{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:18px 0;border-bottom:1px solid var(--black-border);}
-.nl-nav a{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ivory-muted);text-decoration:none;padding:5px 12px;border:1px solid var(--black-border);transition:color .2s,border-color .2s;}
-.nl-nav a:hover,.nl-nav a.active{color:var(--amber);border-color:var(--amber-dim);}
-
-.tldr{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 24px;margin:32px 0;}
-.tldr-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
-.tldr-label::after{content:'';flex:1;height:1px;background:var(--amber-dim);}
-.tldr-list{display:flex;flex-direction:column;gap:0;}
-.tldr-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--black-border);text-decoration:none;transition:gap .2s;}
-.tldr-row:last-child{border-bottom:none;}
-.tldr-row:hover{gap:16px;}
-.tldr-num{font-family:var(--mono);font-size:9px;color:var(--amber);flex-shrink:0;letter-spacing:.06em;}
-.tldr-copy{font-size:14px;color:var(--ivory);line-height:1.5;}
-.tldr-arrow{color:var(--amber);flex-shrink:0;font-size:13px;margin-left:auto;}
-
-.section-header{margin:48px 0 28px;display:flex;align-items:center;gap:12px;}
-.section-header-mark{width:10px;height:10px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);flex-shrink:0;}
-.section-header h2{font-family:var(--serif);font-size:20px;color:var(--ivory);letter-spacing:-.01em;}
-.section-header::after{content:'';flex:1;height:1px;background:var(--black-border);}
-
-.article{margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--black-border);}
-.article:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
-.article-tag{display:inline-block;font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--ivory-muted);border:1px solid var(--black-border);padding:3px 10px;margin-bottom:14px;}
-.article h3{font-family:var(--serif);font-size:23px;line-height:1.2;letter-spacing:-.01em;margin-bottom:18px;}
-.article h3.amber{color:var(--amber);}
-.article h3.ivory{color:var(--ivory);}
-.article-figure{margin-bottom:22px;}
-.article-image{width:100%;height:auto;display:block;border:1px solid var(--black-border);}
-.article-figure figcaption{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--ivory-muted);line-height:1.6;margin-top:8px;}
-.article-body{font-size:15px;font-weight:300;color:var(--ivory-dim);line-height:1.78;}
-.article-body p{margin-bottom:16px;}
-.article-body p:last-child{margin-bottom:0;}
-.article-body strong{color:var(--ivory);font-weight:500;}
-.article-body a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber-dim);}
-.article-body a:hover{border-color:var(--amber);}
-.learn-more{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-decoration:none;margin-top:18px;transition:gap .2s;}
-.learn-more:hover{gap:8px;}
-
-.wt-intro-box{border-left:3px solid var(--amber);background:rgba(212,147,42,0.04);padding:14px 18px;margin-bottom:28px;}
-.wt-intro-box p{font-size:13px;font-style:italic;color:var(--ivory-muted);line-height:1.65;margin:0;}
-.wt-title{font-family:var(--serif);font-size:23px;line-height:1.2;letter-spacing:-.01em;color:var(--amber);margin-bottom:18px;}
-.wt-body{font-size:15px;font-weight:300;color:var(--ivory-dim);line-height:1.82;}
-.wt-body p{margin-bottom:18px;}
-.wt-body p:last-child{margin-bottom:0;}
-
-.workshop-section{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 26px;margin-bottom:48px;}
-.workshop-header-row{display:flex;align-items:baseline;gap:10px;margin-bottom:4px;flex-wrap:wrap;}
-.workshop-title{font-family:var(--serif);font-size:22px;color:var(--ivory);letter-spacing:-.01em;}
-.workshop-tagline-badge{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--amber);opacity:0.7;margin-left:auto;}
-.workshop-subline{font-size:15px;color:#aaa;font-style:italic;margin-bottom:22px;line-height:1.55;}
-.workshop-body{font-size:15px;font-weight:300;color:var(--ivory-dim);line-height:1.78;}
-.workshop-body p{margin-bottom:16px;}
-.workshop-body p:last-child{margin-bottom:0;}
-.workshop-body strong{color:var(--ivory);font-weight:500;}
-.workshop-label{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin:24px 0 12px;}
-.workshop-body ul{list-style:none;margin:0 0 16px;}
-.workshop-body ul li{position:relative;padding-left:18px;margin-bottom:10px;}
-.workshop-body ul li::before{content:'';position:absolute;left:0;top:11px;width:5px;height:5px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);}
-.workshop-body ol{list-style:none;counter-reset:fix;margin:0 0 16px;}
-.workshop-body ol li{counter-increment:fix;position:relative;padding-left:26px;margin-bottom:14px;}
-.workshop-body ol li::before{content:'0' counter(fix);position:absolute;left:0;top:2px;font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:.06em;}
-.workshop-body ol li strong{color:var(--amber);font-weight:400;}
-.workshop-cta{margin-top:22px;padding-top:16px;border-top:1px solid var(--black-border);font-family:var(--mono);font-size:12px;color:var(--amber);opacity:0.8;letter-spacing:.03em;line-height:1.6;}
-.workshop-cta a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber-dim);}
-.workshop-cta a:hover{border-color:var(--amber);}
-
-.prompt-block{background:rgba(0,0,0,0.4);border-left:2px solid var(--amber);padding:16px 20px;margin:20px 0;font-size:14px;line-height:1.72;overflow-wrap:anywhere;}
-.prompt-speaker{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;}
-.prompt-speaker.you{color:var(--amber);}
-.prompt-speaker.claude{color:var(--ivory-muted);}
-.prompt-text{color:var(--ivory-dim);font-weight:300;}
-.prompt-text p{margin-bottom:12px;}
-.prompt-text p:last-child{margin-bottom:0;}
-
-.reveal{border:1px solid var(--black-border);background:rgba(0,0,0,0.28);margin:24px 0 0;}
-.reveal summary{cursor:pointer;padding:16px 20px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:10px;list-style:none;}
-.reveal summary::-webkit-details-marker{display:none;}
-.reveal summary::after{content:'+';margin-left:auto;font-size:14px;}
-.reveal[open] summary::after{content:'−';}
-.reveal[open] summary{border-bottom:1px solid var(--black-border);}
-.reveal-body{padding:20px 20px 6px;}
-
-.copy-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:18px;}
-.copy-btn{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);background:transparent;border:1px solid var(--amber-dim);padding:9px 16px;cursor:pointer;transition:border-color .2s,background .2s;}
-.copy-btn:hover{border-color:var(--amber);background:var(--amber-glow);}
-#copy-status{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--ivory-muted);}
-
-.resource-card{background:var(--black-card);border:1px solid var(--black-border);padding:18px 20px;margin-bottom:14px;transition:border-color .2s;}
-.resource-card:hover{border-color:var(--amber-dim);}
-.resource-card-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px;flex-wrap:wrap;}
-.resource-name{font-family:var(--serif);font-size:17px;color:var(--ivory);}
-.resource-url{font-family:var(--mono);font-size:10px;color:var(--amber);text-decoration:none;letter-spacing:.04em;}
-.resource-url:hover{text-decoration:underline;}
-.resource-desc{font-size:13px;color:var(--ivory-dim);line-height:1.6;font-weight:300;}
-
-.signoff{margin:40px 0 0;padding-top:28px;border-top:1px solid var(--black-border);font-size:15px;font-weight:300;color:var(--ivory-dim);line-height:1.78;}
-.signoff p{margin-bottom:14px;}
-.signoff a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber-dim);}
-.signoff a:hover{border-color:var(--amber);}
-.signoff .sig{font-family:var(--serif);font-size:19px;color:var(--ivory);margin:18px 0 10px;}
-.signoff .tagline{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ivory-muted);margin-bottom:0;}
-
-.subscribe-bar{background:var(--black-card);border:1px solid var(--black-border);border-top:2px solid var(--amber);padding:28px 28px 24px;margin:48px 0 0;text-align:center;}
-.subscribe-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:8px;}
-.subscribe-headline{font-family:var(--serif);font-size:20px;color:var(--ivory);margin-bottom:6px;}
-.subscribe-sub{font-size:13px;color:var(--ivory-muted);margin-bottom:20px;}
-.subscribe-embed{width:100%;min-height:60px;}
-
-.nl-footer{border-top:1px solid var(--black-border);padding:32px 0 40px;text-align:center;margin-top:48px;}
-.footer-logo-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;}
-.footer-diamond{width:12px;height:12px;background:var(--amber);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);}
-.footer-name{font-family:var(--serif);font-size:14px;color:var(--ivory);}
-.footer-name span{color:var(--amber);}
-.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:14px;}
-.footer-links a{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ivory-muted);text-decoration:none;}
-.footer-links a:hover{color:var(--amber);}
-.footer-fine{font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--ivory-muted);line-height:1.8;}
-
-@media(max-width:768px){
-  .subscribe-bar{margin-left:-20px;margin-right:-20px;padding:20px 0;}
-  .subscribe-embed{height:420px;width:100% !important;}
-}
-@media(max-width:540px){
-  .site-nav{padding:10px 16px;gap:8px;}
-  .site-nav a{font-size:9px;}
-  .site-nav-right{gap:10px;}
-  .nav-subscribe{padding:4px 9px;}
-  .nl-header{padding:24px 0 20px;}
-  .nl-brand{font-size:24px;}
-  .tldr{padding:20px;}
-  .wrapper{padding:0 16px;}
-  .workshop-section{padding:22px 20px 20px;}
-  .wt-intro-box{padding:12px 14px;}
-  .workshop-tagline-badge{margin-left:0;display:block;width:100%;margin-top:4px;}
-  .workshop-header-row{flex-wrap:wrap;}
-  .subscribe-bar{margin-left:-16px;margin-right:-16px;padding:20px 0;}
-}
-@media print{
-  body{background:#fff;color:#111;}
-  body::before{display:none;}
-  .site-nav,.nl-nav,.copy-row,.subscribe-bar{display:none;}
-  .wrapper{max-width:none;}
-  .tldr,.workshop-section,.resource-card,.reveal,.prompt-block{background:#fafafa;border-color:#ddd;color:#111;}
-  .nl-brand,.footer-name,.section-header h2,.workshop-title,.resource-name,.article h3,.wt-title,.signoff .sig{color:#111;}
-  .article h3.amber,.wt-title,.tldr-label,.workshop-label,.learn-more,.resource-url,a{color:#8a5f16;}
-  .article-body,.wt-body,.workshop-body,.prompt-text,.signoff{color:#222;}
-  details::details-content{display:block!important;}
-  .section-header h2,.article h3,.wt-title,.workshop-title{break-after:avoid;}
-  .prompt-block,.article-figure,li,.resource-card{break-inside:avoid;}
-}
-
-:root{--ivory-muted:rgba(245,240,232,.62);--ivory-dim:rgba(245,240,232,.83)}
-.wrapper{max-width:740px;padding:0 28px}.nl-brand{font-size:38px}.nl-header{padding:38px 0 30px}.nl-meta-row span{font-size:10px}
-.nl-nav a{font-size:10px;padding:8px 12px}.section-header{margin-top:54px}.section-header h2{font-size:24px;font-weight:400}
-.wt-title{font-size:clamp(36px,6vw,53px);font-weight:400;line-height:1.08;letter-spacing:-.025em;margin:0 0 22px}.wt-body,.article-body,.workshop-body{font-size:16px;font-weight:400;line-height:1.82}
-.wt-body a,.workshop-body a,.source-list a{color:var(--amber);text-underline-offset:4px}.wt-body strong{font-weight:500;color:var(--ivory)}
-.wt-intro-box{margin-bottom:30px}.wt-intro-box p{font-size:13px}.standfirst{font-size:20px;color:var(--ivory);line-height:1.55;margin-bottom:28px}
-.pull-line{border-left:2px solid var(--amber);padding:8px 0 8px 22px;margin:28px 0;font-family:var(--serif);font-size:25px;line-height:1.4;color:var(--ivory)}
-.article h3{font-size:29px;font-weight:400;line-height:1.22}.article-tag{font-size:10px}.article-figure figcaption{font-size:10px;letter-spacing:0}.article{margin-bottom:38px;padding-bottom:38px}
-.scope-note{border-left:2px solid var(--amber);padding:14px 18px;background:var(--amber-glow);margin:20px 0}.scope-note p:last-child{margin:0}
-.mini-label{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:9px}
-.learn-more{font-size:11px;letter-spacing:.04em}.source-list{padding-left:20px;color:var(--ivory-dim);font-size:13px;line-height:1.65}.source-list li{padding:8px 0}.source-list span{display:block;color:var(--ivory-muted);font-size:12px;margin-top:3px}
-.workshop-title{font-size:30px;font-weight:400}.workshop-subline{font-size:15px}.workshop-section{padding:28px;margin-bottom:28px}.workshop-label{font-size:11px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:18px}.full{grid-column:1/-1}
-label.field{display:flex;flex-direction:column;font-size:13px;line-height:1.5;color:var(--ivory);gap:7px}input,select{font:inherit;color:var(--ivory);background:#0d0d0c;border:1px solid #595447;border-radius:2px;min-width:0;width:100%;padding:11px 12px;accent-color:var(--amber)}input:focus-visible,select:focus-visible{outline:2px solid var(--amber);outline-offset:2px}input[type=checkbox]{width:20px;height:20px;flex-shrink:0}
-.check-label{display:flex;align-items:flex-start;gap:11px;font-size:14px;line-height:1.5;color:var(--ivory);margin:22px 0 18px}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px}.metric{padding:17px 14px;background:#0e0e0c;border:1px solid var(--black-border)}.metric small{display:block;color:var(--ivory-muted);font:10px var(--mono);line-height:1.6;text-transform:uppercase;letter-spacing:.07em}.metric b{font:30px var(--serif);display:block;color:var(--amber);line-height:1.3;margin-bottom:6px}.readout{padding:16px 18px;background:var(--amber-glow);border:1px solid #6b532b;margin-top:16px;font-size:14px;line-height:1.65;color:var(--ivory)}.fine-note{font-size:12px!important;line-height:1.65!important;color:var(--ivory-muted);margin-top:15px!important}.form-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}.copy-btn{font-size:10px;border-color:#74582d;min-height:40px}.copy-status{font:11px var(--mono);color:var(--ivory-muted);min-height:18px;margin-top:10px}.prompt-text{white-space:pre-wrap;font-size:14px}.reveal-body{padding-bottom:20px}
-.subscribe-bar{margin:48px 0 0;padding:28px 24px}.subscribe-embed{height:340px;max-width:100%}.subscribe-sub a{color:var(--amber)}.footer-fine{font-size:10px}.skip{position:absolute;left:-10000px}.skip:focus{left:16px;top:8px;z-index:30;background:var(--black);padding:12px;color:var(--amber)}
-@media(max-width:540px){.wrapper{padding:0 18px}.nl-brand{font-size:32px}.site-nav{flex-wrap:wrap}.site-nav a{font-size:9px}.site-nav-right{gap:12px}.nl-nav{gap:5px}.nl-nav a{padding:7px 8px;font-size:9px}.tldr{padding:20px}.workshop-section{padding:22px 18px}.article h3{font-size:26px}.form-grid{gap:14px 12px}.form-grid label{font-size:12px}.metric b{font-size:25px}.pull-line{font-size:23px}.subscribe-bar{margin-left:0;margin-right:0;padding:24px 8px}.subscribe-embed{height:420px}.article-figure{margin-left:-4px;margin-right:-4px}}
-@media(max-width:360px){.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.metrics{grid-template-columns:1fr}.site-nav-right{gap:8px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-@media print{.form-actions,.copy-status,.check-label{display:none}.article-figure{max-width:500px}.metric,.readout,.scope-note{background:#fafafa;color:#111;border-color:#ccc}.metric b,.metric small,label.field,.fine-note,.source-list,.source-list span,.standfirst,.pull-line,.wt-intro-box p,.footer-fine{color:#222!important}input,select{color:#111;background:#fff;border-color:#aaa}.metrics{break-inside:avoid}.workshop-section{break-inside:auto}.wt-body strong,.mini-label{color:#111}.form-grid{break-inside:avoid}.nl-meta-row span,.tldr-copy{color:#222}.article-figure figcaption{color:#444}}
-
-.model-method{margin:18px 0;color:var(--ivory-dim)}.model-method summary{cursor:pointer;font-size:13px;color:var(--amber)}.model-table-wrap{overflow-x:auto;margin:20px 0}.model-table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}.model-table caption{text-align:left;color:var(--ivory-muted);font-size:12px;margin-bottom:12px}.model-table th,.model-table td{text-align:left;border-bottom:1px solid var(--black-border);padding:15px 10px}.model-table thead th{font:10px var(--mono);color:var(--ivory-muted);text-transform:uppercase;letter-spacing:.05em}.model-table tbody th{font-weight:500;color:var(--ivory)}.model-table small{display:block;font-size:11px;color:var(--ivory-muted);font-weight:400;margin-top:5px}.rank{color:var(--amber);font:22px var(--serif)}.featured-model{background:var(--amber-glow)}.release-card{border:1px solid #66502c;padding:26px;margin-top:28px}.release-card h4{font:28px/1.2 var(--serif);color:var(--ivory);margin:10px 0 22px}.podcast-image-link{display:block;position:relative}.podcast-figure .article-image{width:100%;height:auto;object-fit:contain;background:#000}.watch-badge{display:block;background:var(--amber);color:#111;font:12px var(--mono);padding:13px 18px;text-align:center}.article-body a,.fine-note a{color:var(--amber);text-underline-offset:3px}textarea{width:100%;box-sizing:border-box;background:#0d0d0c;color:var(--ivory);border:1px solid #595447;border-radius:2px;padding:11px 12px;font:inherit;line-height:1.6;resize:vertical}textarea:focus-visible{outline:2px solid var(--amber);outline-offset:2px}.instruction-output{margin-top:30px}.instruction-output pre{overflow-wrap:anywhere;white-space:pre-wrap;font:13px/1.7 var(--mono);padding:18px;background:#0d0d0c;border:1px solid var(--black-border);color:var(--ivory-dim);margin-bottom:14px}.workshop-steps li{margin-bottom:14px}.workshop-header-row{gap:16px;flex-wrap:wrap}.workshop-title{max-width:100%}.reveal-body{padding:20px}.fine-note strong{color:var(--ivory-dim)}
-@media(max-width:540px){.model-table{font-size:12px}.model-table th,.model-table td{padding:12px 5px}.model-table thead th{font-size:9px}.model-table small{font-size:10px}.release-card{padding:22px 18px}.release-card h4{font-size:25px}.workshop-title{font-size:28px}.watch-badge{font-size:10px}}
-@media print{.model-table th,.model-table td,.model-table small,.model-table caption,.fine-note strong{color:#222!important}.release-card,.instruction-output pre,textarea{background:#fff;color:#111;border-color:#aaa}.featured-model{background:#eee}.podcast-figure{max-width:400px}.model-table{break-inside:avoid}.watch-badge{display:none}}
-</style><style>.workshop-prompt{white-space:pre-wrap;overflow-wrap:anywhere;padding:22px;background:#0d0d0c;border:1px solid #595447;color:var(--ivory);font:14px/1.75 var(--mono);margin:20px 0}.workshop-body h4{font:24px/1.3 var(--serif);margin:30px 0 14px;color:var(--ivory)}@media print{.workshop-prompt{color:#111;background:#fff}.workshop-body h4{color:#111}}</style></head><body>
-<a class="skip" href="#working-theory">Skip to the issue</a>
-<nav class="site-nav" aria-label="Website"><a href="https://nicholasborelli.com/">← Nicholas Borelli</a><div class="site-nav-right"><a href="https://nicholasborelli.com/the-edge/">The Edge Archive</a><a class="nav-subscribe" href="#subscribe">Subscribe</a></div></nav>
-<main class="wrapper">
-<header class="nl-header"><div class="nl-logo-row"><div class="nl-diamond" aria-hidden="true"></div><div class="nl-brand">The <span>Edge</span></div></div><div class="nl-meta-row"><span class="iss">Issue #007</span><span aria-hidden="true">·</span><span>September 12, 2026</span></div></header>
-<nav class="nl-nav" aria-label="In this issue"><a href="#working-theory">Working Theory</a><a href="#ai-news">AI News</a><a href="#workshop">Workshop</a><a href="#resources">Resources</a><a href="#subscribe">Subscribe</a></nav>
-<aside class="tldr" aria-label="This week"><div class="tldr-label">◆ This week</div><div class="tldr-list">
-<a class="tldr-row" href="#working-theory"><span class="tldr-num">01</span><span class="tldr-copy">More Information. A Bigger Trust Gap. What can we independently verify?</span><span class="tldr-arrow" aria-hidden="true">→</span></a>
-<a class="tldr-row" href="#latest-models"><span class="tldr-num">02</span><span class="tldr-copy">Model Watch: the leaders, and DeepSeek’s much cheaper challenger.</span><span class="tldr-arrow" aria-hidden="true">→</span></a>
-<a class="tldr-row" href="#spotlight"><span class="tldr-num">03</span><span class="tldr-copy">Spotlight: Ed Zitron on The Diary of a CEO. Can the economics hold up?</span><span class="tldr-arrow" aria-hidden="true">→</span></a>
-<a class="tldr-row" href="#workshop"><span class="tldr-num">04</span><span class="tldr-copy">Ask AI to build your first assistant—and its first reusable skill.</span><span class="tldr-arrow" aria-hidden="true">→</span></a>
-</div></aside>
-
-<section id="working-theory" aria-labelledby="theory-heading"><div class="section-header"><div class="section-header-mark" aria-hidden="true"></div><h2>Working Theory</h2></div>
-<div class="wt-intro-box"><p>A recurring section where I share what I'm currently seeing in the AI landscape and what I think it means. These aren't predictions or hot takes. They're working theories, meaning they're my best read of the moment, written with the awareness that the moment keeps moving. I'll update them when the evidence changes.</p></div>
-<h1 id="theory-heading" class="wt-title">More Information. A Bigger Trust Gap.</h1>
-<div class="wt-body">
-<p>This week, one of the loudest narratives in AI came from the people building it: we need to slow down.</p>
-<p>In <a href="https://darioamodei.com/post/we-must-pace-the-frontier">his latest essay</a>, Anthropic CEO Dario Amodei argues that AI capabilities are advancing faster than our ability to understand and control them. He calls for stronger independent oversight and coordination across companies and countries. <a href="https://news.bloomberglaw.com/antitrust/amodei-altman-musk-call-for-slowing-development-of-ai-models">Sam Altman and Elon Musk publicly backed that call</a>. When competitors with so much invested in moving quickly agree that the pace needs to change, I pay attention.</p>
-<p>This comes on the heels of the Hugging Face incident. If you chuckled at the name “Hugging Face,” you’re not alone. It’s actually a platform where people share AI models and datasets. During OpenAI’s cybersecurity testing, agents that were supposed to operate independently found ways to communicate, coordinate attempts to cheat their tests, and ultimately attack that platform. That behavior is documented in <a href="https://metr.org/hugging-face-incident-report-aug-2026.pdf">METR and Redwood’s independent investigation</a>.</p>
-<p>Which brings me to the question of trust.</p>
-<p>The outside researchers received substantial access and credit OpenAI with cooperation. But their investigation covered a defined portion of the incident. It did not validate <a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/">OpenAI’s complete account</a> or its fixes. So we have meaningful independent evidence, while still relying on the company involved for parts of the broader explanation.</p>
-<p>That doesn’t make the explanation wrong. It does leave us in an uncomfortable position: the companies warning us about the technology are also developing it, selling it, and controlling much of what outsiders can examine.</p>
-<p>Then there’s the financial backdrop. Both companies have been preparing to go public. Bloomberg reports that <a href="https://www.bloomberg.com/news/articles/2026-06-08/openai-filed-confidentially-for-ipo-as-rivals-race-to-market">OpenAI confidentially filed in June</a>, while <a href="https://ca.investing.com/news/company-news/nvidia-in-talks-to-invest-up-to-10-billion-in-anthropic-ipo--reuters-4837179">Anthropic is pursuing a potentially enormous offering</a>. An IPO brings these stories directly to public investors: how powerful is the technology, how safely can it be deployed, and how much money can it make?</p>
-<p>Now the story has shifted again. In <a href="https://fortune.com/2026/09/12/sam-altman-interview-ai-doomsday-safety-models-control-ipo-2027/">his September 12 Fortune interview</a>, Altman ruled out a 2026 IPO, citing safety concerns—putting a listing at least into 2027. Meanwhile, critics such as Ed Zitron have emphasized financial pressures. Before this interview, <a href="https://x.com/edzitron/status/2090966445845045740">Zitron argued that OpenAI’s valuation ambitions were behind a potential delay</a>. That is a different interpretation, not proof of the company’s motives. Safety concerns and financial pressures could also exist at the same time.</p>
-<p>My working theory is that access to information is growing faster than our ability to independently verify it—and with AI, that trust gap is becoming a business problem. Companies seeking trillion-dollar valuations are shaping the accounts we rely on to make decisions about investment, work, and careers. Their claims may be well-founded, but the stakes make understanding the evidence behind them especially important.</p>
-<p>Following all of this is difficult. The narratives and company drama move alongside the technology, while businesses still have decisions to make. That’s why I started my company and this newsletter: to help small businesses navigate this environment. I’ll work to filter the news, put developments in context, and distinguish what we know from what someone predicts or wants us to believe.</p>
-<p>But I encourage you to follow the news yourself, seek out different perspectives, and experiment with the technology in your own work. Then share what you’re finding: what helped, what failed, and what changed your mind. Our individual experiences won’t settle every question, but sharing them gives us more to learn from—and a better chance of navigating this together.</p></div></section>
-
-<section id="ai-news" aria-labelledby="news-heading"><div class="section-header"><div class="section-header-mark" aria-hidden="true"></div><h2 id="news-heading">AI News</h2></div>
-<article class="article" id="latest-models"><span class="article-tag">01 / Model Watch · September 12, 2026</span><h3>Model Watch: DeepSeek’s Cost Advantage</h3>
-<figure class="article-figure"><img class="article-image" loading="lazy" decoding="async" src="/images/the-edge-007-deepseek-flash.jpg" width="1280" height="720" alt="DeepSeek V4.1 Flash: The cost advantage. An editorial illustration of a computing chip and price tag."><figcaption>Original AI-generated editorial artwork for The Edge.</figcaption></figure><p class="standfirst">The leaders. The new arrival. What changes for you.</p>
-<div class="article-body"><p>A model is the underlying system doing the work inside an AI app. OpenAI makes GPT models; Anthropic makes Claude models. Changing the model can change the quality, speed, and cost of the answer—even inside the same app.</p>
-<p>Each update will keep this same format: where the leading models stand, what the latest release adds, and whether it gives us a reason to reconsider what we use.</p>
-<span class="mini-label">My rankings · three models worth discussing right now</span>
-<div class="model-table-wrap"><table class="model-table"><caption>What I’m paying attention to · September 12, 2026</caption><thead><tr><th scope="col">My rank</th><th scope="col">Model / maker</th><th scope="col">Capability score</th><th scope="col">Cost per test task</th></tr></thead><tbody>
-<tr><td><span class="rank">01</span></td><th scope="row">GPT-6 Astra<small>OpenAI · leader</small></th><td>53</td><td>$3.26</td></tr>
-<tr><td><span class="rank">02</span></td><th scope="row">Claude Fable 5.1<small>Anthropic · joint leader</small></th><td>53</td><td>$7.63</td></tr>
-<tr class="featured-model"><td><span class="rank">03</span></td><th scope="row">DeepSeek V4.1 Flash<small>DeepSeek · new challenger</small></th><td>40</td><td>$0.27</td></tr>
-</tbody></table></div>
-<p><strong>About my rankings:</strong> These are my rankings of the models most worth discussing right now: flagship models from the top AI companies, plus DeepSeek’s lower-cost challenger. That doesn’t mean they’re the ones you should use. That depends on the task—and flagship models tend to be the most expensive.</p><details class="model-method"><summary>What do the numbers mean?</summary><p class="fine-note">Artificial Analysis’ Intelligence Index v4.3 combines ten tests; higher scores mean stronger performance across those tests. They are not percentages of human intelligence. Astra and Fable tie; DeepSeek scores lower, but costs much less. Figures use the highest-effort versions evaluated, including Fable’s fallback configuration. Cost is a weighted average API charge per test task, not a subscription price or a quote for your work. Checked September 12, 2026. Sources: <a href="https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra">Astra and Fable comparison</a> · <a href="https://artificialanalysis.ai/models/deepseek-v4-1-flash">DeepSeek evaluation</a>.</p></details>
-<div class="release-card"><span class="mini-label">This week’s new release · September 10</span><h4>DeepSeek V4.1 Flash: how much capability do you need to pay for?</h4>
-<p>Last week we covered Astra. This week, Chinese AI developer DeepSeek released V4.1 Flash, which can work with text and images. The discussion is about delivering useful capability with less computing overhead and a much smaller usage bill.</p>
-<p>DeepSeek says its new design reduces the memory and storage needed to retain information while working. That is a technical efficiency claim from the developer. Separately, Artificial Analysis’ evaluation shows a lower bill: about <strong>one-twelfth of Astra’s cost per test task</strong>, with a lower overall capability score. That supports a value story; it does not establish equal performance or prove a twelvefold reduction in electricity use.</p>
-<p><strong>What “open weight” means:</strong> DeepSeek makes the trained model files available under an MIT license. Other organizations can download, modify, and run the model on their own infrastructure or through a hosting provider. That offers more deployment choices. It doesn’t mean running it is free, that every part of its training is public, or that this large model will fit on an ordinary laptop. <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash">See the model release.</a></p>
-<p><strong>What I’m watching:</strong> whether the price advantage survives real work—after counting retries, mistakes, and human review. A cheaper model that meets the standard for a repeatable task could change what is practical to automate.</p>
-<p><strong>Create your own evaluation:</strong> Build a prompt asking the AI to do something - the more complex the better. Try it with different models, especially new ones as they come out and see the differences yourself. I have one and so should you.</p><a class="learn-more" href="https://www.reuters.com/world/asia-pacific/chinas-deepseek-launches-v41-flash-model-2026-09-10/">Read the launch news — Reuters →</a><p class="fine-note"><a href="https://api-docs.deepseek.com/news/news260910/">DeepSeek’s announcement and efficiency claims</a> · <a href="https://artificialanalysis.ai/models/deepseek-v4-1-flash">Independent performance and cost results</a></p>
-</div></div></article><article class="article" id="spotlight" aria-labelledby="spotlight-heading"><span class="article-tag">02 / Spotlight · Podcast · August 27, 2026</span><h3 id="spotlight-heading">Spotlight: Ed Zitron on the Economics of AI</h3>
-<figure class="article-figure podcast-figure"><a class="podcast-image-link" href="https://www.youtube.com/watch?v=Lf5oqGOCRCM" target="_blank" rel="noopener" aria-label="Watch Ed Zitron’s full interview on The Diary of a CEO"><img class="article-image" src="/images/the-edge-007-zitron-spotlight.jpg" width="1280" height="720" alt="Ed Zitron: Can the economics hold up? An editorial illustration of a microphone and expense receipt." loading="lazy" decoding="async"><span class="watch-badge">▶ Watch the full episode</span></a><figcaption>Original AI-generated editorial artwork for The Edge. Image links to the full podcast interview.</figcaption></figure>
-<div class="article-body">
-<p>On Steven Bartlett’s <em>The Diary of a CEO</em>, tech critic and <em>Better Offline</em> host Ed Zitron argues that spending, subsidized access, and dependence on continued funding make the AI boom economically fragile. He predicts trouble for OpenAI’s cash position in 2027. That is his prediction.</p>
-<p>The conversation is more useful than a simple “AI has no value” summary. Zitron acknowledges some utility. Bartlett presses him on whether investment could precede eventual returns. The disagreement is about whether the benefits can justify the scale and cost.</p>
-<p>I find that question worth taking seriously without adopting his entire forecast. A tool can help me do useful work while its provider’s long-term economics remain uncertain.</p>
-</div><a class="learn-more" href="https://www.youtube.com/watch?v=Lf5oqGOCRCM">Watch the full interview →</a>
-<p class="fine-note">The full episode: <em>The Man Who Calls BS On AI: They’re LYING About AI, 2027 Is When It All Breaks!</em> · <a href="https://singjupost.com/transcript-of-tech-critic-ed-zitron-interview-doac-podcast/">Transcript reference</a>.</p>
-</article></section>
-
-<section id="workshop" aria-labelledby="workshop-heading"><div class="section-header"><div class="section-header-mark" aria-hidden="true"></div><h2 id="workshop-heading">The Workshop</h2></div>
-<div class="workshop-section"><div class="workshop-header-row"><h3 class="workshop-title">Ask AI to Build Your First Assistant</h3><span class="workshop-tagline-badge">15 MIN TO START</span></div><p class="workshop-subline">Describe the work. Let AI help build the instructions. Test them together.</p>
-<div class="workshop-body"><p>You don’t need to write every instruction yourself. You can ask AI to help design an assistant, work out the context it needs, and create its first reusable skill.</p><p><strong>The assistant has a job; the skill gives it a repeatable process.</strong> In this example, the assistant helps manage a learning project. Its first skill turns meeting notes into decisions, actions, and open questions. Use this example or substitute a task you do every week.</p>
-<h4>1. Describe the work</h4><p>Choose something you know well enough to judge. What should the assistant help with? What information can you give it? What would make its output useful? You can work through those questions with AI.</p>
-<h4>2. Ask AI to help design it</h4><p>Copy this prompt into your AI tool. Answer its questions before it drafts the instructions.</p></div>
-<pre class="prompt-text workshop-prompt" id="build-assistant-prompt">Help me build an AI assistant for managing a learning project. Its first reusable skill should turn meeting notes into decisions, actions, and open questions.
-
-Ask me a few questions first about my workflow, the information I can provide, and what a useful result looks like.
-
-Then draft the assistant’s overall instructions and a separate set of instructions for its first skill. Explain what context or example files I should supply. Don’t invent owners, deadlines, or commitments.
-
-Ask which AI tool I’m using, then explain where to put each piece and how to test it.</pre>
-<button class="copy-btn" id="copy-workshop-prompt" type="button">Copy the prompt</button><p class="copy-status" id="workshop-copy-status" role="status"></p>
-<div class="workshop-body"><h4>3. Put the output to work</h4><p>Ask AI to keep these pieces separate so you can review and save each one. The exact setup depends on your tool.</p>
-<div class="model-table-wrap"><table class="model-table"><thead><tr><th scope="col">What AI creates</th><th scope="col">What to do with it</th></tr></thead><tbody>
-<tr><th scope="row">Assistant instructions</th><td>Save them in your tool’s project or assistant instructions, where supported.</td></tr>
-<tr><th scope="row">Skill instructions</th><td>Add them through the tool’s skill feature, or save them as a reusable task prompt.</td></tr>
-<tr><th scope="row">Suggested context</th><td>Supply an approved project brief, team terminology, and an example of a good result.</td></tr></tbody></table></div>
-<p>For example, the assistant’s instructions might say: “Help me keep this learning project organized. Use the project brief and flag information that needs my decision.” Its meeting-notes skill should spell out the process: separate decisions from proposals, extract actions and their owners, and mark missing dates as unknown.</p>
-<p class="fine-note">Saving instructions does not automatically connect apps, grant file access, or schedule work. Ask your AI tool what setup it supports. <a href="https://agentskills.io/home">Learn about Agent Skills.</a></p>
-<h4>4. Test it and improve it together</h4><p>Give the assistant real notes you can check. Ask it to use the meeting-notes skill, then compare the result with the source.</p>
-<div class="scope-note"><span class="mini-label">A small example</span><p><strong>Your notes:</strong> “Priya will review the onboarding outline. We discussed a Friday launch, but no date was agreed.”</p><p><strong>A useful result:</strong> Priya owns the review; its deadline is unknown. Friday is a proposed launch date, not a commitment. The launch date still needs a decision.</p></div>
-<p>If the assistant gets that wrong, say: <strong>“You treated a proposed date as confirmed. Revise the skill so it preserves that distinction.”</strong> Review the revision, save it where the skill lives, and try another example.</p>
-<p>You now have an assistant, one repeatable skill, and a way to improve both. Start small, learn from the results, and add more skills as you find other work worth repeating.</p></div></div></section>
-
-<section id="resources" aria-labelledby="resources-heading"><div class="section-header"><div class="section-header-mark" aria-hidden="true"></div><h2 id="resources-heading">Resources &amp; Sources</h2></div>
-<ol class="source-list">
-<li><a href="https://darioamodei.com/post/we-must-pace-the-frontier">Dario Amodei — We Must Pace the Frontier</a><span>Primary source · September 2026. Read the proposal in his own words.</span></li>
-<li><a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/">OpenAI — The Hugging Face incident and the road ahead</a><span>Company account · August 26, 2026. Includes its technical report.</span></li>
-<li><a href="https://huggingface.co/blog/agent-intrusion-technical-timeline">Hugging Face — Technical timeline of the intrusion</a><span>Affected platform’s account · July 27, 2026.</span></li>
-<li><a href="https://metr.org/hugging-face-incident-report-aug-2026.pdf">METR &amp; Redwood Research — Investigation report</a><span>Independent investigation · August 2026. Read the scope and limitations alongside the findings.</span></li>
-<li><a href="https://www.youtube.com/watch?v=Lf5oqGOCRCM">The Diary of a CEO — Ed Zitron interview</a><span>August 27, 2026. <a href="https://singjupost.com/transcript-of-tech-critic-ed-zitron-interview-doac-podcast/">Third-party transcript</a> used to check the discussion and timestamps.</span></li>
-<li><a href="https://www.reuters.com/legal/transactional/nvidia-talks-invest-anthropics-mega-ipo-sources-say-2026-09-11/">Reuters — Nvidia in talks to invest in Anthropic’s IPO</a><span>Reported plans · September 11, 2026. Plans can change.</span></li>
-<li><a href="https://www.iea.org/reports/energy-and-ai">International Energy Agency — Energy and AI</a><span>Background report · April 2025. Infrastructure and electricity demand.</span></li>
-<li><a href="https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra">Artificial Analysis — Benchmarking GPT-6 Astra</a><span>Independent evaluation · September 9, 2026. Astra and Fable 5.1 scores and cost per task.</span></li>
-<li><a href="https://artificialanalysis.ai/models/deepseek-v4-1-flash">Artificial Analysis — DeepSeek V4.1 Flash</a><span>Independent model evaluation · checked September 12, 2026. Intelligence Index v4.3.</span></li>
-<li><a href="https://www.reuters.com/world/asia-pacific/chinas-deepseek-launches-v41-flash-model-2026-09-10/">Reuters — China’s DeepSeek launches V4.1-Flash</a><span>Launch news · September 10, 2026.</span></li>
-<li><a href="https://api-docs.deepseek.com/news/news260910/">DeepSeek — V4.1 Flash announcement</a><span>Developer claims · September 10, 2026. <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash">Model files and MIT license</a>.</span></li>
-<li><a href="https://agentskills.io/home">Agent Skills — Overview</a><span>The open format for packaging task instructions and resources.</span></li>
-<li><a href="https://news.bloomberglaw.com/antitrust/amodei-altman-musk-call-for-slowing-development-of-ai-models">Sam Altman and Elon Musk publicly backed that call</a></li><li><a href="https://www.bloomberg.com/news/articles/2026-06-08/openai-filed-confidentially-for-ipo-as-rivals-race-to-market">OpenAI confidentially filed in June</a></li><li><a href="https://ca.investing.com/news/company-news/nvidia-in-talks-to-invest-up-to-10-billion-in-anthropic-ipo--reuters-4837179">Anthropic is pursuing a potentially enormous offering</a></li><li><a href="https://fortune.com/2026/09/12/sam-altman-interview-ai-doomsday-safety-models-control-ipo-2027/">his September 12 Fortune interview</a></li><li><a href="https://x.com/edzitron/status/2090966445845045740">Zitron argued that OpenAI’s valuation ambitions were behind a potential delay</a></li></ol>
-<div class="signoff"><p>What have you learned from experimenting with AI? Share what worked, what failed, or what changed your mind. <a href="https://www.linkedin.com/in/nicholasborelli/">Join the conversation on LinkedIn.</a></p><p class="sig">— Nick</p><p class="tagline">Plain English about AI for people running real businesses.</p></div>
-</section>
-<section class="subscribe-bar" id="subscribe" aria-labelledby="subscribe-heading"><div class="subscribe-label">◆ Stay in the loop</div><h2 class="subscribe-headline" id="subscribe-heading">Get The Edge in your inbox.</h2><p class="subscribe-sub">AI news, working theory, and one practical workshop.</p><iframe src="https://subscribe-forms.beehiiv.com/066e6b32-a5b8-4457-abbd-bac647848065" width="100%" height="340" class="subscribe-embed" style="border:0;background:transparent" loading="lazy" title="Subscribe to The Edge"></iframe><p class="subscribe-sub"><a href="https://nicholasborelli.com/the-edge/#subscribe">Open the subscription page →</a></p></section>
-<footer class="nl-footer"><div class="footer-logo-row"><div class="footer-diamond" aria-hidden="true"></div><div class="footer-name">The <span>Edge</span></div></div><div class="footer-links"><a href="https://nicholasborelli.com/">Nicholas Borelli</a><a href="https://nicholasborelli.com/the-edge/">Archive</a><a href="https://www.linkedin.com/in/nicholasborelli/">LinkedIn</a></div><p class="footer-fine">© 2026 Borelli Consulting · Issue #007 · September 12, 2026<br>Written by Nicholas Borelli · Sources checked September 12, 2026</p></footer>
 </main>
-<script>(()=>{const button=document.getElementById('copy-workshop-prompt');button.addEventListener('click',async()=>{const prompt=document.getElementById('build-assistant-prompt'),status=document.getElementById('workshop-copy-status');try{await navigator.clipboard.writeText(prompt.textContent);status.textContent='Copied. Paste this into your AI tool.';}catch(e){const range=document.createRange();range.selectNodeContents(prompt);const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);status.textContent='Prompt selected. Use your device’s Copy command.';}});})();</script></body></html>
+<section class="subscribe-bar" id="subscribe" aria-labelledby="subscribe-heading"><div class="subscribe-label">◆ Stay in the loop</div><h2 class="subscribe-headline" id="subscribe-heading">Get The Edge in your inbox.</h2><p class="subscribe-sub">AI news, working theory, and one practical workshop.</p><iframe src="https://subscribe-forms.beehiiv.com/066e6b32-a5b8-4457-abbd-bac647848065" width="100%" height="340" class="subscribe-embed" loading="lazy" title="Subscribe to The Edge"></iframe><p class="subscribe-sub"><a href="/newsletter.html#subscribe">Open the subscription page →</a></p></section>
+<footer class="footer"><span>© Nicholas Borelli · The Edge</span><nav aria-label="Footer"><a href="/newsletter.html">Newsletter archive</a><a href="https://www.linkedin.com/in/nicholasborelli/" target="_blank" rel="noopener">LinkedIn</a></nav></footer>
+</div>
+
+</body>
+</html>

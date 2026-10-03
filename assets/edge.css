@@ -78,6 +78,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .hero .deck{font-size:23px;line-height:1.35;margin-bottom:12px}
 .hero img{width:100%;aspect-ratio:1.48;object-fit:cover}
 .hero.no-cover{grid-template-columns:1fr}
+.hero.long h1{font-size:clamp(34px,3.7vw,50px);letter-spacing:-1.6px}   /* back issues whose lead is a long news headline */
 .hero.no-cover h1{max-width:900px}
 .byline{font-size:14px;color:var(--muted)}
 .issue-intro{padding:30px 0 24px;border-bottom:1px solid var(--line)}
@@ -91,7 +92,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .news-grid.single{grid-template-columns:1fr}
 .news-card{display:grid;grid-template-columns:170px 1fr;gap:22px;align-items:start}
 .news-card+article{padding-left:30px;border-left:1px solid var(--line)}
-.news-card img{width:100%;height:160px;object-fit:contain;background:#eef0f4}
+.news-card.no-img{grid-template-columns:1fr}
+.news-card img{width:100%;height:160px;object-fit:cover;object-position:50% 50%}   /* image pack: subjects sit in the central 65% */
 .news-card h3{font:700 24px/1.07 var(--serif);letter-spacing:-.6px;margin-bottom:10px}
 .news-card h3 a{color:inherit;text-decoration:none}
 .news-card p{font:15px/1.45 var(--serif);color:var(--muted);margin-bottom:8px}
@@ -153,7 +155,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 /* ---------- Workshop (shared pieces) ---------- */
 .workshop-header-row{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .workshop-tagline-badge{font:11px/1.5 var(--sans);color:#46516b}
-.workshop-subline{font-size:20px}
+.workshop-subline{font-size:20px;line-height:1.45;margin-bottom:16px}
 .workshop-body{font-size:18px}
 .scope-note,.model-method{font:15px/1.7 var(--sans);color:#46516b;background:#eef1ff;padding:20px;margin:20px 0}
 .model-method summary{cursor:pointer;color:var(--blue-ink);font-weight:700}
@@ -170,6 +172,74 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .footer{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding:22px 0;margin-top:35px;font:12px/1.6 var(--sans);color:var(--muted)}
 .footer a{color:inherit}
 .footer nav{display:flex;gap:18px;flex-wrap:wrap}
+
+/* ---------- Pieces from earlier issues (#001–#007) ---------- */
+/* Earlier issues were written for a dark theme. Their inline styles name the old colours
+   (var(--ivory), var(--amber), var(--black-card)...); these map each name onto the new palette. */
+.reader-content{--black:var(--paper);--black-soft:#f1f0eb;--black-card:#fff;--black-border:var(--line);--amber:var(--blue);--amber-dim:rgba(37,72,244,.22);--amber-glow:var(--soft);--ivory:var(--ink);--ivory-dim:#33343b;--ivory-muted:var(--muted);--ivory-ghost:rgba(17,17,22,.08)}
+.reader-content .amber{color:var(--blue)}
+.reader-content h3.amber{color:var(--ink)}   /* old accent headlines read as the new black headlines */
+.reader-content .ivory{color:var(--ink)}
+.section-header-mark{display:none}
+/* a few inline styles hard-code the dark theme's tints: lift them onto the light page */
+.reader-content [style*="background:rgba(0,0,0,"]{background:#fff!important}
+.reader-content [style*="font-size:15px"]{font-size:inherit!important}   /* old body-text size: use the new reading size */
+.reader-content [style*="background:rgba(212,147,42,"]{background:var(--soft)!important}
+.reader-content [style*="solid rgba(212,147,42,"]{border-color:rgba(37,72,244,.25)!important}
+.article h3 a,.article-title a{color:inherit;text-decoration:none}
+.article h3 a:hover{text-decoration:underline}
+.article-body p,.wt-body p,.workshop-experiment p{margin:0 0 18px}
+.article-body p:last-child,.wt-body p:last-child{margin-bottom:0}
+.article+.article{margin-top:42px;padding-top:34px;border-top:1px solid var(--line)}
+.article-tag{font:700 11px/1.5 var(--sans);letter-spacing:1.2px;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.article h3,.workshop-title{font:700 30px/1.15 var(--serif);letter-spacing:-.6px;margin:0 0 16px}
+.mini-label,.workshop-label{display:block;font:700 11px/1.5 var(--sans);letter-spacing:1.2px;text-transform:uppercase;color:var(--blue);margin:26px 0 10px}
+.standfirst{font-size:21px;line-height:1.5;margin-bottom:24px}
+.workshop-header-row{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.workshop-cta{background:var(--soft-2);border-left:3px solid var(--blue);padding:18px 20px;margin:24px 0;font:16px/1.6 var(--sans);color:#33343b}
+/* prompts and conversations */
+.prompt-text{white-space:pre-wrap;overflow-wrap:anywhere;font:16px/1.65 var(--serif);color:var(--ink)}
+.prompt-text p{margin:0 0 12px}
+.prompt-text p:last-child{margin-bottom:0}
+pre.prompt-text,.workshop-starter{font:15px/1.7 var(--mono);background:#fff;border:1px solid var(--line);border-left:3px solid var(--blue);padding:20px 22px;margin:20px 0}
+.prompt-block{background:#fff;border:1px solid var(--line);padding:20px 22px;margin:20px 0}
+.prompt-speaker{font:700 11px/1.5 var(--sans);letter-spacing:1.2px;text-transform:uppercase;margin:0 0 6px}
+.prompt-speaker.you{color:var(--blue)}
+.prompt-speaker.claude{color:#c2410c}
+.prompt-divider{height:1px;background:var(--line);margin:16px 0}
+.prompt-bridge{font:15px/1.6 var(--sans);color:var(--muted);margin:14px 0}
+.copy-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:6px 0 22px}
+.copy-btn{font:700 13px/1 var(--sans);color:var(--blue);background:#fff;border:1px solid var(--blue);padding:12px 18px;min-height:44px}
+.copy-btn:hover{background:var(--soft)}
+.copy-status{font:13px/1.5 var(--sans);color:var(--muted);min-height:18px}
+/* reveal panels */
+details.reveal,details.workshop-details{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:24px 0}
+details.reveal>summary,details.workshop-details>summary{cursor:pointer;padding:16px 0;font:700 15px/1.4 var(--sans);color:var(--blue-ink)}
+.reveal-body,.details-body{padding:0 0 20px}
+/* resources */
+.resource-card{border-top:1px solid var(--line);padding:16px 0}
+.resource-card:last-child{border-bottom:1px solid var(--line)}
+.resource-card-head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+.resource-name{font:700 19px/1.3 var(--serif)}
+.resource-url{font:13px/1.5 var(--sans)}
+.resource-desc{font:15px/1.6 var(--sans);color:var(--muted);margin-top:4px}
+/* tables */
+.workshop-table{width:100%;border-collapse:collapse;font:15px/1.5 var(--sans);margin:18px 0}
+.workshop-table th,.workshop-table td{padding:11px 12px 11px 0;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.workshop-table thead th{font:700 11px/1.5 var(--sans);letter-spacing:1px;text-transform:uppercase;color:var(--blue-ink)}
+.workshop-table td:first-child{font-weight:700}
+/* spotlight extras */
+.spotlight-links{margin:18px 0}
+.spotlight-link-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font:16px/1.5 var(--serif)}
+.spotlight-link-marker{color:var(--blue)}
+/* #007 model watch and podcast */
+.release-card{border-top:1px solid var(--line);margin-top:34px;padding-top:6px}
+.release-card h4{font:700 26px/1.2 var(--serif);letter-spacing:-.4px;margin:6px 0 18px}
+.rank{color:var(--blue);font:22px var(--serif)}
+.featured-model{background:var(--soft)}
+.podcast-figure{max-width:560px}
+.podcast-image-link{display:block;position:relative;text-decoration:none}
+.watch-badge{position:absolute;left:14px;bottom:14px;background:var(--ink);color:#fff;font:700 12px/1 var(--sans);padding:10px 12px}
 
 /* ---------- Responsive ---------- */
 @media (max-width:950px){
@@ -197,6 +267,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
   .section-nav.n3{grid-template-columns:repeat(3,1fr)}
   .hero{grid-template-columns:1fr;gap:22px;padding:27px 0 24px}
   .hero h1{font-size:46px;letter-spacing:-1.7px;max-width:460px}
+  .hero.long h1{font-size:35px;letter-spacing:-1px}
   .hero .deck{font-size:21px}
   .hero img{aspect-ratio:1.5}
   .eyebrow{font-size:10px}
