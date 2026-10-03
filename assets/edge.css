@@ -271,6 +271,15 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .archive-subscribe .subscribe-label{margin:18px 0 4px}
 .archive-subscribe .privacy{font:13px/1.6 var(--sans);margin:4px 0 0}
 
+/* ---------- 404 ---------- */
+.nf{max-width:760px;padding:70px 0 90px;min-height:56vh}
+.nf h1{font:700 clamp(44px,6vw,72px)/1.02 var(--serif);letter-spacing:-2px;margin:0 0 20px}
+.nf .deck{font-size:21px;line-height:1.45;margin-bottom:22px}
+.nf-links{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}
+.nf-links li{border-bottom:1px solid var(--line)}
+.nf-links a{display:block;padding:16px 0;font:700 19px/1.3 var(--serif);text-decoration:none}
+.nf-links a:hover{text-decoration:underline}
+
 /* ---------- Pieces from earlier issues (#001–#007) ---------- */
 /* Earlier issues were written for a dark theme. Their inline styles name the old colours
    (var(--ivory), var(--amber), var(--black-card)...); these map each name onto the new palette. */
