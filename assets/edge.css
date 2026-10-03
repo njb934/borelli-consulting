@@ -80,13 +80,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .hero.no-cover{grid-template-columns:1fr}
 .hero.no-cover h1{max-width:900px}
 .byline{font-size:14px;color:var(--muted)}
-.issue-intro{display:grid;grid-template-columns:210px 1fr;gap:38px;padding:28px 0 23px;border-bottom:1px solid var(--line)}
-.contents{border-right:1px solid var(--line);padding-right:22px;font:14px/1.5 var(--serif)}
-.contents h2{font:700 10px/1.6 var(--sans);letter-spacing:1.5px;margin-bottom:16px}
-.contents a{display:flex;gap:20px;text-decoration:none;color:var(--muted);margin:14px 0}
-.contents a:first-of-type{color:var(--blue)}
-.contents a span{font:12px/1.8 var(--sans)}
-.intro-copy{max-width:780px}
+.issue-intro{padding:30px 0 24px;border-bottom:1px solid var(--line)}
+.intro-copy{max-width:780px;margin:0 auto}
 .intro-copy>p{margin:0 30px 14px;font-size:18px;line-height:1.5}
 .intro-copy>p.read-more{margin-top:14px;margin-bottom:0}
 .pullquote{margin:18px 0 0;background:var(--soft);padding:20px 32px;text-align:center;color:var(--blue-deep);font:30px/1.2 var(--serif);letter-spacing:-.7px}
@@ -163,12 +158,12 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .scope-note,.model-method{font:15px/1.7 var(--sans);color:#46516b;background:#eef1ff;padding:20px;margin:20px 0}
 .model-method summary{cursor:pointer;color:var(--blue-ink);font-weight:700}
 
-/* ---------- Subscribe (current beehiiv form, kept dark until the light form exists) ---------- */
-.subscribe-bar{--sans:Arial,"Arimo",sans-serif;--mono:"Courier New",monospace;background:#161614;color:#f5f0e8;border:1px solid #222220;border-top:2px solid #d4932a;padding:28px 24px;margin:48px auto 0;max-width:684px;text-align:center}
-.subscribe-label{font:9px/1.6 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:#d4932a;margin-bottom:8px}
-.subscribe-headline{font:20px/1.4 var(--serif);color:#f5f0e8;margin-bottom:6px}
-.subscribe-sub{font:13px/1.6 var(--sans);color:rgba(245,240,232,.42);margin-bottom:20px}
-.subscribe-sub a{color:#d4932a}
+/* ---------- Subscribe (light; the beehiiv form inside is a white card) ---------- */
+.subscribe-bar{background:#fff;color:var(--ink);border:1px solid var(--line);border-top:3px solid var(--blue);padding:30px 24px 22px;margin:48px auto 0;max-width:684px;text-align:center}
+.subscribe-label{font:700 10px/1.6 var(--sans);letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.subscribe-headline{font:700 30px/1.1 var(--serif);letter-spacing:-.8px;color:var(--ink);margin-bottom:8px}
+.subscribe-sub{font:16px/1.5 var(--serif);color:var(--muted);margin-bottom:14px}
+.subscribe-sub a{font:13px/1.6 var(--sans);color:var(--blue)}
 .subscribe-embed{width:100%;height:340px;max-width:100%;min-height:60px;border:0;background:transparent}
 
 /* ---------- Footer ---------- */
@@ -205,12 +200,10 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
   .hero .deck{font-size:21px}
   .hero img{aspect-ratio:1.5}
   .eyebrow{font-size:10px}
-  .issue-intro{grid-template-columns:1fr;gap:20px;padding:21px 0}
-  .contents{border:0;border-bottom:1px solid var(--line);padding:0 0 13px;display:grid;grid-template-columns:1fr 1fr;gap:8px 15px}
-  .contents h2{grid-column:1/-1;margin:0 0 4px}
-  .contents a{margin:0;gap:12px;font-size:14px}
+  .issue-intro{padding:22px 0}
   .intro-copy>p{margin:0 0 15px;font-size:18px}
   .pullquote{padding:22px 19px;font-size:26px;line-height:1.22}
+  br.desktop-break{display:none}
   .news-grid{grid-template-columns:1fr;gap:24px}
   .news-card{grid-template-columns:105px 1fr;gap:17px}
   .news-card+article{padding:22px 0 0;border-left:0;border-top:1px solid var(--line)}
