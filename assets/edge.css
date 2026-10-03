@@ -59,6 +59,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .topbar{display:flex;align-items:center;gap:22px;padding:17px 0;font:12px var(--sans)}
 .topbar .company{margin-right:auto;color:var(--ink)}
 .topbar a{text-decoration:none}
+.topbar a:not(.button),.footer nav a,.brand-footer nav a{display:inline-flex;align-items:center;min-height:44px}   /* thumb-sized targets */
 .brand-mark{width:14px;height:14px;border:2px solid var(--blue);display:inline-block;flex-shrink:0}
 .button{display:inline-flex;align-items:center;justify-content:center;padding:13px 23px;background:var(--blue);color:#fff;text-decoration:none;font:14px/1.3 var(--sans);border:1px solid var(--blue)}
 .button:hover{background:#1738d4;text-decoration:none}
@@ -221,7 +222,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .section-split{display:grid;grid-template-columns:.9fr 1.35fr;gap:75px}
 .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
 .service{border-top:1px solid #a6a9b5;padding:18px 0}
-.service-num{color:#c74831;font:19px var(--hserif)}
+.service-num{color:#b8432c;font:19px var(--hserif)}   /* mockup's #c74831 darkened a touch for 4.5:1 contrast */
 .service h3{font:400 25px/1.2 var(--hserif);margin:13px 0}
 .service p{font-size:16px;line-height:1.75;color:#505562;margin:0}
 .about-section{background:#f0f1f5}
