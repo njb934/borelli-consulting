@@ -175,7 +175,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .subscribe-headline{font:700 30px/1.1 var(--serif);letter-spacing:-.8px;color:var(--ink);margin-bottom:8px}
 .subscribe-sub{font:16px/1.5 var(--serif);color:var(--muted);margin-bottom:14px}
 .subscribe-sub a{font:13px/1.6 var(--sans);color:var(--blue)}
-.subscribe-embed{width:100%;height:340px;max-width:100%;min-height:60px;border:0;background:transparent}
+.subscribe-embed{width:100%;height:230px;max-width:100%;min-height:60px;border:0;background:transparent}
 
 /* ---------- Footer ---------- */
 .footer{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding:22px 0;margin-top:35px;font:12px/1.6 var(--sans);color:var(--muted)}
@@ -451,7 +451,7 @@ details.reveal>summary,details.workshop-details>summary{cursor:pointer;padding:1
   .reader-content h3{font-size:29px}
   .wt-intro-box{padding:20px;font-size:15px}
   .subscribe-bar{padding:24px 8px}
-  .subscribe-embed{height:420px}
+  .subscribe-embed{height:260px}
   .workshop-header-row{display:block}
   .workshop-tagline-badge{display:block;margin-bottom:15px}
   .section-pager{font-size:13px}
