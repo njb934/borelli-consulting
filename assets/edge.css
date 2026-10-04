@@ -347,7 +347,7 @@ details.reveal>summary,details.workshop-details>summary{cursor:pointer;padding:1
 .featured-model{background:var(--soft)}
 .podcast-figure{max-width:560px}
 .podcast-image-link{display:block;position:relative;text-decoration:none}
-.watch-badge{position:absolute;left:14px;bottom:14px;background:var(--ink);color:#fff;font:700 12px/1 var(--sans);padding:10px 12px}
+.watch-badge{position:absolute;left:14px;bottom:14px;background:var(--blue);color:#fff;font:700 12px/1 var(--sans);padding:10px 12px}
 
 /* ---------- Responsive ---------- */
 @media (max-width:950px){
