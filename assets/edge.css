@@ -76,7 +76,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .section-nav{display:flex;justify-content:center;gap:52px;padding:13px 0;border-bottom:1px solid var(--line);font-size:16px}
 .section-nav a{color:var(--ink);text-decoration:none}
 .section-nav a[aria-current=page]{color:var(--blue);text-decoration:underline}
-.eyebrow{font:700 10px/1.5 var(--sans);letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+.eyebrow{font:700 14px/1.4 var(--sans);letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:12px}   /* section labels: one size everywhere so readers always see which section they're in */
 
 /* ---------- Issue home ---------- */
 .hero{display:grid;grid-template-columns:1fr 1fr;gap:36px;padding:30px 0 24px;border-bottom:1px solid var(--line);align-items:center}
@@ -107,7 +107,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .read-link{font:700 12px/1.5 var(--sans);text-decoration:none}
 .workshop-preview{background:var(--soft);margin:0 -38px;padding:26px 38px;display:grid;grid-template-columns:1.5fr 2fr;gap:35px;align-items:center}
 .workshop-preview h2{font:700 34px/1.07 var(--serif);letter-spacing:-1px;margin:0 0 6px}
-.workshop-preview p{font-size:15px;margin-bottom:14px}
+.workshop-preview p:not(.eyebrow){font-size:15px;margin-bottom:14px}
 .careers{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
 .career{background:var(--paper);padding:17px;min-width:0}
 .career svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.4;margin-bottom:8px}
@@ -158,6 +158,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .signoff .tagline{font:13px/1.6 var(--sans);color:var(--muted)}
 .source-note{font:13px/1.6 var(--sans);color:var(--muted);margin-top:18px}
 .section-pager{max-width:800px;margin:40px auto;display:flex;justify-content:space-between;gap:24px;border-top:1px solid var(--line);padding-top:22px;font:14px/1.5 var(--sans)}
+.section-pager{align-items:center}
+.section-pager .button{font-size:15px}   /* the way on to the next section, so nobody stops halfway through an issue */
 
 /* ---------- Workshop (shared pieces) ---------- */
 .workshop-header-row{display:flex;align-items:center;justify-content:space-between;gap:20px}
@@ -424,7 +426,6 @@ details.reveal>summary,details.workshop-details>summary{cursor:pointer;padding:1
   .issue-title{font-size:20px}
   .hero .deck{font-size:21px}
   .hero img{aspect-ratio:1.5}
-  .eyebrow{font-size:10px}
   .issue-intro{padding:22px 0}
   .intro-copy>p{margin:0 0 15px;font-size:18px}
   .pullquote{padding:22px 19px;font-size:26px;line-height:1.22}
@@ -438,7 +439,7 @@ details.reveal>summary,details.workshop-details>summary{cursor:pointer;padding:1
   .read-link{font-size:13px}
   .workshop-preview{margin:0 -22px;padding:25px 22px;grid-template-columns:1fr;gap:23px}
   .workshop-preview h2{font-size:34px}
-  .workshop-preview p{font-size:16px}
+  .workshop-preview p:not(.eyebrow){font-size:16px}
   .careers{gap:9px}
   .career{padding:13px 10px}
   .career p{font-size:13px}
