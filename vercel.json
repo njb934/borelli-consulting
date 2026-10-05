@@ -91,6 +91,11 @@
       "permanent": false
     },
     {
+      "source": "/resources",
+      "destination": "/resources.html",
+      "permanent": false
+    },
+    {
       "source": "/the-edge/",
       "destination": "/newsletter.html",
       "permanent": false
