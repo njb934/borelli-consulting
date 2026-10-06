@@ -96,6 +96,46 @@
       "permanent": false
     },
     {
+      "source": "/newsletters/2026-04-06-issue-001-resources.html",
+      "destination": "/resources.html",
+      "permanent": false
+    },
+    {
+      "source": "/newsletters/2026-04-13-issue-002-resources.html",
+      "destination": "/resources.html",
+      "permanent": false
+    },
+    {
+      "source": "/newsletters/2026-04-20-issue-003-resources.html",
+      "destination": "/resources.html",
+      "permanent": false
+    },
+    {
+      "source": "/newsletters/2026-05-05-issue-004-resources.html",
+      "destination": "/resources.html",
+      "permanent": false
+    },
+    {
+      "source": "/newsletters/2026-05-13-issue-005-resources.html",
+      "destination": "/resources.html",
+      "permanent": false
+    },
+    {
+      "source": "/newsletters/2026-09-05-issue-006-resources.html",
+      "destination": "/resources.html",
+      "permanent": false
+    },
+    {
+      "source": "/newsletters/2026-09-12-issue-007-resources.html",
+      "destination": "/resources.html",
+      "permanent": false
+    },
+    {
+      "source": "/newsletters/2026-09-30-issue-008-resources.html",
+      "destination": "/resources.html",
+      "permanent": false
+    },
+    {
       "source": "/the-edge/",
       "destination": "/newsletter.html",
       "permanent": false

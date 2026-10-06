@@ -186,7 +186,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .res-jump a:hover{border-color:var(--blue);color:var(--blue)}
 .res-section{padding:40px 0;border-bottom:1px solid var(--line);scroll-margin-top:12px}
 .res-section h2{font:700 38px/1.1 var(--serif);letter-spacing:-1px;margin:0 0 10px}
-.res-intro{font:17px/1.55 var(--serif);color:var(--muted);margin:0 0 24px;max-width:720px}
+.res-intro{font:16px/1.5 var(--serif);color:var(--muted);margin:0 0 22px;max-width:720px}
 .res-section h2+.res-grid,.res-section h2+.res-prompts,.res-section h2+.res-sources-list{margin-top:24px}
 .res-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
 .res-grid>li{display:flex}
@@ -228,10 +228,22 @@ a.res-card:hover .res-card-title{color:var(--blue)}
 .res-sources summary .res-meta{flex-basis:100%}
 .res-sources-title{font:700 20px/1.3 var(--serif)}
 .res-count{font:13px var(--sans);color:var(--muted)}
-.res-sources ol{margin:0 0 12px;padding-left:24px;font:16px/1.5 var(--serif)}
-.res-sources li{margin:0 0 8px}
-.res-sources li span{font:12px/1.5 var(--sans);color:var(--muted);margin-left:8px}
+.res-source-list{margin:0 0 14px;padding-left:24px;font:16px/1.5 var(--serif)}   /* Nick's own list, as in the issue */
+.res-source-list li{padding:8px 0}
+.res-source-list li>span{display:block;font-size:15px;color:var(--muted)}
 .res-sources p{margin:0 0 18px}
+/* AI News: every story, issue by issue */
+.res-news{border-top:1px solid var(--line)}
+.res-news-issue{display:grid;grid-template-columns:200px 1fr;gap:4px 28px;padding:16px 0 18px;border-bottom:1px solid var(--line)}
+.res-news-issue .res-meta{padding-top:7px}
+.res-news-issue .res-meta a{display:block;text-decoration:none}
+.res-news-issue .res-meta a:hover{text-decoration:underline}
+.res-date{display:block;font-weight:400;font-size:12px;letter-spacing:.3px;text-transform:none;color:var(--muted)}
+.res-news-issue ul{list-style:none;margin:0;padding:0}
+.res-news-issue:last-child{border-bottom:0}
+.res-news-issue li a{display:block;padding:5px 0;font:700 20px/1.35 var(--serif);letter-spacing:-.2px;color:var(--ink);text-decoration:none}
+.res-news-issue li a::after{content:"\00a0\2192";font-weight:400;color:var(--blue)}
+.res-news-issue li a:hover{color:var(--blue);text-decoration:underline}
 
 /* Phones: each hub section starts closed and opens from its heading (res-collapse is set on <html>
    by a script that runs before the sections render; without scripts everything stays open). */
@@ -239,13 +251,11 @@ a.res-card:hover .res-card-title{color:var(--blue)}
 .res-collapse .res-jump{display:none}
 .res-collapse .res-head{padding-bottom:18px}
 .res-collapse .res-section{padding:0;scroll-margin-top:0}
-.res-collapse .res-section>.eyebrow{display:none}
 .res-collapse .res-section:not(.is-open)>.res-body{display:none}
 .res-collapse .res-section>.res-body{padding:2px 0 30px}
 .res-collapse .res-section h2{margin:0;font-size:22px;letter-spacing:-.4px}
-.res-toggle{display:flex;align-items:center;gap:12px;width:100%;min-height:68px;padding:12px 0;margin:0;background:none;border:0;color:var(--ink);font:inherit;letter-spacing:inherit;text-align:left;cursor:pointer}
-.res-toggle-text{flex:1;display:flex;flex-direction:column;gap:3px}
-.res-toggle-label{font:700 11px/1.4 var(--sans);letter-spacing:1.5px;text-transform:uppercase;color:var(--blue)}
+.res-toggle{display:flex;align-items:center;gap:12px;width:100%;min-height:60px;padding:12px 0;margin:0;background:none;border:0;color:var(--ink);font:inherit;letter-spacing:inherit;text-align:left;cursor:pointer}
+.res-toggle .res-h2-text{flex:1}
 .res-collapse .res-section h2 .res-count{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:24px;padding:0 7px;border:1px solid var(--line);font:12px/1 var(--sans);letter-spacing:0;color:var(--muted)}
 .res-toggle::after{content:"+";width:24px;text-align:center;font:400 30px/1 var(--sans);color:var(--blue)}
 .res-toggle[aria-expanded="true"]::after{content:"\2212"}
@@ -534,6 +544,9 @@ details.reveal>summary,details.workshop-details>summary{cursor:pointer;padding:1
   .res-prompt h3{font-size:22px}
   .res-prompt-actions .read-link{margin-left:0}
   .res-grid,.res-prompts{grid-template-columns:1fr}
+  .res-news-issue{grid-template-columns:1fr;gap:2px;padding:14px 0 16px}
+  .res-news-issue .res-meta{display:flex;align-items:baseline;gap:10px;padding-top:0}
+  .res-news-issue li a{font-size:18px}
   .res-jump{gap:6px}
   .res-jump a{padding:0 11px;font-size:12px}
   .workshop-header-row{display:block}
