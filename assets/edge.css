@@ -100,6 +100,10 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .news-card{display:grid;grid-template-columns:170px 1fr;gap:22px;align-items:start}
 .news-card+article{padding-left:30px;border-left:1px solid var(--line)}
 .news-card.no-img{grid-template-columns:1fr}
+.news-grid.three{grid-template-columns:repeat(3,1fr)}   /* three-story issues (from #009): the picture sits on top of each card */
+.news-grid.three .news-card{display:block}
+.news-grid.three .news-card+article{padding-left:22px}
+.news-grid.three .news-card img{height:auto;aspect-ratio:1.5;margin-bottom:18px}
 .news-card img{width:100%;height:160px;object-fit:cover;object-position:50% 50%}   /* image pack: subjects sit in the central 65% */
 .news-card h3{font:700 24px/1.07 var(--serif);letter-spacing:-.6px;margin-bottom:10px}
 .news-card h3 a{color:inherit;text-decoration:none}
@@ -142,6 +146,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .learn-more:hover{text-decoration:underline}
 .fine-note{font:14px/1.6 var(--sans);color:var(--muted)}
 .reader-content p.fine-note{margin:0 0 18px}
+.reader-content .pullquote{margin:28px 0}   /* a pull quote inside a page (from #009): room above and below */
 .model-table-wrap{overflow-x:auto;margin:18px 0 14px;border-top:1px solid var(--rule-strong)}
 .model-table{width:100%;border-collapse:collapse;font:15px/1.45 var(--sans)}
 .model-table caption{caption-side:top}
@@ -517,6 +522,8 @@ details.reveal>summary,details.workshop-details>summary{cursor:pointer;padding:1
   .news-grid{grid-template-columns:1fr;gap:24px}
   .news-card{grid-template-columns:105px 1fr;gap:17px}
   .news-card+article{padding:22px 0 0;border-left:0;border-top:1px solid var(--line)}
+  .news-grid.three{grid-template-columns:1fr}
+  .news-grid.three .news-card+article{padding:18px 0 0}
   .news-card img{height:132px}
   .news-card h3{font-size:23px}
   .news-card p{font-size:15px}

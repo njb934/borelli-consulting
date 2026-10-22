@@ -1,6 +1,16 @@
 {
   "redirects": [
     {
+      "source": "/theedge/009",
+      "destination": "/newsletters/2026-10-21-issue-009.html",
+      "permanent": false
+    },
+    {
+      "source": "/the-edge/009",
+      "destination": "/newsletters/2026-10-21-issue-009.html",
+      "permanent": false
+    },
+    {
       "source": "/theedge/008",
       "destination": "/newsletters/2026-09-30-issue-008.html",
       "permanent": false
@@ -82,7 +92,7 @@
     },
     {
       "source": "/theedge",
-      "destination": "/newsletters/2026-09-30-issue-008.html",
+      "destination": "/newsletters/2026-10-21-issue-009.html",
       "permanent": false
     },
     {
